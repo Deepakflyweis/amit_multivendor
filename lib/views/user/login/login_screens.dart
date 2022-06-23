@@ -1,7 +1,7 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sugandh/views/Password/forget_password.dart';
+import 'package:sugandh/views/user/Password/forget_password.dart';
 import 'package:sugandh/widgets/app_bar_widget.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:sugandh/widgets/welcomeButton_widget.dart';

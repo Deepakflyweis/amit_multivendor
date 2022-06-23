@@ -35,7 +35,7 @@ class OtpInput extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 hintText: '0',
-                hintStyle: TextStyle(fontSize: 20.0, color: Colors.black),
+                hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey,fontWeight: FontWeight.w300),
                 counterText: '',
                 focusColor: appthemColor,
               ),

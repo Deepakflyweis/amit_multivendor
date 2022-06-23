@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sugandh/views/Password/controllers/create_password_controller_controller.dart';
+import 'package:sugandh/views/user/Password/controllers/forget_password_controller.dart';
 import 'package:sugandh/widgets/welcomeButton_widget.dart';
 
 class CreateNewPassword extends StatelessWidget {
-  final String token;
-  CreateNewPassword({Key? key, required this.token}) : super(key: key);
-  final CreatePasswordController controller = CreatePasswordController();
+    
+  CreateNewPassword(
+    this.resetToken, {
+    Key? key,
+  }) : super(key: key);
+  // final CreatePasswordController controller = CreatePasswordController();
+  final ForgetPasswordController _controller = Get.find();
+  final String resetToken;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,12 @@ class CreateNewPassword extends StatelessWidget {
               height: 5.h,
             ),
             TextFormField(
-              controller: controller.newcontroller,
+              controller: _controller.newPass,
+              validator: (value) {
+                if (value == "") {
+                  return " Please Enter password";
+                }
+              },
               decoration: const InputDecoration(
                 hintText: "New Password",
               ),
@@ -46,7 +56,12 @@ class CreateNewPassword extends StatelessWidget {
               height: 3.h,
             ),
             TextFormField(
-              controller: controller.confirmcontroller,
+              controller: _controller.confirmPass,
+              validator: (value) {
+                if (value == "") {
+                  return " Please Enter password";
+                }
+              },
               decoration: const InputDecoration(
                 hintText: "Confirm Password",
               ),
@@ -54,14 +69,13 @@ class CreateNewPassword extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Obx(() => controller.loading.isTrue
-                ? const LoadingWidget()
-                : WelcomeButtonWidget(
-                    btnText: "CREATE PASSWORD",
-                    ontap: () {
-                      controller.changePassword(token);
-                    },
-                  ))
+            WelcomeButtonWidget(
+              btnText: "CREATE PASSWORD",
+              ontap: () {
+                _controller.setNewPassword(resetToken);
+                // controller.changePassword(token);
+              },
+            )
           ],
         ),
       ),

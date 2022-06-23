@@ -1,33 +1,18 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sugandh/views/otp_screens/time_controller.dart';
+import 'package:sugandh/views/user/otp_screens/otp_input.dart';
+import 'package:sugandh/views/user/otp_screens/time_controller.dart';
 import 'package:sugandh/widgets/app_widgets.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'otp_input.dart';
+class ForgetOtp extends StatelessWidget {
+  final OtpTimerController _timeController = Get.put(OtpTimerController());
+  
 
-class OTPScreen extends StatelessWidget {
-  late final OtpTimerController _timeController;
-  OTPScreen(
-      {Key? key,
-      required this.phoneNumber,
-      required this.otp,
-      required this.isForgetPassword})
-      : super(key: key) {
-    _timeController = OtpTimerController(phone: phoneNumber, otp: otp);
-    _timeController.initList();
-    Future.delayed(const Duration(seconds: 2), () {
-      _timeController.verifyOTP(phoneNumber, otp, isForgetPassword);
-    });
-  }
-
-  final String phoneNumber;
-  final String otp;
-  final bool isForgetPassword;
+  ForgetOtp({Key? key, required this.isLogin}) : super(key: key);
+  final bool isLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +42,7 @@ class OTPScreen extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                'A 4 Digit PIN has been sent to your',
+                'A 5 Digit PIN has been sent to your',
                 style: TextStyle(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.bold,
@@ -106,8 +91,10 @@ class OTPScreen extends StatelessWidget {
                         .make()
                         .centered()
                         .onInkTap(() {
-                        _timeController.verifyOTP(
-                            phoneNumber, otp, isForgetPassword);
+                        _timeController.verifyForgetOtp();
+                        // _timeController.verifyOTP(
+                        //     phoneNumber, otp, isForgetPassword
+                        //     );
                       })))),
             Obx(() => Text(_timeController.elapsedTime.value)),
             Align(

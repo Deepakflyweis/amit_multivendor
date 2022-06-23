@@ -1,13 +1,15 @@
 import 'dart:ui';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sugandh/data/datasources/local/local_database.dart';
+import 'package:sugandh/config/local/local_database.dart';
 import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/check_out_screens/check_out_address.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
 import 'package:sugandh/views/onboarding/onboarding.dart';
+import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -278,8 +280,11 @@ class _OpenDrawerState extends State<OpenDrawer> {
                 3.h.heightBox,
                 InkWell(
                   onTap: () {
-                    LocalStorage.saveToken("");
-                    Get.offAll(const Onbording());
+                    
+                    GetStorage box = GetStorage();
+                    box.erase();
+                    Get.offAll(() => LoginScreen());                 
+                     
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

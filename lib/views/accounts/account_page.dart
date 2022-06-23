@@ -1,9 +1,10 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:sugandh/views/editProfile/edit_profile.dart';
-import 'package:sugandh/views/login/login_screens.dart';
+import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/views/notification/Notice_fication.dart';
 import 'package:sugandh/views/track_order/track_map.dart';
 import 'package:sugandh/views/track_order/track_screen.dart';
@@ -477,7 +478,9 @@ class AcoountPage extends StatelessWidget {
                 3.h.heightBox,
                 InkWell(
                   onTap: () {
-                    Get.to(LoginScreen());
+                     GetStorage box = GetStorage();
+                    box.erase();
+                    Get.offAll(() => LoginScreen());    
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

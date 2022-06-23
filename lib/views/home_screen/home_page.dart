@@ -1,5 +1,6 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:sugandh/widgets/drower_box.dart';
@@ -355,16 +356,19 @@ class HomePage extends StatelessWidget {
                       Text(
                         'Shop by Category',
                         style: TextStyle(
-                          fontSize: 10.sp,
+                          fontSize: 12.sp,
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      Text(
-                        'VIEW ALL',
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          color: appthemColor,
+                      TextButton(
+                        onPressed: () =>  Get.to(() => CategaryPage()),
+                        child: Text(
+                          'VIEW ALL',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: appthemColor,
+                          ),
                         ),
                       ),
                     ],

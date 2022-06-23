@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:sugandh/views/login/login_screens.dart';
+import 'package:sugandh/views/user/login/login_screens.dart';
 
-import '../../widgets/welcomeButton_widget.dart';
+import '../../../widgets/welcomeButton_widget.dart';
 
 class WelcomeSplashScreen extends StatefulWidget {
   const WelcomeSplashScreen({Key? key}) : super(key: key);
