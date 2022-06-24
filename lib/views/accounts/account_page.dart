@@ -1,8 +1,9 @@
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/views/editProfile/edit_profile.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/views/notification/Notice_fication.dart';
@@ -13,7 +14,9 @@ import 'package:sugandh/widgets/drower_box.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AcoountPage extends StatelessWidget {
-  const AcoountPage({Key? key}) : super(key: key);
+    AcoountPage({Key? key}) : super(key: key);
+
+  ProfileController _controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,8 @@ class AcoountPage extends StatelessWidget {
         child: Column(
           children: [
             0.h.heightBox,
+            
+            _controller.obx((state) => 
             Row(
               //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -53,30 +58,31 @@ class AcoountPage extends StatelessWidget {
                   backgroundColor: Colors.green,
                   radius: 45,
                   child: CircleAvatar(
-                    backgroundColor: Colors.greenAccent[100],
+                    backgroundColor: Colors.white,
                     radius: 45,
-                    child: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                          'lib/assets/asset/avatar.png'), //NetworkImage
-                      radius: 45,
-                    ), //CircleAvatar
+                    child:  Image.network(
+                      state!.profile,
+                      fit: BoxFit.fill,
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
+                          'lib/assets/asset/avatar.png'),
+                    )                
                   ), //CircleAvatar
                 ),
                 10.w.widthBox,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Jameson Dunn',
-                      style: TextStyle(
+                      Text(
+                      state.name,
+                      style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 16),
                     ),
                     0.6.h.heightBox,
-                    const Text(
-                      'jamesonhunn@gmail.com',
-                      style: TextStyle(
+                     Text(
+                      state.email,
+                      style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 12),
@@ -84,43 +90,43 @@ class AcoountPage extends StatelessWidget {
                   ],
                 ),
               ],
-            ).pSymmetric(h: 4.5.w),
-            5.h.heightBox,
+            ).pSymmetric(h: 4.5.w),            
+          ),
+
+          5.h.heightBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
                   onTap: () {
-                    Get.to(const EditProfile());
+                    Get.to(() => EditProfile());
                   },
-                  child: Container(
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: appthemColor,
-                              borderRadius: BorderRadius.circular(6.sp)),
-                          child: Image.asset(
-                            'lib/assets/asset/Icon_Edit-Profile.png',
-                            color: Colors.white,
-                            height: 40,
-                          ),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: appthemColor,
+                            borderRadius: BorderRadius.circular(6.sp)),
+                        child: Image.asset(
+                          'lib/assets/asset/Icon_Edit-Profile.png',
+                          color: Colors.white,
+                          height: 40,
                         ),
-                        4.w.widthBox,
-                        const Text(
-                          'Edit Profile',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15),
-                        ),
-                      ],
-                    ),
+                      ),
+                      4.w.widthBox,
+                      const Text(
+                        'Edit Profile',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15),
+                      ),
+                    ],
                   ),
                 ),
                 IconButton(
                     onPressed: () {
-                      Get.to(const EditProfile());
+                      Get.to(() => EditProfile());
                     },
                     icon: const Icon(
                       Icons.arrow_forward_ios,
@@ -132,29 +138,27 @@ class AcoountPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_Location.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: appthemColor,
+                          borderRadius: BorderRadius.circular(6.sp)),
+                      child: Image.asset(
+                        'lib/assets/asset/Icon_Location.png',
+                        color: Colors.white,
+                        height: 40,
                       ),
-                      4.w.widthBox,
-                      const Text(
-                        'Shoping Address',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
+                    ),
+                    4.w.widthBox,
+                    const Text(
+                      'Shoping Address',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15),
+                    ),
+                  ],
                 ),
                 IconButton(
                     onPressed: () {},
@@ -478,9 +482,9 @@ class AcoountPage extends StatelessWidget {
                 3.h.heightBox,
                 InkWell(
                   onTap: () {
-                     GetStorage box = GetStorage();
+                    GetStorage box = GetStorage();
                     box.erase();
-                    Get.offAll(() => LoginScreen());    
+                    Get.offAll(() => LoginScreen());
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

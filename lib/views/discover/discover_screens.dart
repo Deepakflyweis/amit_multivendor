@@ -114,7 +114,7 @@ class DiscoverPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Expanded(
+                  Expanded(
                     child: TabBarView(
                   children: [
                     Center(

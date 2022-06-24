@@ -76,7 +76,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
     List<Widget> pages = [
       const HomePage(),
       const CartPage(),
-      const AcoountPage(),
+        AcoountPage(),
       const SettingPage(),
       // HomePage(),
       // UsersPage(),

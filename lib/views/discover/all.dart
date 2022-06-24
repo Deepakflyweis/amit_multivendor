@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/products/product2_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class All extends StatelessWidget {
-  const All({Key? key}) : super(key: key);
+    All({Key? key}) : super(key: key);
+
+  ProductsController controller = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: 90.h,
-        child: GridView.builder(
-            // physics: NeverScrollableScrollPhysics(),
+        height: 100.h,
+        child: controller.obx((state) => 
+         GridView.builder(             
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              //childAspectRatio: 4/ 3,
               crossAxisSpacing: 2,
               mainAxisSpacing: 20,
               mainAxisExtent: 205,
@@ -119,7 +121,8 @@ class All extends StatelessWidget {
                 }),
               ).pSymmetric(h: 2.w);
             }),
-      ),
+      
+      ),),
     );
   }
 }
