@@ -115,7 +115,7 @@ class Shirt extends StatelessWidget {
                     ),
                   ],
                 ).pSymmetric(h: 1.w).onTap(() {
-                  Get.to(() => const DiscoverPage());
+                  Get.to(() =>   DiscoverPage());
                 }),
               ).pSymmetric(h: 2.w);
             }),

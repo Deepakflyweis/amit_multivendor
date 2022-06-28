@@ -7,14 +7,14 @@ import 'package:sugandh/models/category_all_model.dart';
 
 class CategoryController extends GetxController
     with StateMixin<List<CategoryModel>> {
+ 
 
-  getcategoryApi() {  
-    
+  getcategoryApi() {
     try {
       Client _client = Client();
       CategoryRepository categoryRepository =
-        CategoryRepository(client: _client.init());
-      categoryRepository.getCategory().then((value) {
+          CategoryRepository(client: _client.init());
+      categoryRepository.getCategory( ).then((value) {
         if (value.isNotEmpty) {
           change(value, status: RxStatus.success());
         } else {
@@ -24,7 +24,7 @@ class CategoryController extends GetxController
         change(null, status: RxStatus.error(err.toString()));
         log("error : $err");
       });
-    }  catch (e) {
+    } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
     }
   }

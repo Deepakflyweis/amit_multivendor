@@ -11,7 +11,7 @@ import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class DiscoverPage extends StatelessWidget {
-  const DiscoverPage({Key? key}) : super(key: key);
+    DiscoverPage({Key? key}) : super(key: key);
 
   get tabController => null;
 
@@ -116,7 +116,7 @@ class DiscoverPage extends StatelessWidget {
                 ),
                   Expanded(
                     child: TabBarView(
-                  children: [
+                  children:  [
                     Center(
                       child: All(),
                     ),

@@ -1,7 +1,9 @@
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
+ 
+import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
+import 'package:sugandh/views/products/product2_screen.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:sugandh/widgets/drower_box.dart';
 
@@ -10,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+    HomePage({Key? key}) : super(key: key);
+
+  ProductsController controller = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
@@ -362,7 +366,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () =>  Get.to(() => CategaryPage()),
+                        onPressed: () => Get.to(() => CategaryPage()),
                         child: Text(
                           'VIEW ALL',
                           style: TextStyle(
@@ -406,7 +410,7 @@ class HomePage extends StatelessWidget {
                           )
                         ],
                       ).pSymmetric(h: 1.w).onTap(() {
-                        Get.to(() => const DiscoverPage());
+                        Get.to(() =>   DiscoverPage());
                       });
                     },
                     itemCount: baner2.length,
@@ -430,122 +434,133 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      Text(
-                        'VIEW ALL',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: appthemColor,
+                      TextButton(
+                        onPressed: () => Get.to(() =>   DiscoverPage()),
+                        child: Text(
+                          'VIEW ALL',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: appthemColor,
+                          ),
                         ),
                       ),
                     ],
                   ).pSymmetric(v: 0.5.h, h: 3.3.w),
                 ),
-                SizedBox(
-                  height: 25.5.h,
-                  child: ListView.builder(
-                    // physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext, index) {
-                      return Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                color: const Color(0xffE3E6EF),
-                              )),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      SizedBox(
-                                        height: 15.h,
-                                        width: 42.w,
-                                        child: Image.asset(
-                                          indemand[index],
-                                          //
-                                          height: 10.h,
-                                          width: 40.w,
+
+                /// in demand products
+                controller.obx((state) =>  SizedBox(
+                    height: 25.5.h,
+                    child: ListView.builder(
+                      itemCount: state!.length,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(7),
+                      scrollDirection: Axis.horizontal,                     
+                      itemBuilder: (BuildContext, index) {
+                        return Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: const Color(0xffE3E6EF),
+                                )),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        SizedBox(
+                                          height: 15.h,
+                                          width: 42.w,
+                                          child: Image.network(
+                                            state[index].images[0].url,
+                                          fit: BoxFit.fill ,
+                                          errorBuilder: (context, error, stackTrace) =>                                           
+                                          Image.asset(
+                                            indemand[index],                                            
+                                            height: 10.h,
+                                            width: 40.w,
+                                          ),
+                                        )
                                         ),
-                                      ),
-                                      Positioned(
-                                        left: 10.sp,
-                                        top: 10.sp,
-                                        child: Container(
-                                            height: 2.5.h,
-                                            width: 15.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(3.sp),
-                                              color: Colors.white,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                1.w.widthBox,
-                                                Image.asset(
-                                                    "lib/assets/asset/starfill.png"),
-                                                1.w.widthBox,
-                                                const Text("4.2+"),
-                                              ],
-                                            )),
-                                      ),
-                                      Positioned(
-                                        left: 100.sp,
-                                        top: 10.sp,
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              "lib/assets/asset/heart.png",
-                                              height: 1.5.h,
-                                            ),
-                                          ],
+                                        Positioned(
+                                          left: 10.sp,
+                                          top: 10.sp,
+                                          child: Container(
+                                              height: 2.5.h,
+                                              width: 15.w,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(3.sp),
+                                                color: Colors.white,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  1.w.widthBox,
+                                                  Image.asset(
+                                                      "lib/assets/asset/starfill.png"),
+                                                  1.w.widthBox,
+                                                    Text(state[index].ratings.toString()),
+                                                ],
+                                              )),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  1.h.heightBox,
-                                  Text(
-                                    "Men black raglan",
-                                    style: TextStyle(
-                                      fontSize: 9.sp,
-                                      fontWeight: FontWeight.bold,
+                                        Positioned(
+                                          left: 100.sp,
+                                          top: 10.sp,
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                "lib/assets/asset/heart.png",
+                                                height: 1.5.h,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ).px(3),
-                                  1.h.heightBox,
-                                  Text(
-                                    "shirt",
-                                    style: TextStyle(
-                                      fontSize: 10.sp,
+                                    1.h.heightBox,
+                                    Text(
+                                      state[index].name,
+                                      style: TextStyle(
+                                        fontSize: 9.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ).px(3),
+                                    1.h.heightBox,
+                                    Text(
+                                      state[index].description,
+                                      style: TextStyle(
+                                        fontSize: 10.sp,
+                                      ),
+                                    ).px(3),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "\$ " + state[index].price.toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.sp,
+                                          ),
+                                        ).px(3),
+                                        22.w.widthBox,
+                                        Image.asset("lib/assets/asset/basket.png")
+                                      ],
                                     ),
-                                  ).px(3),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "\$ 565",
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                        ),
-                                      ).px(3),
-                                      22.w.widthBox,
-                                      Image.asset("lib/assets/asset/basket.png")
-                                    ],
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ).pSymmetric(h: 1.w).onTap(() {
-                          Get.to(() => const DiscoverPage());
-                        }),
-                      );
-                    },
-                    itemCount: indemand.length,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(7),
-                    scrollDirection: Axis.horizontal,
+                            ],
+                          ).pSymmetric(h: 1.w).onTap(() {
+                            
+                            Get.to(() => Produt2page(),arguments: state[index].id);
+                          }),
+                        );
+                      },
+                      
+                    ),
                   ),
                 ),
                 Container(
@@ -563,11 +578,14 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      Text(
-                        'VIEW ALL',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: appthemColor,
+                      TextButton(
+                        onPressed: () =>  Get.to(() =>   DiscoverPage()),
+                        child: Text(
+                          'VIEW ALL',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: appthemColor,
+                          ),
                         ),
                       ),
                     ],
@@ -575,110 +593,116 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 25.5.h,
-                  child: ListView.builder(
-                    // physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext, index) {
-                      return Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                color: const Color(0xffE3E6EF),
-                              )),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    children: [
-                                      SizedBox(
-                                        height: 15.h,
-                                        width: 42.w,
-                                        child: Image.asset(
-                                          indemand[index],
-                                          //
-                                          height: 10.h,
-                                          width: 40.w,
+                  child: controller.obx((state) => 
+                      ListView.builder(
+                      itemCount: state!.length,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(7),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext, index) {
+                        return Container(
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: const Color(0xffE3E6EF),
+                                )),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        SizedBox(
+                                          height: 15.h,
+                                          width: 42.w,
+                                          child: Image.network(state[index].images[0].url,
+                                          fit: BoxFit.fill,
+                                          errorBuilder: (context, error, stackTrace) =>  Image.asset(
+                                            indemand[index],                                           
+                                            height: 10.h,
+                                            width: 40.w,
+                                          ),
+                                          )                                        
+                                         
                                         ),
-                                      ),
-                                      Positioned(
-                                        left: 10.sp,
-                                        top: 10.sp,
-                                        child: Container(
-                                            height: 2.5.h,
-                                            width: 15.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(3.sp),
-                                              color: Colors.white,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                1.w.widthBox,
-                                                Image.asset(
-                                                    "lib/assets/asset/starfill.png"),
-                                                1.w.widthBox,
-                                                const Text("4.2+"),
-                                              ],
-                                            )),
-                                      ),
-                                      Positioned(
-                                        left: 100.sp,
-                                        top: 10.sp,
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              "lib/assets/asset/heart.png",
-                                              height: 1.5.h,
-                                            ),
-                                          ],
+                                        Positioned(
+                                          left: 10.sp,
+                                          top: 10.sp,
+                                          child: Container(
+                                              height: 2.5.h,
+                                              width: 15.w,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(3.sp),
+                                                color: Colors.white,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  1.w.widthBox,
+                                                  Image.asset(
+                                                      "lib/assets/asset/starfill.png"),
+                                                  1.w.widthBox,
+                                                    Text(state[index].ratings.toString()),
+                                                ],
+                                              )),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  1.h.heightBox,
-                                  Text(
-                                    "Men black raglan",
-                                    style: TextStyle(
-                                      fontSize: 9.sp,
-                                      fontWeight: FontWeight.bold,
+                                        Positioned(
+                                          left: 100.sp,
+                                          top: 10.sp,
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                "lib/assets/asset/heart.png",
+                                                height: 1.5.h,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ).px(3),
-                                  1.h.heightBox,
-                                  Text(
-                                    "shirt",
-                                    style: TextStyle(
-                                      fontSize: 10.sp,
+                                    1.h.heightBox,
+                                    Text(
+                                       state[index].name,
+                                      style: TextStyle(
+                                        fontSize: 9.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ).px(3),
+                                    1.h.heightBox,
+                                    Text(
+                                      state[index].description,
+                                      style: TextStyle(
+                                        fontSize: 10.sp,
+                                      ),
+                                    ).px(3),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "\$ " + state[index].price.toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.sp,
+                                          ),
+                                        ).px(3),
+                                        22.w.widthBox,
+                                        Image.asset("lib/assets/asset/basket.png")
+                                      ],
                                     ),
-                                  ).px(3),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "\$ 565",
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                        ),
-                                      ).px(3),
-                                      22.w.widthBox,
-                                      Image.asset("lib/assets/asset/basket.png")
-                                    ],
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ).pSymmetric(h: 1.w).onTap(() {
-                          Get.to(() => const DiscoverPage());
-                        }),
-                      );
-                    },
-                    itemCount: indemand.length,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(7),
-                    scrollDirection: Axis.horizontal,
+                            ],
+                          ).pSymmetric(h: 1.w).onTap(() {
+                            
+                            Get.to(() =>  Produt2page(),arguments: state[index].id);
+                          }),
+                        );
+                      },
+                      
+                    ),
                   ),
                 ),
               ],

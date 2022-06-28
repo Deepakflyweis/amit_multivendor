@@ -22,9 +22,7 @@ class CategoryRepository {
         return Future.error(response.data["error"]);
       }
     }
-    // catch (Exc) {
-    //   rethrow;
-    // }
+  
     on DioError catch (e) {
       CommonLoader.hideLoading();
       return Future.error(e.message);

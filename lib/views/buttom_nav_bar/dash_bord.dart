@@ -74,10 +74,10 @@ class _MyDashBoardState extends State<MyDashBoard> {
 
   Widget getBody() {
     List<Widget> pages = [
-      const HomePage(),
-      const CartPage(),
+        HomePage(),
+        CartPage(),
         AcoountPage(),
-      const SettingPage(),
+        SettingPage(),
       // HomePage(),
       // UsersPage(),
       // MessagesPage(),

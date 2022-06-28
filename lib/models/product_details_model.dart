@@ -1,15 +1,15 @@
 // To parse this JSON data, do
 //
-//     final productsModel = productsModelFromJson(jsonString);
+//     final productDetailsModel = productDetailsModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ProductsModel> productsModelFromJson(String str) => List<ProductsModel>.from(json.decode(str).map((x) => ProductsModel.fromJson(x)));
+ProductDetailsModel productDetailsModelFromJson(String str) => ProductDetailsModel.fromJson(json.decode(str));
 
-String productsModelToJson(List<ProductsModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String productDetailsModelToJson(ProductDetailsModel data) => json.encode(data.toJson());
 
-class ProductsModel {
-    ProductsModel({
+class ProductDetailsModel {
+    ProductDetailsModel({
        required this.id,
        required this.name,
        required this.description,
@@ -18,11 +18,11 @@ class ProductsModel {
        required this.images,
        required this.category,
        required this.stock,
-        this.numOfReviews,
+       required this.numOfReviews,
        required this.user,
        required this.reviews,
        required this.createdAt,
-        this.v,
+       required this.v,
     });
 
     String id;
@@ -31,22 +31,22 @@ class ProductsModel {
     int price;
     int ratings;
     List<Image> images;
-    Category category;
+    String category;
     int stock;
-    int ? numOfReviews;
+    int numOfReviews;
     String user;
     List<Map<String, String>> reviews;
     DateTime createdAt;
-    int ? v;
+    int v;
 
-    factory ProductsModel.fromJson(Map<String, dynamic> json) => ProductsModel(
+    factory ProductDetailsModel.fromJson(Map<String, dynamic> json) => ProductDetailsModel(
         id: json["_id"],
         name: json["name"],
         description: json["description"],
         price: json["price"],
         ratings: json["ratings"],
         images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
-        category: Category.fromJson(json["category"]),
+        category: json["category"],
         stock: json["Stock"],
         numOfReviews: json["numOfReviews"],
         user: json["user"],
@@ -62,40 +62,12 @@ class ProductsModel {
         "price": price,
         "ratings": ratings,
         "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "category": category.toJson(),
+        "category": category,
         "Stock": stock,
         "numOfReviews": numOfReviews,
         "user": user,
         "reviews": List<dynamic>.from(reviews.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
         "createdAt": createdAt.toIso8601String(),
-        "__v": v,
-    };
-}
-
-class Category {
-    Category({
-        required this.id,
-        required this.name,
-        required this.image,
-        this.v,
-    });
-
-    String id;
-    String name;
-    String image;
-    int ? v;
-
-    factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["_id"],
-        name: json["name"],
-        image: json["image"],
-        v: json["__v"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "_id": id,
-        "name": name,
-        "image": image,
         "__v": v,
     };
 }

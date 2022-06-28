@@ -1,13 +1,21 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sugandh/controller/product_detail_cont.dart';
 import 'package:sugandh/views/RateProduct/rate_product.dart';
 import 'package:sugandh/views/cart_screen/cart_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Produt2page extends StatelessWidget {
+class Produt2page extends StatefulWidget {
   Produt2page({Key? key}) : super(key: key);
+
+  @override
+  State<Produt2page> createState() => _Produt2pageState();
+}
+
+class _Produt2pageState extends State<Produt2page> {
+  ProductDetailsController controller = Get.put(ProductDetailsController());
 
   List<String> indemand = [
     "lib/assets/asset/indemand1.png",
@@ -16,53 +24,109 @@ class Produt2page extends StatelessWidget {
     "lib/assets/asset/indemand4.png",
   ];
 
+  final currtpage = 0.obs;
+
+  PageController? _controller;
+
+  @override
+  void initState() {
+    _controller = PageController(initialPage: 0);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
+  }
+
+   buildDot(int index, BuildContext context) {
+    return Obx(() {
+      return Container(
+        height: 10,
+        width: currtpage.value == index ? 10 : 10,
+        margin: const EdgeInsets.only(right: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: currtpage.value == index ? const Color(0xFFEEA537) : const Color(0xff979797),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
+          child: Stack(
+            children: [
+         Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  Image.asset(
-                    'lib/assets/asset/fullview.png',
-                    fit: BoxFit.fill,
-                  ),
-                  Container(
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20.sp),
-                            bottomRight: Radius.circular(20.sp))),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                )),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.favorite_border,
-                                color: Colors.black,
+              controller.obx(
+                (state) => Stack(
+                  children: [
+                    Container(
+                      height: 50.h,
+                      width: 100.w,
+                      child: PageView.builder(
+                          controller: _controller,
+                          itemCount: state!.images.length,
+                          onPageChanged: (int index) {
+                            currtpage.value = index;
+                          },
+                          itemBuilder: (_, i) {
+                            return Image.network(
+                              state.images[i].url,
+                              fit: BoxFit.fill,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                'lib/assets/asset/fullview.png',
+                                fit: BoxFit.fill,
                               ),
-                            ),
-                          ],
-                        ).pSymmetric(h: 5.w),
-                      ],
+                            );
+                          }),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      bottom: 5,
+                      left: 50.w,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(state.images.length,
+                              (index) => buildDot(index, context))),
+                    ),
+                    // Image.asset(
+                    //   'lib/assets/asset/fullview.png',
+                    //   fit: BoxFit.fill,
+                    // ),
+                     Positioned(
+                      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                             onPressed: () {
+                                Get.back();
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_back_ios,
+                                       color: Colors.black,
+                                       )),
+
+                  IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite_border,
+                            color: Colors.black,
+                          ),
+                        ),          
+                      ],
+
+                     ))
+                  ],
+                  
+                ),
               ),
               2.h.heightBox,
               Row(
@@ -108,7 +172,7 @@ class Produt2page extends StatelessWidget {
                   'What seat Just on board and move the sail\n'
                   'towards the destination',
                   style: TextStyle(
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w500,
                       fontSize: 13,
                       color: Colors.black),
                 ).pSymmetric(h: 5.w),
@@ -473,7 +537,10 @@ class Produt2page extends StatelessWidget {
               2.h.heightBox,
             ],
           ),
-        ),
+        
+       ],
+          )
+          ),
       ),
     );
   }
