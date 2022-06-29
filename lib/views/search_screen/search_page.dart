@@ -1,11 +1,17 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:sugandh/controller/search_cont.dart';
+import 'package:sugandh/models/search_model.dart' as mod;
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
+
+  SearchController _controller = Get.put(SearchController());
+   bool isVisibleItems = false;
+
   List<String> baner11 = [
     "lib/assets/asset/all.png",
     "lib/assets/asset/all.png",
@@ -28,13 +34,16 @@ class SearchScreen extends StatelessWidget {
           elevation: 3,
           borderRadius: BorderRadius.circular(20),
           child: Container(
-            height: 4.4.h,
-            width: 55.w,
+            height: 4.8.h,
+            width: 80.w,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: TextField(
+              controller: _controller.value1,
+              onSubmitted: (value) => _controller.callSearchApi(),
+              
               decoration: InputDecoration(
                 suffixIcon: const Icon(
                   Icons.search_rounded,
@@ -72,69 +81,69 @@ class SearchScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
+          child: Column(
           children: [
             2.h.heightBox,
-            Container(
-              height: 21.h,
-              width: 100.w,
-              color: Colors.white,
-              child: ListView.builder(
-                // physics: NeverScrollableScrollPhysics(),
+            // Container(
+            //   height: 21.h,
+            //   width: 100.w,
+            //   color: Colors.white,
+            //   child: ListView.builder(
+            //     // physics: NeverScrollableScrollPhysics(),
 
-                itemBuilder: (BuildContext, index) {
-                  return Column(
-                    children: [
-                      1.h.heightBox,
+            //     itemBuilder: (BuildContext, index) {
+            //       return Column(
+            //         children: [
+            //           1.h.heightBox,
 
-                      SizedBox(
-                        height: 20.h,
-                        width: 34.w,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 16.h,
-                              width: 32.w,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: Colors.grey),
-                              ),
+            //           SizedBox(
+            //             height: 20.h,
+            //             width: 34.w,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Container(
+            //                   height: 16.h,
+            //                   width: 32.w,
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.white,
+            //                     borderRadius: BorderRadius.circular(20),
+            //                     border: Border.all(color: Colors.grey),
+            //                   ),
 
-                              child: Image.asset(
-                                baner11[index],
-                                fit: BoxFit.fill,
-                              ),
-                              //Image.asset(baner1[index],fit: BoxFit.fill,)),
-                            ),
-                            Text(
-                              banner11text1[index],
-                              style: const TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ).pSymmetric(h: 1.w),
-                      )
+            //                   child: Image.asset(
+            //                     baner11[index],
+            //                     fit: BoxFit.fill,
+            //                   ),
+            //                   //Image.asset(baner1[index],fit: BoxFit.fill,)),
+            //                 ),
+            //                 Text(
+            //                   banner11text1[index],
+            //                   style: const TextStyle(
+            //                       fontSize: 15,
+            //                       color: Colors.black,
+            //                       fontWeight: FontWeight.bold),
+            //                 ),
+            //               ],
+            //             ).pSymmetric(h: 1.w),
+            //           )
 
-                      //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                      //AssetImage(images[index]),
-                      //Text("This is title",style: TextStyle(fontSize: 10,),),
-                    ],
-                  ).paddingSymmetric(horizontal: 2.w);
-                },
-                itemCount: 3,
-                shrinkWrap: true,
-                //padding: EdgeInsets.all(2),
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-            const Divider(
-              color: Colors.grey,
-            ),
+            //           //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
+            //           //AssetImage(images[index]),
+            //           //Text("This is title",style: TextStyle(fontSize: 10,),),
+            //         ],
+            //       ).paddingSymmetric(horizontal: 2.w);
+            //     },
+            //     itemCount: 3,
+            //     shrinkWrap: true,
+            //     //padding: EdgeInsets.all(2),
+            //     scrollDirection: Axis.horizontal,
+            //   ),
+            // ),
+            // const Divider(
+            //   color: Colors.grey,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -147,7 +156,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '15 Item Found',
+                  ' ',
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
@@ -157,111 +166,129 @@ class SearchScreen extends StatelessWidget {
               ],
             ).paddingSymmetric(horizontal: 5.w),
             2.h.heightBox,
-            Container(
-              height: 73.h,
-              width: 100.w,
-              color: Colors.white,
-              child: ListView.builder(
-                // physics: NeverScrollableScrollPhysics(),
 
-                itemBuilder: (BuildContext, index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          1.h.heightBox,
-
-                          SizedBox(
-                            height: 16.h,
-                            width: 100.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 16.h,
-                                  width: 32.w,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: Colors.grey),
-                                  ),
-                                  child: Image.asset(
-                                    'lib/assets/asset/bg.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'White Shoes',
-                                      style: TextStyle(
-                                          fontSize: 15,
+            Offstage(
+              offstage: isVisibleItems,
+              child: Container(
+                height: 73.h,
+                width: 100.w,
+                color: Colors.white,
+                child: _controller.obx(               
+               (state) => 
+              //   state!.length > 0 
+              //  ?  const Text("No result found!",
+              //    style:  TextStyle(
+              //         fontSize: 20,
+              //         fontWeight: FontWeight.bold,
+              //         color: Colors.black,
+              //       ),
+              //  )
+              //   :
+                 ListView.builder(
+                  itemCount: state!.length,
+                  shrinkWrap: true,
+                  controller: _controller.scrollController,
+                  itemBuilder: (BuildContext, index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            1.h.heightBox,
+            
+                            SizedBox(
+                              height: 16.h,
+                              width: 100.w,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      height: 16.h,
+                                      width: 32.w,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(color: Colors.grey),
+                                      ),
+                                      child: Image.network(
+                                        state[index].images[0].url,
+                                        fit: BoxFit.fill,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'lib/assets/asset/bg.png',
+                                          fit: BoxFit.fill,
+                                        ),
+                                      )),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                        Text(
+                                        state[index].name,
+                                        style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                        Text(
+                                         state[index].description,
+                                        style: const TextStyle(
+                                          fontSize: 14,
                                           color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const Text(
-                                      'Men',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    3.h.heightBox,
-                                    SizedBox(
-                                      height: 5.h,
-                                      width: 16.w,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: const [
-                                          Icon(
-                                            Icons.shopping_bag,
-                                            color: appthemColor,
-                                            size: 22,
-                                          ),
-                                          Icon(Icons.favorite_outline_rounded,
-                                              color: Colors.black, size: 22),
-                                        ],
-                                        //Icon(Icons.shopping_bag)
+                                      3.h.heightBox,
+                                      SizedBox(
+                                        height: 5.h,
+                                        width: 16.w,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: const [
+                                            Icon(
+                                              Icons.shopping_bag,
+                                              color: appthemColor,
+                                              size: 22,
+                                            ),
+                                            Icon(Icons.favorite_outline_rounded,
+                                                color: Colors.black, size: 22),
+                                          ],
+                                          //Icon(Icons.shopping_bag)
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                4.w.widthBox,
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      '₹699',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: appthemColor,
+                                    ],
+                                  ),
+                                  4.w.widthBox,
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children:  [
+                                      Text(
+                                        "\$ " + state[index].price.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: appthemColor,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ).pSymmetric(h: 5.w),
-                          )
-
-                          //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                          //AssetImage(images[index]),
-                          //Text("This is title",style: TextStyle(fontSize: 10,),),
-                        ],
-                      ),
-                    ],
-                  );
-                },
-                itemCount: 5,
-                shrinkWrap: true,
-                //padding: EdgeInsets.all(5),
-                //scrollDirection: Axis.horizontal,
+                                    ],
+                                  ),
+                                ],
+                              ).pSymmetric(h: 5.w),
+                            )
+            
+                            //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
+                            //AssetImage(images[index]),
+                            //Text("This is title",style: TextStyle(fontSize: 10,),),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                ),
               ),
             ),
           ],

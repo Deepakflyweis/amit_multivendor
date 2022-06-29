@@ -4,6 +4,7 @@ import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
 import 'package:sugandh/views/products/product2_screen.dart';
+import 'package:sugandh/views/search_screen/search_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:sugandh/widgets/drower_box.dart';
 
@@ -18,19 +19,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> images = [
-      "lib/assets/asset/jeans.png",
-      "lib/assets/asset/paint.png",
-      "lib/assets/asset/googles.png",
-      "lib/assets/asset/blue frock.png",
-      "lib/assets/asset/gloubs.png",
-      "lib/assets/asset/phone.png",
-      "lib/assets/asset/shooes.png",
-      "lib/assets/asset/watches.png",
-      "lib/assets/asset/earphone.png",
-      "lib/assets/asset/paint.png",
-    ];
-
+  
     List<String> baner1 = [
       "lib/assets/asset/slide-1.png",
       "lib/assets/asset/slide2.png",
@@ -50,61 +39,7 @@ class HomePage extends StatelessWidget {
       "lib/assets/asset/indemand3.png",
       "lib/assets/asset/indemand4.png",
     ];
-
-    List<String> baner3 = [
-      "lib/assets/asset/trading_girl.png",
-      "lib/assets/asset/trading_legshoes.png",
-      "lib/assets/asset/trading_shirts.png",
-      "lib/assets/asset/trading_watches.png",
-    ];
-
-    List<String> baner4 = [
-      "lib/assets/asset/iwatch.png",
-      "lib/assets/asset/ipodeear.png",
-      "lib/assets/asset/shirt.png",
-      "lib/assets/asset/shoes.png",
-    ];
-
-    List<String> baner5 = [
-      "lib/assets/asset/lakme.png",
-      "lib/assets/asset/lakme3.png",
-      "lib/assets/asset/face-cream-oil.png",
-      "lib/assets/asset/lakme2.png",
-    ];
-
-    List<String> baner6 = [
-      "lib/assets/asset/pouch-amul-original-.png",
-      "lib/assets/asset/amul-original-ih.png",
-      "lib/assets/asset/300-dark-hazelnut-chocolate.png",
-      "lib/assets/asset/cheese-spread-yummy.png",
-    ];
-
-    List<String> baner7 = [
-      "lib/assets/asset/7-8-years-blueshrug.png",
-      "lib/assets/asset/blackscuit.png",
-      "lib/assets/asset/bluefrock2.png",
-      "lib/assets/asset/girlstyle.png",
-    ];
-
-    List<String> baner8 = [
-      "lib/assets/asset/yes-semi-stitched-amira-red-.png",
-      "lib/assets/asset/yes-unstitched.png",
-      "lib/assets/asset/fabwomen-unstitched-.png",
-      "lib/assets/asset/buke-yellow-combo-tashvir.png",
-    ];
-
-    List<String> baner9 = [
-      "lib/assets/asset/cream-original-t.png",
-      "lib/assets/asset/sandel.png",
-      "lib/assets/asset/jorden33.png",
-      "lib/assets/asset/shoesking.png",
-    ];
-
-    List<String> baner10 = [
-      "lib/assets/asset/apple-iphone-12.png",
-      "lib/assets/asset/g60-phone.png",
-    ];
-
+ 
     List<String> banner2text1 = [
       'Sale',
       'Men',
@@ -112,137 +47,7 @@ class HomePage extends StatelessWidget {
       'kids',
       'Mobiles',
     ];
-    List<String> banner3text1 = ['Redfrock', 'Legshoes', 'Shirts', 'watches'];
-    List<String> text = [
-      'Women',
-      'Glasses',
-      'Exclusive',
-      'Dresses',
-      'Pants',
-      'New',
-      'Short',
-      'Gloves',
-      'Winter',
-      '50% OFF',
-    ];
-
-    List<String> banner2text2 = [
-      'Extra 30 % Off',
-      'Extra 30 % Off',
-      'Extra 30 % Off',
-      'Extra 30 % Off',
-      'Extra 30 % Off',
-      'Extra 30 % Off',
-    ];
-    List<String> banner3text2 = ['50% OFF', '30% OFF', '20% OFF', '35% OFF'];
-
-    List<String> banner4text1 = [
-      'Smart Watch',
-      'Bluetooth',
-      'Casual Shirt',
-      'Running Shoes'
-    ];
-    List<String> banner4text2 = [
-      'Min.70% OFF',
-      'Min.60% OFF',
-      'Min.50% OFF',
-      'Min.70% OFF'
-    ];
-    List<String> banner4text3 = [
-      'IP68 Bluetooth 4.0 ios 8.0+\n Android 4.4+live',
-      'Lidht Weighted  Noice\n Cancellation Earphione\n Bluetooth',
-      'Man Slim Fit Checkered\n Cut Away Coller Casual Shirt',
-      'Buy Oora  Grey Running Shoes\n'
-          'for Men Online at a Discounted\n'
-          'price'
-    ];
-    List<String> banner5text1 = [
-      'lakme Rose Face',
-      'DPMD mekup kit combo',
-      'WOW SKIN SCIENCE',
-      'Ricerca Makeup Beauty'
-    ];
-    List<String> banner5text2 = [
-      'Power Compact',
-      'SET OF 27 COMPLETE\n'
-          'MAKUP PRODUCTS',
-      'Vitamin C Face Cream',
-      'Black Waterproof Kajal'
-    ];
-
-    List<String> banner5text3 = [
-      '₹152 10% off',
-      '₹1,058 10% off',
-      '₹509 15% off',
-      '₹239 29% off'
-    ];
-
-    List<String> banner6text1 = [
-      'Amul Ghee 500 ml Pouch',
-      'Amul Pasteurised Salted\n'
-          'Butter(100g)',
-      'Amul DARK + HAZELNUT\n'
-          'CHOCOLATE',
-      'Amul Plain Cheese\n'
-          'Spread (200g)'
-    ];
-    List<String> banner6text2 = ['₹305', '₹46', '₹372', '₹80'];
-
-    List<String> banner7text1 = ['From', 'From', 'From', 'From'];
-
-    List<String> banner7text2 = ['₹305', '₹46', '₹372', '₹80'];
-
-    List<String> banner8text1 = [
-      'Cotton Graphic Print',
-      'Satish Embraidered',
-      'Printed Mysore Art',
-      'Women Float Print'
-    ];
-
-    List<String> banner8text2 = [
-      'Floral Print',
-      'Embelished Cown',
-      'Silk Sarees(pink)',
-      'Crepe Straight Kurta'
-    ];
-
-    List<String> banner8text3 = [
-      '₹999  84% 0ff',
-      '₹299  85% 0ff',
-      '₹254  84% 0ff',
-      '₹254  84% 0ff'
-    ];
-
-    List<String> banner9text1 = [
-      'Women Off White \n'
-          'Fluts Serial',
-      'Women Blue Flates Sandel',
-      'Shoes For Women',
-      'Women Tan Flats Sandel'
-    ];
-
-    List<String> banner9text2 = [
-      '₹999  84% 0ff',
-      '₹299  85% 0ff',
-      '₹254  84% 0ff',
-      '₹254  84% 0ff'
-    ];
-
-    List<String> banner10text1 = [
-      'iPhone 12 mini',
-      'moto g60 at ₹15,999',
-    ];
-
-    List<String> banner10text2 = [
-      'Powerfully Packed',
-      'Poco X3 From ₹16,999',
-    ];
-
-    List<String> banner10text3 = [
-      'From ₹62,999  84% 0ff',
-      'Explore Details',
-    ];
-
+    
     int pageIndex = 0;
 
     GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -284,28 +89,33 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 2.h.heightBox,
-                Row(children: [
-                  Container(
-                    height: 5.4.h,
-                    width: 75.w,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffE3E6EF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.search_rounded,
-                          color: Colors.grey,
-                        ),
-                        hintText: 'Search products',
-                        hintStyle:
-                            TextStyle(fontSize: 12.sp, color: Colors.grey),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 1.5.h, horizontal: 2.w),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20),
+                Row(
+                  children: [
+                  InkWell(                    
+                    onTap: () =>  Get.to(() => SearchScreen()),
+                    child: Container(
+                      height: 5.4.h,
+                      width: 75.w,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffE3E6EF),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: TextField(
+                          enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Search products',
+                          hintStyle:
+                              TextStyle(fontSize: 12.sp, color: Colors.grey),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 1.5.h, horizontal: 2.w),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ),

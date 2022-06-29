@@ -60,15 +60,15 @@ class _Produt2pageState extends State<Produt2page> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Stack(
+          child: controller.obx(
+                (state) =>  Stack(
             children: [
-         Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              controller.obx(
-                (state) => Stack(
+             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Stack(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 50.h,
                       width: 100.w,
                       child: PageView.builder(
@@ -105,7 +105,7 @@ class _Produt2pageState extends State<Produt2page> {
                       child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
+                       IconButton(
                              onPressed: () {
                                 Get.back();
                                   },
@@ -114,7 +114,7 @@ class _Produt2pageState extends State<Produt2page> {
                                        color: Colors.black,
                                        )),
 
-                  IconButton(
+                      IconButton(
                           onPressed: () {},
                           icon: const Icon(
                             Icons.favorite_border,
@@ -127,14 +127,14 @@ class _Produt2pageState extends State<Produt2page> {
                   ],
                   
                 ),
-              ),
+             
               2.h.heightBox,
               Row(
                 children: [
                   1.w.widthBox,
                   Image.asset("lib/assets/asset/starfill.png"),
                   3.w.widthBox,
-                  const Text("4.2+"),
+                    Text(state.ratings.toString()),
                   3.w.widthBox,
                   const Text("Reviews").text.color(appthemColor).make(),
                 ],
@@ -144,7 +144,7 @@ class _Produt2pageState extends State<Produt2page> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Men Black raglan shirt',
+                    state.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 13.sp,
@@ -167,11 +167,10 @@ class _Produt2pageState extends State<Produt2page> {
               1.h.heightBox,
               Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  'If you are offered  a seat on a rocket ship don\'t ask\n'
-                  'What seat Just on board and move the sail\n'
-                  'towards the destination',
-                  style: TextStyle(
+                child: Text(
+                  state.description,
+                  maxLines: 3, overflow: TextOverflow.fade,
+                  style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
                       color: Colors.black),
@@ -181,9 +180,9 @@ class _Produt2pageState extends State<Produt2page> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    '₹ 699.50',
-                    style: TextStyle(
+                   Text(
+                    state.price.toString(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 19,
                       color: appthemColor,
@@ -287,131 +286,131 @@ class _Produt2pageState extends State<Produt2page> {
                 ],
               ).pSymmetric(h: 4.w),
               1.5.h.heightBox,
-              Align(
-                alignment: Alignment.centerLeft,
-                child: const Text(
-                  'You May Also Like',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.black),
-                ).pSymmetric(h: 5.w),
-              ),
-              1.h.heightBox,
-              SizedBox(
-                height: 25.5.h,
-                child: ListView.builder(
-                  // physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext, index) {
-                    return Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                              color: const Color(0xffE3E6EF),
-                            )),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 15.h,
-                                      width: 42.w,
-                                      child: Image.asset(
-                                        indemand[index],
-                                        //
-                                        height: 10.h,
-                                        width: 40.w,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 10.sp,
-                                      top: 10.sp,
-                                      child: Container(
-                                          height: 2.5.h,
-                                          width: 15.w,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(3.sp),
-                                            color: Colors.white,
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              1.w.widthBox,
-                                              Image.asset(
-                                                  "lib/assets/asset/starfill.png"),
-                                              1.w.widthBox,
-                                              const Text("4.2+"),
-                                            ],
-                                          )),
-                                    ),
-                                    Positioned(
-                                      left: 100.sp,
-                                      top: 10.sp,
-                                      child: Row(
-                                        children: [
-                                          Image.asset(
-                                            "lib/assets/asset/heart.png",
-                                            height: 1.5.h,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                1.h.heightBox,
-                                Text(
-                                  "Men black raglan",
-                                  style: TextStyle(
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ).px(3),
-                                1.h.heightBox,
-                                Text(
-                                  "shirt",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                  ),
-                                ).px(3),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "\$ 565",
-                                      style: TextStyle(
-                                        fontSize: 10.sp,
-                                      ),
-                                    ).px(3),
-                                    22.w.widthBox,
-                                    Image.asset(
-                                      "lib/assets/asset/basket.png",
-                                      color: appthemColor,
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ).pSymmetric(h: 1.w).onTap(() {
-                        // Get.to(() => DiscoverPage());
-                      }),
-                    );
-                  },
-                  itemCount: indemand.length,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(7),
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-              2.h.heightBox,
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: const Text(
+              //     'You May Also Like',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 16,
+              //         color: Colors.black),
+              //   ).pSymmetric(h: 5.w),
+              // ),
+              // 1.h.heightBox,
+              // SizedBox(
+              //   height: 25.5.h,
+              //   child: ListView.builder(
+              //     // physics: NeverScrollableScrollPhysics(),
+              //     itemBuilder: (BuildContext, index) {
+              //       return Container(
+              //         child: Row(
+              //           children: [
+              //             Container(
+              //               decoration: BoxDecoration(
+              //                   border: Border.all(
+              //                 color: const Color(0xffE3E6EF),
+              //               )),
+              //               child: Column(
+              //                 crossAxisAlignment: CrossAxisAlignment.start,
+              //                 children: [
+              //                   Stack(
+              //                     children: [
+              //                       SizedBox(
+              //                         height: 15.h,
+              //                         width: 42.w,
+              //                         child: Image.asset(
+              //                           indemand[index],
+              //                           //
+              //                           height: 10.h,
+              //                           width: 40.w,
+              //                         ),
+              //                       ),
+              //                       Positioned(
+              //                         left: 10.sp,
+              //                         top: 10.sp,
+              //                         child: Container(
+              //                             height: 2.5.h,
+              //                             width: 15.w,
+              //                             decoration: BoxDecoration(
+              //                               borderRadius:
+              //                                   BorderRadius.circular(3.sp),
+              //                               color: Colors.white,
+              //                             ),
+              //                             child: Row(
+              //                               children: [
+              //                                 1.w.widthBox,
+              //                                 Image.asset(
+              //                                     "lib/assets/asset/starfill.png"),
+              //                                 1.w.widthBox,
+              //                                 const Text("4.2+"),
+              //                               ],
+              //                             )),
+              //                       ),
+              //                       Positioned(
+              //                         left: 100.sp,
+              //                         top: 10.sp,
+              //                         child: Row(
+              //                           children: [
+              //                             Image.asset(
+              //                               "lib/assets/asset/heart.png",
+              //                               height: 1.5.h,
+              //                             ),
+              //                           ],
+              //                         ),
+              //                       ),
+              //                     ],
+              //                   ),
+              //                   1.h.heightBox,
+              //                   Text(
+              //                     "Men black raglan",
+              //                     style: TextStyle(
+              //                       fontSize: 9.sp,
+              //                       fontWeight: FontWeight.bold,
+              //                     ),
+              //                   ).px(3),
+              //                   1.h.heightBox,
+              //                   Text(
+              //                     "shirt",
+              //                     style: TextStyle(
+              //                       fontSize: 10.sp,
+              //                     ),
+              //                   ).px(3),
+              //                   Row(
+              //                     mainAxisAlignment: MainAxisAlignment.center,
+              //                     crossAxisAlignment: CrossAxisAlignment.center,
+              //                     children: [
+              //                       Text(
+              //                         "\$ 565",
+              //                         style: TextStyle(
+              //                           fontSize: 10.sp,
+              //                         ),
+              //                       ).px(3),
+              //                       22.w.widthBox,
+              //                       Image.asset(
+              //                         "lib/assets/asset/basket.png",
+              //                         color: appthemColor,
+              //                       )
+              //                     ],
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ],
+              //         ).pSymmetric(h: 1.w).onTap(() {
+              //           // Get.to(() => DiscoverPage());
+              //         }),
+              //       );
+              //     },
+              //     itemCount: indemand.length,
+              //     shrinkWrap: true,
+              //     padding: const EdgeInsets.all(7),
+              //     scrollDirection: Axis.horizontal,
+              //   ),
+              // ),
+              // 2.h.heightBox,
               InkWell(
                 onTap: () {
-                  Get.to(const RateProduct());
+                  Get.to(() => const RateProduct());
                 },
                 child: Row(
                   children: [
@@ -443,105 +442,79 @@ class _Produt2pageState extends State<Produt2page> {
               0.5.heightBox,
               Container(
                 height: 17.h,
-                width: 100.w,
+                width: 100.w,                
                 color: Colors.white,
-                child: ListView.builder(
-                  // physics: NeverScrollableScrollPhysics(),
-
+                child: ListView.builder(                 
+                  itemCount: state.reviews.length,
+                  shrinkWrap: true,
                   itemBuilder: (BuildContext, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            1.h.heightBox,
+                    return Padding(
+                      padding:   const EdgeInsets.fromLTRB(15,10,15,10),
+                      child: Row(    
+                        crossAxisAlignment: CrossAxisAlignment.center,                    
+                        children: [   
 
-                            SizedBox(
-                              height: 14.h,
-                              width: 100.w,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.green,
-                                    radius: 22,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.greenAccent[100],
+                          CircleAvatar(
+                                  backgroundColor: Colors.green,
+                                  radius: 25,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.greenAccent[100],
+                                    radius: 23,
+                                    child: const CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'lib/assets/asset/avatar.png'), //NetworkImage
                                       radius: 21,
-                                      child: const CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                            'lib/assets/asset/avatar.png'), //NetworkImage
-                                        radius: 19,
-                                      ), //CircleAvatar
                                     ), //CircleAvatar
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'Ander',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      const Text(
-                                        'Wonderfull glasses,perfect gft my\n'
-                                        'girl for our anivercy',
-                                        style: TextStyle(
-                                          fontSize: 11,
+                                  ), //CircleAvatar
+                                ),
+                                SizedBox(width: 2.w,),
+                                
+                                Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Ander',
+                                      style: TextStyle(
+                                          fontSize: 13,
                                           color: Colors.black,
-                                        ),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                      Text(
+                                      state.reviews[index].values.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500
                                       ),
-                                      7.h.heightBox,
-                                    ],
-                                  ),
-                                  4.w.widthBox,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      VxRating(
-                                        onRatingUpdate: (value) {},
-                                        count: 5,
-                                        selectionColor: Colors.yellow,
-                                        size: 20,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ).pSymmetric(h: 5.w),
-                            )
-
-                            //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                            //AssetImage(images[index]),
-                            //Text("This is title",style: TextStyle(fontSize: 10,),),
-                          ],
+                                    ),                                  
+                                  ],
+                                ),
+                                Spacer(),
+                                 
+                                VxRating(
+                                  onRatingUpdate: (value) {},
+                                  count: 5,
+                                  selectionColor: Colors.yellow,
+                                  size: 20,
+                              ),
+                            ]                             
                         ),
-                      ],
                     );
                   },
-                  itemCount: 5,
-                  shrinkWrap: true,
-                  //padding: EdgeInsets.all(5),
-                  //scrollDirection: Axis.horizontal,
+                  
                 ),
               ),
               2.h.heightBox,
             ],
           ),
-        
-       ],
+          ] ),
+          )  
           )
           ),
-      ),
+      
     );
   }
 }
