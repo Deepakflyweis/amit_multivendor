@@ -19,7 +19,7 @@ class ProfileController extends GetxController
 
   Rx<File> image = File("").obs;
 
-  // Rx<String?> imageUrl = (null as String?).obs;
+  Rx<String?> imageUrl = (null as String?).obs;
 
   void showPicker(context) {
     showModalBottomSheet(
@@ -78,8 +78,7 @@ class ProfileController extends GetxController
       try {
         Client client = Client();
         ProfileRepository repository = ProfileRepository(client: client.init());
-        repository.editProfileApi(
-            image.value.path, fullName.text, email.text, mobile.text);
+        repository.editProfileApi( fullName.text,image.value, email.text);
       } on Exception catch (e) {
         log(" exception $e");
       }

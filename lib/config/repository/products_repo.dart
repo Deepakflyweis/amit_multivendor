@@ -13,8 +13,7 @@ class ProductsRepository {
     try {
       Response response = await client.get("products/$id");
       CommonLoader.hideLoading();
-      if (response.statusCode == 200) {
-        log("status = $response");
+      if (response.statusCode == 200) {        
         return productsModelFromJson(jsonEncode(response.data["products"]));
       } else {
         log("api error : $response");

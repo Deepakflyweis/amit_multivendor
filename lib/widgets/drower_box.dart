@@ -1,14 +1,14 @@
 import 'dart:ui';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sugandh/config/local/local_database.dart';
+import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/check_out_screens/check_out_address.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
-import 'package:sugandh/views/onboarding/onboarding.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -22,6 +22,9 @@ class OpenDrawer extends StatefulWidget {
 }
 
 class _OpenDrawerState extends State<OpenDrawer> {
+
+  ProfileController _controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -34,54 +37,57 @@ class _OpenDrawerState extends State<OpenDrawer> {
             filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
             child: Column(
               children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.23,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  decoration: const BoxDecoration(),
-                  child: Column(
-                    children: [
-                      2.h.heightBox,
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: CircleAvatar(
-                          radius: 41,
+                _controller.obx((state) => 
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.23,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: const BoxDecoration(),
+                    child: Column(
+                      children: [
+                        2.h.heightBox,
+                          Align(
+                          alignment: Alignment.centerLeft,
                           child: CircleAvatar(
-                            backgroundImage: AssetImage(
-                                'lib/assets/asset/avatar.png'), //NetworkImage
-                            radius: 39,
-                          ), //CircleAvatar
-                        ),
-                      ).px32(),
-                      1.h.heightBox,
-
-                      //Image.asset('lib/assets/asset/avatar.png'),
-
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Jameson Donn',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19,
+                            backgroundColor: Colors.transparent,
+                            radius: 45,
+                            child: ClipOval(
+                               child: Image.network(
+                                state!.profile,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) => Image.asset(
+                                    'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
+                              ),
+                                      
+                            ), //CircleAvatar
                           ),
-                        ),
-                      ).px32(),
-                      1.h.heightBox,
-
-                      //Image.asset('lib/assets/asset/avatar.png'),
-
-                      const Align(
-                        alignment: Alignment.centerLeft,
+                        ).px32(),
+                        1.h.heightBox, 
+                        
+               Align(
+                    alignment: Alignment.centerLeft,
                         child: Text(
-                          '@johndonee',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 11,
+                        state.name,
+                        style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                         fontSize: 19,
+                       ),
                           ),
-                        ),
-                      ).px32(),
-                    ],
+                        ).px32(),
+                        1.h.heightBox,              
+ 
+                         Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            state.email,
+                            style:const TextStyle(
+                              color: Colors.black,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ).px32(),
+                      ],
+                    ),
                   ),
                 ),
                 2.h.heightBox,
@@ -191,7 +197,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                               width: 55,
                             ),
                             //Icon(Icons.supervised_user_circle,color: Colors.black,),
-                            title: Text(
+                            title: const Text(
                               'Wishlist',
                               style: TextStyle(color: Colors.black),
                             ),
@@ -202,7 +208,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                         }), //ShrareDetails
 
                         Container(
-                          child: ListTile(
+                          child: const ListTile(
                             leading: Icon(
                               Icons.account_box_outlined,
                               size: 20,
@@ -280,11 +286,9 @@ class _OpenDrawerState extends State<OpenDrawer> {
                 3.h.heightBox,
                 InkWell(
                   onTap: () {
-                    
                     GetStorage box = GetStorage();
                     box.erase();
-                    Get.offAll(() => LoginScreen());                 
-                     
+                    Get.offAll(() => LoginScreen());
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

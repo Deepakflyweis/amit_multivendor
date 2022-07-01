@@ -449,11 +449,10 @@ class _Produt2pageState extends State<Produt2page> {
                   shrinkWrap: true,
                   itemBuilder: (BuildContext, index) {
                     return Padding(
-                      padding:   const EdgeInsets.fromLTRB(15,10,15,10),
+                      padding: const EdgeInsets.fromLTRB(15,10,15,10),
                       child: Row(    
                         crossAxisAlignment: CrossAxisAlignment.center,                    
-                        children: [   
-
+                        children: [  
                           CircleAvatar(
                                   backgroundColor: Colors.green,
                                   radius: 25,

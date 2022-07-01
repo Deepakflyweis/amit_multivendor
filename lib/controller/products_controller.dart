@@ -9,6 +9,14 @@ class ProductsController extends GetxController
     with StateMixin<List<ProductsModel>> {
   String imgId = "";
   late Rx<ProductsModel> id;
+
+  @override
+  void onInit() {
+    getAllProducts();
+    super.onInit();
+  }
+
+
   getAllProducts() {
     try {
       Client _client = Client();
@@ -28,9 +36,8 @@ class ProductsController extends GetxController
     }
   }
 
-  @override
-  void onInit() {
-    getAllProducts();
-    super.onInit();
-  }
+void addProductFav(String productid) {
+
+}
+  
 }

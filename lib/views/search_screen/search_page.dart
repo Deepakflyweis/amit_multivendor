@@ -1,7 +1,9 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
+import 'package:sugandh/controller/product_detail_cont.dart';
 import 'package:sugandh/controller/search_cont.dart';
 import 'package:sugandh/models/search_model.dart' as mod;
+import 'package:sugandh/views/products/product2_screen.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
@@ -189,102 +191,105 @@ class SearchScreen extends StatelessWidget {
                   shrinkWrap: true,
                   controller: _controller.scrollController,
                   itemBuilder: (BuildContext, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            1.h.heightBox,
-            
-                            SizedBox(
-                              height: 16.h,
-                              width: 100.w,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                      height: 16.h,
-                                      width: 32.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(color: Colors.grey),
-                                      ),
-                                      child: Image.network(
-                                        state[index].images[0].url,
-                                        fit: BoxFit.fill,
-                                        errorBuilder:
-                                            (context, error, stackTrace) =>
-                                                Image.asset(
-                                          'lib/assets/asset/bg.png',
+                    return InkWell(
+                      onTap: () => Get.to(() => Produt2page(),arguments: state[index].id),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              1.h.heightBox,
+                                
+                              SizedBox(
+                                height: 16.h,
+                                width: 100.w,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                        height: 16.h,
+                                        width: 32.w,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Colors.grey),
+                                        ),
+                                        child: Image.network(
+                                          state[index].images[0].url,
                                           fit: BoxFit.fill,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'lib/assets/asset/bg.png',
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                          Text(
+                                          state[index].name,
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      )),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                        Text(
-                                        state[index].name,
-                                        style: const TextStyle(
-                                            fontSize: 15,
+                                          Text(
+                                           state[index].description,
+                                          style: const TextStyle(
+                                            fontSize: 14,
                                             color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                          ),
+                                        ),
+                                        3.h.heightBox,
+                                        SizedBox(
+                                          height: 5.h,
+                                          width: 16.w,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: const [
+                                              Icon(
+                                                Icons.shopping_bag,
+                                                color: appthemColor,
+                                                size: 22,
+                                              ),
+                                              Icon(Icons.favorite_outline_rounded,
+                                                  color: Colors.black, size: 22),
+                                            ],
+                                            //Icon(Icons.shopping_bag)
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    4.w.widthBox,
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children:  [
                                         Text(
-                                         state[index].description,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.black,
+                                          "\$ " + state[index].price.toString(),
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: appthemColor,
+                                          ),
                                         ),
-                                      ),
-                                      3.h.heightBox,
-                                      SizedBox(
-                                        height: 5.h,
-                                        width: 16.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: const [
-                                            Icon(
-                                              Icons.shopping_bag,
-                                              color: appthemColor,
-                                              size: 22,
-                                            ),
-                                            Icon(Icons.favorite_outline_rounded,
-                                                color: Colors.black, size: 22),
-                                          ],
-                                          //Icon(Icons.shopping_bag)
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  4.w.widthBox,
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children:  [
-                                      Text(
-                                        "\$ " + state[index].price.toString(),
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          color: appthemColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ).pSymmetric(h: 5.w),
-                            )
-            
-                            //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                            //AssetImage(images[index]),
-                            //Text("This is title",style: TextStyle(fontSize: 10,),),
-                          ],
-                        ),
-                      ],
+                                      ],
+                                    ),
+                                  ],
+                                ).pSymmetric(h: 5.w),
+                              )
+                                
+                              //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
+                              //AssetImage(images[index]),
+                              //Text("This is title",style: TextStyle(fontSize: 10,),),
+                            ],
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

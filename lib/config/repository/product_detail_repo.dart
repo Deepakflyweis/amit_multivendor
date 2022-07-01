@@ -12,7 +12,7 @@ class ProductDetailRepo {
     try {
       Response r = await client.get("product/$id");
       if (r.statusCode == 200) {
-        log("success 200 $r");
+         
         return productDetailsModelFromJson(jsonEncode(r.data["product"]));
       } else {
         log("error $r");

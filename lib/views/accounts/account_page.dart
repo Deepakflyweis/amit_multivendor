@@ -52,20 +52,17 @@ class AcoountPage extends StatelessWidget {
             
             _controller.obx((state) => 
             Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Colors.transparent,
                   radius: 45,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 45,
-                    child:  Image.network(
+                  child: ClipOval(
+                    child: Image.network(
                       state!.profile,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => Image.asset(
-                          'lib/assets/asset/avatar.png'),
-                    )                
+                          'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
+                    ),
                   ), //CircleAvatar
                 ),
                 10.w.widthBox,

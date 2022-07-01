@@ -44,28 +44,29 @@ class EditProfile extends StatelessWidget {
               ),
               Center(
                 child: CircleAvatar(
-                  backgroundColor: Colors.green,
-                  radius: 45,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.greenAccent[100],
-                    radius: 45,
-                    child: CircleAvatar(
-                      radius: 45,
-                      child: controller.image.value.path == ""
-                          ? Image.network(
-                              "src",
-                              errorBuilder: (context, _, __) => Icon(
-                                Icons.account_circle_outlined,
-                                color: Colors.grey,
-                              ),
-                            )
-                          : Image.file(
-                               controller.image.value,
-                              height: 15.h,
-                            ),
-                      //NetworkImage
-                    ), //CircleAvatar
-                  ), //CircleAvatar
+                  backgroundColor: Colors.transparent,
+                  radius: 10.h,
+                  child: ClipOval(
+                    child: Obx(() => 
+                    controller.image.value.path == ""
+                        ?  Icon(Icons.image,size: 50,)
+                        
+                        // Image.network(
+                        //      controller.im.value ?? "",
+                        //      height: 40,
+                        //     errorBuilder: (context, _, __) => const Icon(
+                        //       Icons.account_circle_outlined,
+                        //       color: Colors.grey,
+                        //     ),
+                        //   )
+                        : Image.file(
+                            controller.image.value,
+                            // height: 25.h,
+                            width: 25.w,
+                            filterQuality: FilterQuality.high,
+                            fit: BoxFit.cover,
+                          ),
+                   ), ), 
                 ),
               ),
               SizedBox(
@@ -93,15 +94,15 @@ class EditProfile extends StatelessWidget {
                   hintText: "Email",
                 ),
               ),
-              SizedBox(
-                height: 3.h,
-              ),
-              TextFormField(
-                controller: controller.mobile,
-                decoration: const InputDecoration(
-                  hintText: "Mobile no",
-                ),
-              ),
+              // SizedBox(
+              //   height: 3.h,
+              // ),
+              // TextFormField(
+              //   controller: controller.mobile,
+              //   decoration: const InputDecoration(
+              //     hintText: "Mobile no",
+              //   ),
+              // ),
               SizedBox(
                 height: 10.h,
               ),

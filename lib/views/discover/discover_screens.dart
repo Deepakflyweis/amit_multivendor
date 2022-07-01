@@ -7,6 +7,7 @@ import 'package:sugandh/views/discover/all.dart';
 import 'package:sugandh/views/discover/jeans.dart';
 import 'package:sugandh/views/discover/shirt.dart';
 import 'package:sugandh/views/discover/t_shirt.dart';
+import 'package:sugandh/views/search_screen/search_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -46,27 +47,31 @@ class DiscoverPage extends StatelessWidget {
             child: Column(
               children: [
                 Row(children: [
-                  Container(
-                    height: 5.4.h,
-                    width: 75.w,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffE3E6EF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.search_rounded,
-                          color: Colors.grey,
-                        ),
-                        hintText: 'Search products',
-                        hintStyle:
-                            TextStyle(fontSize: 12.sp, color: Colors.grey),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 1.5.h, horizontal: 2.w),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20),
+                  InkWell(
+                    onTap: () => Get.to(() => SearchScreen()),
+                    child: Container(
+                      height: 5.4.h,
+                      width: 75.w,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffE3E6EF),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Search products',
+                          hintStyle:
+                              TextStyle(fontSize: 12.sp, color: Colors.grey),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 1.5.h, horizontal: 2.w),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ),
