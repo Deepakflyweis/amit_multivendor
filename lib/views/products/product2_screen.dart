@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sugandh/controller/product_detail_cont.dart';
+import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/RateProduct/rate_product.dart';
 import 'package:sugandh/views/cart_screen/cart_page.dart';
 import 'package:sugandh/widgets/constant.dart';
@@ -15,7 +18,42 @@ class Produt2page extends StatefulWidget {
 }
 
 class _Produt2pageState extends State<Produt2page> {
+  ProductsController prod = Get.find();
   ProductDetailsController controller = Get.put(ProductDetailsController());
+
+  var isCasionFavt = false;
+  final List favouriteLists = [];
+
+  _addFav() {
+    prod.addProductsToFav(controller.imgId);
+    log("added");
+    setState(() {
+      isCasionFavt = true;
+    });
+  }
+
+  _disFavt() {
+    prod.romoveFavProducts(controller.imgId);
+    log("removed");
+    setState(() {
+      isCasionFavt = false;
+    });
+  }
+
+  isCasionFavts() {
+    var isCasionFavtLocal = false;
+    log(" CasionDetailImage isCasionFavts()");
+    for (var element in favouriteLists) {
+      if (isCasionFavt) {
+        isCasionFavtLocal = true;
+        break;
+      }
+    }
+
+    setState(() {
+      isCasionFavt = isCasionFavtLocal;
+    });
+  }
 
   List<String> indemand = [
     "lib/assets/asset/indemand1.png",
@@ -33,6 +71,7 @@ class _Produt2pageState extends State<Produt2page> {
     _controller = PageController(initialPage: 0);
 
     super.initState();
+    isCasionFavts();
   }
 
   @override
@@ -41,7 +80,7 @@ class _Produt2pageState extends State<Produt2page> {
     super.dispose();
   }
 
-   buildDot(int index, BuildContext context) {
+  buildDot(int index, BuildContext context) {
     return Obx(() {
       return Container(
         height: 10,
@@ -49,7 +88,9 @@ class _Produt2pageState extends State<Produt2page> {
         margin: const EdgeInsets.only(right: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: currtpage.value == index ? const Color(0xFFEEA537) : const Color(0xff979797),
+          color: currtpage.value == index
+              ? const Color(0xFFEEA537)
+              : const Color(0xff979797),
         ),
       );
     });
@@ -59,82 +100,86 @@ class _Produt2pageState extends State<Produt2page> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: controller.obx(
-                (state) =>  Stack(
+          child: SingleChildScrollView(
+              child: controller.obx(
+        (state) => Stack(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
               Stack(
-                  children: [
-                    SizedBox(
-                      height: 50.h,
-                      width: 100.w,
-                      child: PageView.builder(
-                          controller: _controller,
-                          itemCount: state!.images.length,
-                          onPageChanged: (int index) {
-                            currtpage.value = index;
-                          },
-                          itemBuilder: (_, i) {
-                            return Image.network(
-                              state.images[i].url,
+                children: [
+                  SizedBox(
+                    height: 50.h,
+                    width: 100.w,
+                    child: PageView.builder(
+                        controller: _controller,
+                        itemCount: state!.images.length,
+                        onPageChanged: (int index) {
+                          currtpage.value = index;
+                        },
+                        itemBuilder: (_, i) {
+                          return Image.network(
+                            state.images[i].url,
+                            fit: BoxFit.fill,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Image.asset(
+                              'lib/assets/asset/fullview.png',
                               fit: BoxFit.fill,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
-                                'lib/assets/asset/fullview.png',
-                                fit: BoxFit.fill,
-                              ),
-                            );
-                          }),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      left: 50.w,
+                            ),
+                          );
+                        }),
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    left: 50.w,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(state.images.length,
+                            (index) => buildDot(index, context))),
+                  ),
+                  // Image.asset(
+                  //   'lib/assets/asset/fullview.png',
+                  //   fit: BoxFit.fill,
+                  // ),
+                  Positioned(
                       child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(state.images.length,
-                              (index) => buildDot(index, context))),
-                    ),
-                    // Image.asset(
-                    //   'lib/assets/asset/fullview.png',
-                    //   fit: BoxFit.fill,
-                    // ),
-                     Positioned(
-                      child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                       IconButton(
-                             onPressed: () {
-                                Get.back();
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back_ios,
-                                       color: Colors.black,
-                                       )),
-
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.back();
+                          },
                           icon: const Icon(
-                            Icons.favorite_border,
+                            Icons.arrow_back_ios,
                             color: Colors.black,
-                          ),
-                        ),          
-                      ],
+                          )),
+                      isCasionFavt == true
+                          ? IconButton(
+                              onPressed: () {
+                                _disFavt();
+                              },
+                              icon: const Icon(Icons.favorite,
+                                  color: Colors.redAccent),
+                            )
+                          : IconButton(
+                              onPressed: () => _addFav(),
+                              icon: const Icon(
+                                Icons.favorite_border,
+                                color: Colors.black,
+                              ),
+                            ),
+                    ],
+                  ))
+                ],
+              ),
 
-                     ))
-                  ],
-                  
-                ),
-             
               2.h.heightBox,
               Row(
                 children: [
                   1.w.widthBox,
                   Image.asset("lib/assets/asset/starfill.png"),
                   3.w.widthBox,
-                    Text(state.ratings.toString()),
+                  Text(state.ratings.toString()),
                   3.w.widthBox,
                   const Text("Reviews").text.color(appthemColor).make(),
                 ],
@@ -169,7 +214,8 @@ class _Produt2pageState extends State<Produt2page> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   state.description,
-                  maxLines: 3, overflow: TextOverflow.fade,
+                  maxLines: 3,
+                  overflow: TextOverflow.fade,
                   style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
@@ -180,7 +226,7 @@ class _Produt2pageState extends State<Produt2page> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                   Text(
+                  Text(
                     state.price.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
@@ -442,78 +488,70 @@ class _Produt2pageState extends State<Produt2page> {
               0.5.heightBox,
               Container(
                 height: 17.h,
-                width: 100.w,                
+                width: 100.w,
                 color: Colors.white,
-                child: ListView.builder(                 
+                child: ListView.builder(
                   itemCount: state.reviews.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext, index) {
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(15,10,15,10),
-                      child: Row(    
-                        crossAxisAlignment: CrossAxisAlignment.center,                    
-                        children: [  
-                          CircleAvatar(
-                                  backgroundColor: Colors.green,
-                                  radius: 25,
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.greenAccent[100],
-                                    radius: 23,
-                                    child: const CircleAvatar(
-                                      backgroundImage: AssetImage(
-                                          'lib/assets/asset/avatar.png'), //NetworkImage
-                                      radius: 21,
-                                    ), //CircleAvatar
-                                  ), //CircleAvatar
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 25,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.greenAccent[100],
+                                radius: 23,
+                                child: const CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                      'lib/assets/asset/avatar.png'), //NetworkImage
+                                  radius: 21,
+                                ), //CircleAvatar
+                              ), //CircleAvatar
+                            ),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Ander',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(width: 2.w,),
-                                
-                                Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      'Ander',
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                      Text(
-                                      state.reviews[index].values.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500
-                                      ),
-                                    ),                                  
-                                  ],
+                                Text(
+                                  state.reviews[index].values.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                                Spacer(),
-                                 
-                                VxRating(
-                                  onRatingUpdate: (value) {},
-                                  count: 5,
-                                  selectionColor: Colors.yellow,
-                                  size: 20,
-                              ),
-                            ]                             
-                        ),
+                              ],
+                            ),
+                            Spacer(),
+                            VxRating(
+                              onRatingUpdate: (value) {},
+                              count: 5,
+                              selectionColor: Colors.yellow,
+                              size: 20,
+                            ),
+                          ]),
                     );
                   },
-                  
                 ),
               ),
               2.h.heightBox,
             ],
           ),
-          ] ),
-          )  
-          )
-          ),
-      
+        ]),
+      ))),
     );
   }
 }

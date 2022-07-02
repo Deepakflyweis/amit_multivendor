@@ -6,11 +6,13 @@ import 'package:sugandh/models/search_model.dart';
 
 class SearchController extends GetxController
     with StateMixin<List<SearchModel>> {
-  RxBool isLoading = false.obs;
+
+  var newsList = List<SearchModel>.empty(growable: true).obs;
+  RxBool isLoading = true.obs;
   TextEditingController value1 = TextEditingController();
   RxBool isPause = false.obs;
   ScrollController scrollController = ScrollController();
-
+  
   callSearchApi() {
     Client client = Client();
     SearchRepository repository = SearchRepository(client: client.init());
