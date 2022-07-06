@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sugandh/controller/cart_controller.dart';
 import 'package:sugandh/controller/product_detail_cont.dart';
 import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/RateProduct/rate_product.dart';
@@ -20,20 +21,22 @@ class Produt2page extends StatefulWidget {
 class _Produt2pageState extends State<Produt2page> {
   ProductsController prod = Get.find();
   ProductDetailsController controller = Get.put(ProductDetailsController());
+  CartController cartC = Get.put(CartController());
 
   var isCasionFavt = false;
   final List favouriteLists = [];
 
   _addFav() {
-    prod.addProductsToFav(controller.imgId);
-    log("added");
+    controller.callAddWishList(controller.imgId);
+    log("added ");
     setState(() {
       isCasionFavt = true;
     });
   }
 
   _disFavt() {
-    prod.romoveFavProducts(controller.imgId);
+    controller.callRemoveFav(controller.imgId);
+    // prod.romoveFavProducts(controller.imgId);
     log("removed");
     setState(() {
       isCasionFavt = false;
@@ -69,7 +72,6 @@ class _Produt2pageState extends State<Produt2page> {
   @override
   void initState() {
     _controller = PageController(initialPage: 0);
-
     super.initState();
     isCasionFavts();
   }
@@ -287,9 +289,9 @@ class _Produt2pageState extends State<Produt2page> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Icon(
-                          Icons.add,
+                          Icons.remove,
                           color: Colors.white,
-                        ),
+                        ),                        
                         Text(
                           '1',
                           style: TextStyle(
@@ -298,9 +300,10 @@ class _Produt2pageState extends State<Produt2page> {
                               fontSize: 16),
                         ),
                         Icon(
-                          Icons.remove,
+                          Icons.add,
                           color: Colors.white,
                         ),
+                        
                       ],
                     ).pSymmetric(h: 1.w),
                   ),
@@ -323,11 +326,14 @@ class _Produt2pageState extends State<Produt2page> {
                           .make()
                           .centered(),
                     ).onTap(() {
-                      Get.to(const CartPage());
+                       cartC.addCartItem(cartC.productId);   
+                      Get.to(() => CartPage());
+                  }
+                                    
                       // _signupController.CheckSignup();
                       //Get.to(()=> Produt2page());
                       //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
-                    }),
+                     ),
                   ),
                 ],
               ).pSymmetric(h: 4.w),
@@ -454,38 +460,28 @@ class _Produt2pageState extends State<Produt2page> {
               //   ),
               // ),
               // 2.h.heightBox,
-              InkWell(
-                onTap: () {
-                  Get.to(() => const RateProduct());
-                },
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Reviews',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 12.sp),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "ADD YOUR COMMENT",
-                              style: TextStyle(
-                                  color: appthemColor, fontSize: 13.sp),
-                            )
-                          ],
-                        )
-                      ],
-                    ).paddingSymmetric(horizontal: 5.w),
-                  ],
-                ),
+              
+              // InkWell(
+              //   onTap: () {
+              //     Get.to(() => const RateProduct());
+              //   },
+              //   child: Padding(
+              //    padding: const EdgeInsets.only(left: 10.0),
+              //     child: Text(
+              //      "ADD YOUR COMMENT",
+              //       style: TextStyle(
+              //        color: appthemColor, fontSize: 15.sp),
+              //          ),
+              //        ),),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                   'Reviews',
+                    style:
+                     TextStyle(color: Colors.black, fontSize: 12.sp),
+                      ),
               ),
-              0.5.heightBox,
+              2.heightBox,
               Container(
                 height: 17.h,
                 width: 100.w,

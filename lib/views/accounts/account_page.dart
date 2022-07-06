@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/views/editProfile/edit_profile.dart';
+import 'package:sugandh/views/home_screen/wishlist.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/views/notification/Notice_fication.dart';
 import 'package:sugandh/views/track_order/track_map.dart';
@@ -194,7 +195,9 @@ class AcoountPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => WishListScreen());
+                    },
                     icon: const Icon(
                       Icons.arrow_forward_ios,
                       size: 18,

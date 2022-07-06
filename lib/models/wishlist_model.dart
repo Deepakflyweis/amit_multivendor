@@ -1,4 +1,3 @@
-
 // To parse this JSON data, do
 //
 //     final wishListModel = wishListModelFromJson(jsonString);
@@ -16,7 +15,7 @@ class WishListModel {
     });
 
     bool ? success;
-    Wishlist  wishlist;
+    Wishlist wishlist;
 
     factory WishListModel.fromJson(Map<String, dynamic> json) => WishListModel(
         success: json["success"],
@@ -33,14 +32,14 @@ class Wishlist {
     Wishlist({
         required this.id,
         required this.user,
-       required this.products,
+        required this.products,
         this.v,
     });
 
     String id;
     String user;
     List<Product> products;
-    int ? v;
+    int? v;
 
     factory Wishlist.fromJson(Map<String, dynamic> json) => Wishlist(
         id: json["_id"],
@@ -59,33 +58,33 @@ class Wishlist {
 
 class Product {
     Product({
-        required this.id,
-        required this.name,
-       required this.description,
+       required this.id,
+       required this.name,
+         this.description,
        required this.price,
-       required this.ratings,
-       required this.images,
-       required this.category,
-       required this.stock,
-       required this.numOfReviews,
-       required this.user,
-       required this.reviews,
-       required this.createdAt,
+         this.ratings,
+         required this.images,
+         this.category,
+         this.stock,
+         this.numOfReviews,
+         this.user,
+         this.reviews,
+        this.createdAt,
         this.v,
     });
 
     String id;
     String name;
-    String description;
+    String? description;
     int price;
-    int ratings;
+    int ? ratings;
     List<Image> images;
-    String category;
-    int stock;
-    int numOfReviews;
-    String user;
-    List<Map<String, String>> reviews;
-    DateTime createdAt;
+    String ? category;
+    int ? stock;
+    int ? numOfReviews;
+    String ? user;
+    List<Map<String, String>> ? reviews;
+    DateTime ? createdAt;
     int ? v;
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -115,22 +114,22 @@ class Product {
         "Stock": stock,
         "numOfReviews": numOfReviews,
         "user": user,
-        "reviews": List<dynamic>.from(reviews.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
-        "createdAt": createdAt.toIso8601String(),
+        "reviews": List<dynamic>.from(reviews!.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
+        "createdAt": createdAt!.toIso8601String(),
         "__v": v,
     };
 }
 
 class Image {
     Image({
-       required this.publicId,
+        this.publicId,
        required this.url,
-       required this.id,
+        this.id,
     });
 
-    String publicId;
+    String? publicId;
     String url;
-    String id;
+    String ? id;
 
     factory Image.fromJson(Map<String, dynamic> json) => Image(
         publicId: json["public_id"],

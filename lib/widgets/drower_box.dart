@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:retrofit/http.dart';
 import 'package:sizer/sizer.dart';
 import 'package:sugandh/config/local/local_database.dart';
 import 'package:sugandh/controller/profile_controller.dart';
@@ -9,6 +10,7 @@ import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/check_out_screens/check_out_address.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
+import 'package:sugandh/views/home_screen/wishlist.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -22,7 +24,6 @@ class OpenDrawer extends StatefulWidget {
 }
 
 class _OpenDrawerState extends State<OpenDrawer> {
-
   ProfileController _controller = Get.put(ProfileController());
 
   @override
@@ -37,50 +38,50 @@ class _OpenDrawerState extends State<OpenDrawer> {
             filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
             child: Column(
               children: [
-                _controller.obx((state) => 
-                  Container(
+                _controller.obx(
+                  (state) => Container(
                     height: MediaQuery.of(context).size.height * 0.23,
                     width: MediaQuery.of(context).size.width * 0.8,
                     decoration: const BoxDecoration(),
                     child: Column(
                       children: [
                         2.h.heightBox,
-                          Align(
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: CircleAvatar(
                             backgroundColor: Colors.transparent,
                             radius: 45,
                             child: ClipOval(
-                               child: Image.network(
+                              child: Image.network(
                                 state!.profile,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => Image.asset(
-                                    'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(
+                                  'lib/assets/asset/avatar.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                                      
                             ), //CircleAvatar
                           ),
                         ).px32(),
-                        1.h.heightBox, 
-                        
-               Align(
-                    alignment: Alignment.centerLeft,
-                        child: Text(
-                        state.name,
-                        style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                         fontSize: 19,
-                       ),
+                        1.h.heightBox,
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            state.name,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
+                            ),
                           ),
                         ).px32(),
-                        1.h.heightBox,              
- 
-                         Align(
+                        1.h.heightBox,
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             state.email,
-                            style:const TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 11,
                             ),
@@ -204,7 +205,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                             //PersonalDetails
                           ),
                         ).onTap(() {
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyReceipts()));
+                          Get.to(() => WishListScreen());
                         }), //ShrareDetails
 
                         Container(

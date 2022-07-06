@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 
-// const String serverBaseUrl = "https://amit-ray-1234.herokuapp.com/api/v1/";
-// const String serverBaseUrl = "http://mern.online:4001/api/v1/";
 
 class Client {
   static String token = "token";
