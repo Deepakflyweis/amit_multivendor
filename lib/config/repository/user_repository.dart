@@ -27,9 +27,7 @@ class UserEndPointRepsitory {
         GetStorage box = GetStorage();
         String token = response.data['token'];
         await box.write("token", token);
-        log("token : $token");
-        // Client.token = token;
-
+       
         g.Get.offAll(() => MyDashBoard());
         showToastMessage(
           title: "Success",

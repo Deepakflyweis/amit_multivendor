@@ -1,12 +1,8 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/material.dart';
-import 'package:sugandh/views/discover/accessories.dart';
-import 'package:sugandh/views/discover/all.dart';
-import 'package:sugandh/views/discover/jeans.dart';
-import 'package:sugandh/views/discover/shirt.dart';
-import 'package:sugandh/views/discover/t_shirt.dart';
+import 'package:flutter/material.dart'; 
+import 'package:sugandh/views/discover/all.dart'; 
 import 'package:sugandh/views/search_screen/search_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -126,17 +122,29 @@ class DiscoverPage extends StatelessWidget {
                       child: All(),
                     ),
                     Center(
-                      child: Tshirt(),
+                      child: All(),
                     ),
                     Center(
-                      child: Shirt(),
+                      child: All(),
                     ),
                     Center(
-                      child: Jeans(),
+                      child: All(),
                     ),
                     Center(
-                      child: Accessories(),
+                      child: All(),
                     ),
+                    // Center(
+                    //   child: Tshirt(),
+                    // ),
+                    // Center(
+                    //   child: Shirt(),
+                    // ),
+                    // Center(
+                    //   child: Jeans(),
+                    // ),
+                    // Center(
+                    //   child: Accessories(),
+                    // ),
                   ],
                 )),
               ],

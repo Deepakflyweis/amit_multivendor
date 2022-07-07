@@ -22,269 +22,84 @@ class AcoountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _key = GlobalKey();
-    return Scaffold(
-      key: _key,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: SizedBox(
-          height: 2.h,
-          width: 2.w,
-          child: Image.asset(
-            'lib/assets/asset/menu.png',
-            fit: BoxFit.fitWidth,
-          ).p16().onTap(() {
-            _key.currentState!.openDrawer();
-          }),
-        ),
-        title: const Text(
-          'Account',
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w700, fontSize: 19),
-        ),
-        centerTitle: true,
-      ),
-      drawer: const OpenDrawer(),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            0.h.heightBox,
-            
-            _controller.obx((state) => 
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 45,
-                  child: ClipOval(
-                    child: Image.network(
-                      state!.profile,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Image.asset(
-                          'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
-                    ),
-                  ), //CircleAvatar
-                ),
-                10.w.widthBox,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                      Text(
-                      state.name,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16),
-                    ),
-                    0.6.h.heightBox,
-                     Text(
-                      state.email,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12),
-                    ),
-                  ],
-                ),
-              ],
-            ).pSymmetric(h: 4.5.w),            
+    return SafeArea(
+      child: Scaffold(
+        key: _key,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: SizedBox(
+            height: 2.h,
+            width: 2.w,
+            child: Image.asset(
+              'lib/assets/asset/menu.png',
+              fit: BoxFit.fitWidth,
+            ).p16().onTap(() {
+              _key.currentState!.openDrawer();
+            }),
           ),
-
-          5.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.to(() => EditProfile());
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_Edit-Profile.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
+          title: const Text(
+            'Account',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w700, fontSize: 19),
+          ),
+          centerTitle: true,
+        ),
+        drawer: const OpenDrawer(),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              0.h.heightBox,
+              
+              _controller.obx((state) => 
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 45,
+                    child: ClipOval(
+                      child: Image.network(
+                        state!.profile,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Image.asset(
+                            'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
                       ),
-                      4.w.widthBox,
-                      const Text(
-                        'Edit Profile',
-                        style: TextStyle(
+                    ), //CircleAvatar
+                  ),
+                  10.w.widthBox,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        Text(
+                        state.name,
+                        style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
-                            fontSize: 15),
+                            fontSize: 16),
+                      ),
+                      0.6.h.heightBox,
+                       Text(
+                        state.email,                        
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
                       ),
                     ],
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
+                ],
+              ).pSymmetric(h: 4.5.w),            
+            ),
+    
+            5.h.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
                       Get.to(() => EditProfile());
                     },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: appthemColor,
-                          borderRadius: BorderRadius.circular(6.sp)),
-                      child: Image.asset(
-                        'lib/assets/asset/Icon_Location.png',
-                        color: Colors.white,
-                        height: 40,
-                      ),
-                    ),
-                    4.w.widthBox,
-                    const Text(
-                      'Shoping Address',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15),
-                    ),
-                  ],
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_Wishlist.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
-                      ),
-                      4.w.widthBox,
-                      const Text(
-                        'Wishlist',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Get.to(() => WishListScreen());
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_Order.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
-                      ),
-                      4.w.widthBox,
-                      const Text(
-                        'Order History',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_History.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
-                      ),
-                      4.w.widthBox,
-                      const Text(
-                        'Order History',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.to(const TrackMap());
-                  },
-                  child: Container(
                     child: Row(
                       children: [
                         Container(
@@ -292,14 +107,14 @@ class AcoountPage extends StatelessWidget {
                               color: appthemColor,
                               borderRadius: BorderRadius.circular(6.sp)),
                           child: Image.asset(
-                            'lib/assets/asset/Icon_Order.png',
+                            'lib/assets/asset/Icon_Edit-Profile.png',
                             color: Colors.white,
                             height: 40,
                           ),
                         ),
                         4.w.widthBox,
                         const Text(
-                          'Track Order',
+                          'Edit Profile',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
@@ -308,62 +123,55 @@ class AcoountPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Get.to(() => const TrackOrder());
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: appthemColor,
-                            borderRadius: BorderRadius.circular(6.sp)),
-                        child: Image.asset(
-                          'lib/assets/asset/Icon_Payment.png',
-                          color: Colors.white,
-                          height: 40,
-                        ),
-                      ),
-                      4.w.widthBox,
-                      const Text(
-                        'Cards',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.to(const NoticeFication());
-                  },
-                  child: Container(
+                  IconButton(
+                      onPressed: () {
+                        Get.to(() => EditProfile());
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      )),
+                ],
+              ).pSymmetric(h: 4.5.w),
+              // 1.h.heightBox,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Row(
+              //       children: [
+              //         Container(
+              //           decoration: BoxDecoration(
+              //               color: appthemColor,
+              //               borderRadius: BorderRadius.circular(6.sp)),
+              //           child: Image.asset(
+              //             'lib/assets/asset/Icon_Location.png',
+              //             color: Colors.white,
+              //             height: 40,
+              //           ),
+              //         ),
+              //         4.w.widthBox,
+              //         const Text(
+              //           'Shoping Address',
+              //           style: TextStyle(
+              //               color: Colors.black,
+              //               fontWeight: FontWeight.w400,
+              //               fontSize: 15),
+              //         ),
+              //       ],
+              //     ),
+              //     IconButton(
+              //         onPressed: () {},
+              //         icon: const Icon(
+              //           Icons.arrow_forward_ios,
+              //           size: 18,
+              //         )),
+              //   ],
+              // ).pSymmetric(h: 4.5.w),
+              1.h.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
                     child: Row(
                       children: [
                         Container(
@@ -371,14 +179,14 @@ class AcoountPage extends StatelessWidget {
                               color: appthemColor,
                               borderRadius: BorderRadius.circular(6.sp)),
                           child: Image.asset(
-                            'lib/assets/asset/Icon_Alert.png',
+                            'lib/assets/asset/Icon_Wishlist.png',
                             color: Colors.white,
                             height: 40,
                           ),
                         ),
                         4.w.widthBox,
                         const Text(
-                          'Notifications',
+                          'Wishlist',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
@@ -387,26 +195,136 @@ class AcoountPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Get.to(const NoticeFication());
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-            1.h.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    _logoutAccountSheet(context);
-                  },
-                  child: Container(
+                  IconButton(
+                      onPressed: () {
+                        Get.to(() => WishListScreen());
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      )),
+                ],
+              ).pSymmetric(h: 4.5.w),
+              1.h.heightBox,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       child: Row(
+              //         children: [
+              //           Container(
+              //             decoration: BoxDecoration(
+              //                 color: appthemColor,
+              //                 borderRadius: BorderRadius.circular(6.sp)),
+              //             child: Image.asset(
+              //               'lib/assets/asset/Icon_Order.png',
+              //               color: Colors.white,
+              //               height: 40,
+              //             ),
+              //           ),
+              //           4.w.widthBox,
+              //           const Text(
+              //             'Order History',
+              //             style: TextStyle(
+              //                 color: Colors.black,
+              //                 fontWeight: FontWeight.w400,
+              //                 fontSize: 15),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     IconButton(
+              //         onPressed: () {},
+              //         icon: const Icon(
+              //           Icons.arrow_forward_ios,
+              //           size: 18,
+              //         )),
+              //   ],
+              // ).pSymmetric(h: 4.5.w),
+              // 1.h.heightBox,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       child: Row(
+              //         children: [
+              //           Container(
+              //             decoration: BoxDecoration(
+              //                 color: appthemColor,
+              //                 borderRadius: BorderRadius.circular(6.sp)),
+              //             child: Image.asset(
+              //               'lib/assets/asset/Icon_History.png',
+              //               color: Colors.white,
+              //               height: 40,
+              //             ),
+              //           ),
+              //           4.w.widthBox,
+              //           const Text(
+              //             'Order History',
+              //             style: TextStyle(
+              //                 color: Colors.black,
+              //                 fontWeight: FontWeight.w400,
+              //                 fontSize: 15),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     IconButton(
+              //         onPressed: () {},
+              //         icon: const Icon(
+              //           Icons.arrow_forward_ios,
+              //           size: 18,
+              //         )),
+              //   ],
+              // ).pSymmetric(h: 4.5.w),
+              // 1.h.heightBox,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     InkWell(
+              //       onTap: () {
+              //         Get.to(const TrackMap());
+              //       },
+              //       child: Container(
+              //         child: Row(
+              //           children: [
+              //             Container(
+              //               decoration: BoxDecoration(
+              //                   color: appthemColor,
+              //                   borderRadius: BorderRadius.circular(6.sp)),
+              //               child: Image.asset(
+              //                 'lib/assets/asset/Icon_Order.png',
+              //                 color: Colors.white,
+              //                 height: 40,
+              //               ),
+              //             ),
+              //             4.w.widthBox,
+              //             const Text(
+              //               'Track Order',
+              //               style: TextStyle(
+              //                   color: Colors.black,
+              //                   fontWeight: FontWeight.w400,
+              //                   fontSize: 15),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //     IconButton(
+              //         onPressed: () {
+              //           Get.to(() => const TrackOrder());
+              //         },
+              //         icon: const Icon(
+              //           Icons.arrow_forward_ios,
+              //           size: 18,
+              //         )),
+              //   ],
+              // ).pSymmetric(h: 4.5.w),
+              // 1.h.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
                     child: Row(
                       children: [
                         Container(
@@ -414,14 +332,14 @@ class AcoountPage extends StatelessWidget {
                               color: appthemColor,
                               borderRadius: BorderRadius.circular(6.sp)),
                           child: Image.asset(
-                            'lib/assets/asset/Icon_Exit.png',
+                            'lib/assets/asset/Icon_Payment.png',
                             color: Colors.white,
                             height: 40,
                           ),
                         ),
                         4.w.widthBox,
                         const Text(
-                          'Log Out',
+                          'Cards',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
@@ -430,18 +348,102 @@ class AcoountPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                IconButton(
-                    onPressed: () {
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      )),
+                ],
+              ).pSymmetric(h: 4.5.w),
+              1.h.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.to(() =>const NoticeFication());
+                    },
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: appthemColor,
+                                borderRadius: BorderRadius.circular(6.sp)),
+                            child: Image.asset(
+                              'lib/assets/asset/Icon_Alert.png',
+                              color: Colors.white,
+                              height: 40,
+                            ),
+                          ),
+                          4.w.widthBox,
+                          const Text(
+                            'Notifications',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Get.to(() =>const NoticeFication());
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      )),
+                ],
+              ).pSymmetric(h: 4.5.w),
+              1.h.heightBox,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
                       _logoutAccountSheet(context);
                     },
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    )),
-              ],
-            ).pSymmetric(h: 4.5.w),
-          ],
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: appthemColor,
+                                borderRadius: BorderRadius.circular(6.sp)),
+                            child: Image.asset(
+                              'lib/assets/asset/Icon_Exit.png',
+                              color: Colors.white,
+                              height: 40,
+                            ),
+                          ),
+                          4.w.widthBox,
+                          const Text(
+                            'Log Out',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        _logoutAccountSheet(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      )),
+                ],
+              ).pSymmetric(h: 4.5.w),
+            ],
+          ),
         ),
       ),
     );

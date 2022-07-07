@@ -56,7 +56,6 @@ class CategaryPage extends GetView {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-
                     Get.to(() => DiscoverPage());
                   },
                   // onTap: () => Get.to(() => Produt2page(),arguments: state[index].id),

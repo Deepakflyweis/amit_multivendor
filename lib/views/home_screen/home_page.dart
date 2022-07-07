@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
- 
+
 import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/category/catagary_screen.dart';
 import 'package:sugandh/views/discover/discover_screens.dart';
@@ -13,13 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
-    HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   ProductsController controller = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
-  
     List<String> baner1 = [
       "lib/assets/asset/slide-1.png",
       "lib/assets/asset/slide2.png",
@@ -39,7 +38,7 @@ class HomePage extends StatelessWidget {
       "lib/assets/asset/indemand3.png",
       "lib/assets/asset/indemand4.png",
     ];
- 
+
     List<String> banner2text1 = [
       'Sale',
       'Men',
@@ -47,39 +46,39 @@ class HomePage extends StatelessWidget {
       'kids',
       'Mobiles',
     ];
-    
+
     int pageIndex = 0;
 
     GlobalKey<ScaffoldState> _key = GlobalKey();
-    return Scaffold(
-      key: _key,
-      appBar: AppBar(
-          backgroundColor: Vx.white,
-          elevation: 0,
-          leading: const Icon(
-            Icons.menu,
-            color: Vx.black,
-          ).onTap(() {
-            debugPrint("ml");
-            _key.currentState!.openDrawer();
-          }),
-          title: "Home".text.gray600.makeCentered(),
-          actions: [
-            const Icon(
-              Icons.notifications_outlined,
-              color: Vx.white,
-              size: 16,
-            )
-                .pOnly(left: 5, right: 5)
-                .box
-                .red500
-                .rounded
-                .margin(const EdgeInsets.all(15))
-                .make()
-          ]),
-      drawer: const OpenDrawer(),
-      body: SafeArea(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        key: _key,
+        appBar: AppBar(
+            backgroundColor: Vx.white,
+            elevation: 0,
+            leading: const Icon(
+              Icons.menu,
+              color: Vx.black,
+            ).onTap(() {
+              debugPrint("ml");
+              _key.currentState!.openDrawer();
+            }),
+            title: "Home".text.gray600.makeCentered(),
+            actions: [
+              const Icon(
+                Icons.notifications_outlined,
+                color: Vx.white,
+                size: 16,
+              )
+                  .pOnly(left: 5, right: 5)
+                  .box
+                  .red500
+                  .rounded
+                  .margin(const EdgeInsets.all(15))
+                  .make()
+            ]),
+        drawer: const OpenDrawer(),
+        body: Container(
           height: 100.h,
           width: 100.w,
           decoration: const BoxDecoration(color: Colors.white
@@ -89,10 +88,9 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 2.h.heightBox,
-                Row(
-                  children: [
-                  InkWell(                    
-                    onTap: () =>  Get.to(() => SearchScreen()),
+                Row(children: [
+                  InkWell(
+                    onTap: () => Get.to(() => SearchScreen()),
                     child: Container(
                       height: 5.4.h,
                       width: 75.w,
@@ -101,7 +99,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: TextField(
-                          enabled: false,
+                        enabled: false,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(
                             Icons.search_rounded,
@@ -121,14 +119,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   5.w.widthBox,
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.filter_alt_outlined,
-                        color: Colors.grey,
-                        size: 30.sp,
-                      )),
-                ]).p12(),
+                //   IconButton(
+                //       onPressed: () {},
+                //       icon: Icon(
+                //         Icons.filter_alt_outlined,
+                //         color: Colors.grey,
+                //         size: 30.sp,
+                //       )),
+                  ]).p12(),
                 Container(
                   height: 22.h,
                   width: 100.w,
@@ -220,7 +218,7 @@ class HomePage extends StatelessWidget {
                           )
                         ],
                       ).pSymmetric(h: 1.w).onTap(() {
-                        Get.to(() =>   DiscoverPage());
+                        Get.to(() => DiscoverPage());
                       });
                     },
                     itemCount: baner2.length,
@@ -245,7 +243,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () => Get.to(() =>   DiscoverPage()),
+                        onPressed: () => Get.to(() => DiscoverPage()),
                         child: Text(
                           'VIEW ALL',
                           style: TextStyle(
@@ -259,13 +257,14 @@ class HomePage extends StatelessWidget {
                 ),
 
                 /// in demand products
-                controller.obx((state) =>  SizedBox(
+                controller.obx(
+                  (state) => SizedBox(
                     height: 25.5.h,
                     child: ListView.builder(
                       itemCount: state!.length,
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(7),
-                      scrollDirection: Axis.horizontal,                     
+                      scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext, index) {
                         return Container(
                           child: Row(
@@ -281,19 +280,19 @@ class HomePage extends StatelessWidget {
                                     Stack(
                                       children: [
                                         SizedBox(
-                                          height: 15.h,
-                                          width: 42.w,
-                                          child: Image.network(
-                                            state[index].images[0].url,
-                                          fit: BoxFit.fill ,
-                                          errorBuilder: (context, error, stackTrace) =>                                           
-                                          Image.asset(
-                                            indemand[index],                                            
-                                            height: 10.h,
-                                            width: 40.w,
-                                          ),
-                                        )
-                                        ),
+                                            height: 15.h,
+                                            width: 42.w,
+                                            child: Image.network(
+                                              state[index].images[0].url,
+                                              fit: BoxFit.fill,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                indemand[index],
+                                                height: 10.h,
+                                                width: 40.w,
+                                              ),
+                                            )),
                                         Positioned(
                                           left: 10.sp,
                                           top: 10.sp,
@@ -311,7 +310,9 @@ class HomePage extends StatelessWidget {
                                                   Image.asset(
                                                       "lib/assets/asset/starfill.png"),
                                                   1.w.widthBox,
-                                                    Text(state[index].ratings.toString()),
+                                                  Text(state[index]
+                                                      .ratings
+                                                      .toString()),
                                                 ],
                                               )),
                                         ),
@@ -345,7 +346,8 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ).px(3),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -356,7 +358,8 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ).px(3),
                                         22.w.widthBox,
-                                        Image.asset("lib/assets/asset/basket.png")
+                                        Image.asset(
+                                            "lib/assets/asset/basket.png")
                                       ],
                                     ),
                                   ],
@@ -364,12 +367,11 @@ class HomePage extends StatelessWidget {
                               ),
                             ],
                           ).pSymmetric(h: 1.w).onTap(() {
-                            
-                            Get.to(() => Produt2page(),arguments: state[index].id);
+                            Get.to(() => Produt2page(),
+                                arguments: state[index].id);
                           }),
                         );
                       },
-                      
                     ),
                   ),
                 ),
@@ -389,7 +391,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () =>  Get.to(() =>   DiscoverPage()),
+                        onPressed: () => Get.to(() => DiscoverPage()),
                         child: Text(
                           'VIEW ALL',
                           style: TextStyle(
@@ -403,8 +405,8 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 25.5.h,
-                  child: controller.obx((state) => 
-                      ListView.builder(
+                  child: controller.obx(
+                    (state) => ListView.builder(
                       itemCount: state!.length,
                       shrinkWrap: true,
                       padding: const EdgeInsets.all(7),
@@ -424,18 +426,19 @@ class HomePage extends StatelessWidget {
                                     Stack(
                                       children: [
                                         SizedBox(
-                                          height: 15.h,
-                                          width: 42.w,
-                                          child: Image.network(state[index].images[0].url,
-                                          fit: BoxFit.fill,
-                                          errorBuilder: (context, error, stackTrace) =>  Image.asset(
-                                            indemand[index],                                           
-                                            height: 10.h,
-                                            width: 40.w,
-                                          ),
-                                          )                                        
-                                         
-                                        ),
+                                            height: 15.h,
+                                            width: 42.w,
+                                            child: Image.network(
+                                              state[index].images[0].url,
+                                              fit: BoxFit.fill,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                indemand[index],
+                                                height: 10.h,
+                                                width: 40.w,
+                                              ),
+                                            )),
                                         Positioned(
                                           left: 10.sp,
                                           top: 10.sp,
@@ -453,7 +456,9 @@ class HomePage extends StatelessWidget {
                                                   Image.asset(
                                                       "lib/assets/asset/starfill.png"),
                                                   1.w.widthBox,
-                                                    Text(state[index].ratings.toString()),
+                                                  Text(state[index]
+                                                      .ratings
+                                                      .toString()),
                                                 ],
                                               )),
                                         ),
@@ -473,7 +478,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     1.h.heightBox,
                                     Text(
-                                       state[index].name,
+                                      state[index].name,
                                       style: TextStyle(
                                         fontSize: 9.sp,
                                         fontWeight: FontWeight.bold,
@@ -487,7 +492,8 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ).px(3),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -498,7 +504,8 @@ class HomePage extends StatelessWidget {
                                           ),
                                         ).px(3),
                                         22.w.widthBox,
-                                        Image.asset("lib/assets/asset/basket.png")
+                                        Image.asset(
+                                            "lib/assets/asset/basket.png")
                                       ],
                                     ),
                                   ],
@@ -506,12 +513,11 @@ class HomePage extends StatelessWidget {
                               ),
                             ],
                           ).pSymmetric(h: 1.w).onTap(() {
-                            
-                            Get.to(() =>  Produt2page(),arguments: state[index].id);
+                            Get.to(() => Produt2page(),
+                                arguments: state[index].id);
                           }),
                         );
                       },
-                      
                     ),
                   ),
                 ),

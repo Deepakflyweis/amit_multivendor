@@ -50,7 +50,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                           alignment: Alignment.centerLeft,
                           child: CircleAvatar(
                             backgroundColor: Colors.transparent,
-                            radius: 45,
+                            radius: 50,
                             child: ClipOval(
                               child: Image.network(
                                 state!.profile,
@@ -83,7 +83,8 @@ class _OpenDrawerState extends State<OpenDrawer> {
                             state.email,
                             style: const TextStyle(
                               color: Colors.black,
-                              fontSize: 11,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500
                             ),
                           ),
                         ).px32(),
@@ -115,25 +116,25 @@ class _OpenDrawerState extends State<OpenDrawer> {
                           //PersonalDetails
                         ),
 
-                        Container(
-                          child: ListTile(
-                            leading: Image.asset(
-                              'lib/assets/asset/Icon_Catalog.png',
-                              height: 17,
-                              width: 55,
-                            ),
-                            //Icon(Icons.supervised_user_circle,color: Colors.black,),
-                            title: Text(
-                              'Catalog',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            //PersonalDetails
-                          ),
-                        ).onTap(() {
-                          Get.to(() => DiscoverPage());
+                        // Container(
+                        //   child: ListTile(
+                        //     leading: Image.asset(
+                        //       'lib/assets/asset/Icon_Catalog.png',
+                        //       height: 17,
+                        //       width: 55,
+                        //     ),
+                        //     //Icon(Icons.supervised_user_circle,color: Colors.black,),
+                        //     title: Text(
+                        //       'Catalog',
+                        //       style: TextStyle(color: Colors.black),
+                        //     ),
+                        //     //PersonalDetails
+                        //   ),
+                        // ).onTap(() {
+                        //   Get.to(() => DiscoverPage());
 
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderPage()));
-                        }),
+                        //   //Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderPage()));
+                        // }),
 
                         Container(
                           child: ListTile(
@@ -162,40 +163,41 @@ class _OpenDrawerState extends State<OpenDrawer> {
                               width: 55,
                             ),
                             //Icon(Icons.supervised_user_circle,color: Colors.black,),
-                            title: Text(
+                            title: const Text(
                               'Collection',
                               style: TextStyle(color: Colors.black),
                             ),
                             //PersonalDetails
                           ),
                         ).onTap(() {
-                          Get.to(() => CheckoutAddress());
+                           Get.to(() => DiscoverPage());
 
                           //Navigator.push(context, MaterialPageRoute(builder: (context)=>UserComments()));
                         }),
-                        Container(
-                          child: ListTile(
-                            leading: Image.asset(
-                              'lib/assets/asset/IconProduct.png',
-                              height: 17,
-                              width: 55,
-                            ),
-                            //Icon(Icons.supervised_user_circle,color: Colors.black,),
-                            title: Text(
-                              'Product',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            //PersonalDetails
-                          ),
-                        ).onTap(() {
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyReports()));
-                        }),
+                        // Container(
+                        //   child: ListTile(
+                        //     leading: Image.asset(
+                        //       'lib/assets/asset/IconProduct.png',
+                        //       height: 17,
+                        //       width: 55,
+                        //     ),
+                        //     //Icon(Icons.supervised_user_circle,color: Colors.black,),
+                        //     title: Text(
+                        //       'Product',
+                        //       style: TextStyle(color: Colors.black),
+                        //     ),
+                        //     //PersonalDetails
+                        //   ),
+                        // ).onTap(() {
+                        //   //Navigator.push(context, MaterialPageRoute(builder: (context)=>MyReports()));
+                        // }),
                         Container(
                           child: ListTile(
                             leading: Image.asset(
                               'lib/assets/asset/heart.png',
                               height: 17,
                               width: 55,
+                              color: Colors.red,
                             ),
                             //Icon(Icons.supervised_user_circle,color: Colors.black,),
                             title: const Text(

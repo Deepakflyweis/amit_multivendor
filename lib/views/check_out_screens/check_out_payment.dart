@@ -13,6 +13,7 @@ import 'checkbox_controller.dart';
 import 'checkout_payment_controller.dart';
 
 class CheckOutPayment extends StatelessWidget {
+  
   CheckOutPayment({Key? key}) : super(key: key);
   final Checkbox1 _checkbox1 = Get.put(Checkbox1());
   final CheckoutPaymentController _checkoutPaymentController =

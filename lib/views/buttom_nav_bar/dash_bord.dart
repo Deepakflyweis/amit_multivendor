@@ -18,14 +18,11 @@ class _MyDashBoardState extends State<MyDashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   title: Text("Custom Animated Bottom Navigation Bar"),
-        //   backgroundColor: Colors.green[200],
-        // ),
-        body: getBody(),
-        bottomNavigationBar: _buildBottomBar());
+    return SafeArea(
+      child: Scaffold( 
+          body: getBody(),
+          bottomNavigationBar: _buildBottomBar()),
+    );
   }
 
   Widget _buildBottomBar() {
@@ -78,10 +75,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
         CartPage(),
         AcoountPage(),
         SettingPage(),
-      // HomePage(),
-      // UsersPage(),
-      // MessagesPage(),
-      // AddPage(),
+              
     ];
     return IndexedStack(
       index: _currentIndex,

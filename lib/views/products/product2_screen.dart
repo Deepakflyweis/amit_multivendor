@@ -326,13 +326,9 @@ class _Produt2pageState extends State<Produt2page> {
                           .make()
                           .centered(),
                     ).onTap(() {
-                       cartC.addCartItem(cartC.productId);   
-                      Get.to(() => CartPage());
-                  }
-                                    
-                      // _signupController.CheckSignup();
-                      //Get.to(()=> Produt2page());
-                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
+                       cartC.addCartItem((state.id));   
+                      Get.to(() => CartPage())!.then((value) => Get.delete<CartController>());
+                  } 
                      ),
                   ),
                 ],

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -13,33 +12,30 @@ class CartRepo {
 
   CartRepo({required this.client});
 
-  Future<CartModel> getCartApi() async{
-    try{
+  Future<CartModel> getCartApi() async {
+    try {
       Response response = await client.get("cart");
       CommonLoader.hideLoading();
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {         
         return cartModelFromJson(jsonEncode(response.data));
-      }
-       else {        
+      } else {         
         return Future.error(response.data["error"]);
       }
-    }  on DioError catch (e) {
-      log("dio catch : $e");
+    } on DioError catch (e) { 
       CommonLoader.hideLoading();
       return Future.error(e.message);
     }
   }
 
   addCartApi({required String id}) async {
-    var data = {"product": id};
-    log("data $data");
+    var data = {"product": id};     
     try {
       Response response = await client.post("cart/$id", data: data);
       if (response.statusCode == 200) {
-        log("added in cart $response");        
+        log("added in cart $response");
       } else {
         if (response.statusMessage == "Token_Expired") {
-           g.Get.offAll(() => LoginScreen());
+          g.Get.offAll(() => LoginScreen());
           return;
         }
       }
@@ -47,5 +43,4 @@ class CartRepo {
       return Future.error(e.message);
     }
   }
-
 }
