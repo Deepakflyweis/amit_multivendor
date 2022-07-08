@@ -16,19 +16,33 @@ class CartRepo {
     try {
       Response response = await client.get("cart");
       CommonLoader.hideLoading();
-      if (response.statusCode == 200) {         
+      if (response.statusCode == 200) {
         return cartModelFromJson(jsonEncode(response.data));
-      } else {         
+      } else {
         return Future.error(response.data["error"]);
       }
-    } on DioError catch (e) { 
+    } on DioError catch (e) {
+      CommonLoader.hideLoading();
+      return Future.error(e.message);
+    }
+  }
+
+  updateQuantCartApi({required String id,required int quantity}) async {
+    var data = {"quantity": quantity};
+    try {
+      Response response = await client.put("cart/$id" , data: data);
+       if (response.statusCode == 200) {
+        log("updated quantity in cart $response");
+         return Future.value (response.data);
+      }
+    } on DioError catch (e) {
       CommonLoader.hideLoading();
       return Future.error(e.message);
     }
   }
 
   addCartApi({required String id}) async {
-    var data = {"product": id};     
+    var data = {"product": id};
     try {
       Response response = await client.post("cart/$id", data: data);
       if (response.statusCode == 200) {

@@ -1,8 +1,6 @@
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
-import 'package:sugandh/controller/product_detail_cont.dart';
 import 'package:sugandh/controller/search_cont.dart';
-import 'package:sugandh/models/search_model.dart' as mod;
 import 'package:sugandh/views/products/product2_screen.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -11,7 +9,7 @@ import 'package:get/get.dart';
 class SearchScreen extends GetView {
   SearchScreen({Key? key}) : super(key: key);
 
-  SearchController _controller = Get.put(SearchController());
+  final SearchController _controller = Get.put(SearchController());
    bool isVisibleItems = false;
 
   List<String> baner11 = [
@@ -44,8 +42,7 @@ class SearchScreen extends GetView {
             ),
             child: TextField(
               controller: _controller.value1,
-              onSubmitted: (value) => _controller.callSearchApi(),
-              
+              onSubmitted: (value) => _controller.callSearchApi(),              
               decoration: InputDecoration(
                 suffixIcon: const Icon(
                   Icons.search_rounded,
@@ -281,10 +278,6 @@ class SearchScreen extends GetView {
                                 ],
                               ).pSymmetric(h: 5.w),
                             )
-                              
-                            //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                            //AssetImage(images[index]),
-                            //Text("This is title",style: TextStyle(fontSize: 10,),),
                           ],
                         ),
                       ],

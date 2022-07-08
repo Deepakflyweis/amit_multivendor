@@ -2,6 +2,7 @@
 //
 //     final cartModel = cartModelFromJson(jsonString);
 
+import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -55,9 +56,9 @@ class Cart {
     DateTime createdAt;
     DateTime updatedAt;
     int v;
-    int subTotal;
+    RxInt subTotal;
     int discount;
-    int total;
+    RxInt total;
     int shipping;
 
     factory Cart.fromJson(Map<String, dynamic> json) => Cart(
@@ -68,9 +69,9 @@ class Cart {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-        subTotal: json["subTotal"],
+        subTotal: RxInt(json["subTotal"]),
         discount: json["discount"],
-        total: json["total"],
+        total: RxInt(json["total"]),
         shipping: json["shipping"],
     );
 
@@ -82,9 +83,9 @@ class Cart {
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
-        "subTotal": subTotal,
+        "subTotal": subTotal.value,
         "discount": discount,
-        "total": total,
+        "total": total.value,
         "shipping": shipping,
     };
 }
@@ -97,18 +98,18 @@ class ProductElement {
     });
 
     ProductProduct product;
-    int quantity;
+    RxInt quantity;
     int total;
 
     factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
         product: ProductProduct.fromJson(json["product"]),
-        quantity: json["quantity"],
+        quantity: RxInt(json["quantity"]),
         total: json["total"],
     );
 
     Map<String, dynamic> toJson() => {
         "product": product.toJson(),
-        "quantity": quantity,
+        "quantity": quantity.value,
         "total": total,
     };
 }

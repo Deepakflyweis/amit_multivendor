@@ -15,16 +15,19 @@ class CheckoutAddressController extends GetxController {
   TextEditingController city = TextEditingController();
   TextEditingController state = TextEditingController();
 
-  checkoutAddressApi() {
-    var isValidate = checkAddressform.currentState!.validate();
-    if (!isValidate) {
-      return;
+  checkoutAddressApi() async {
+    try {
+      // if (checkAddressform.currentState!.validate()) {
+      //   return;
+      // }
+      Client _client = Client();
+      CheckoutAddressRepo addressRepo =
+          CheckoutAddressRepo(client: _client.init());
+      await addressRepo.cartAddressSend(
+          street.text, locality.text, pincode.text, city.text, state.text);
+    } catch (error) {
+      // loading.value = false;
+      log(error.toString());
     }
-    Client _client = Client();
-    CheckoutAddressRepo addressRepo =
-        CheckoutAddressRepo(client: _client.init());    
-    addressRepo.cartAddressSend(
-        street.text, locality.text, pincode.text, city.text, state.text);
-     
   }
 }

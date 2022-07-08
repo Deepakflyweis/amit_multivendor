@@ -15,11 +15,14 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   CartController _controller = Get.put(CartController());
+  //  int get sum => quantity.value;
 
   @override
   Widget build(BuildContext context) {
-    return _controller.obx(
-      (state) => Scaffold(
+    return _controller.obx((state) {
+      _controller.setTotal(state?.cart.total.value.toDouble() ?? 0.0);
+      _controller.setsubTotal(state?.cart.subTotal.value.toDouble() ?? 0.0);
+      return Scaffold(
         appBar: AppBar(
           elevation: 1,
           backgroundColor: Colors.white,
@@ -53,6 +56,7 @@ class _CartPageState extends State<CartPage> {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     var url = state.cart.products[index];
+
                     return Padding(
                       padding: EdgeInsets.all(6.sp),
                       child: Container(
@@ -118,20 +122,24 @@ class _CartPageState extends State<CartPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Icon(Icons.remove,
-                                              color: Colors.white, size: 17),
-                                          Text(
-                                            url.quantity.toString(),
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 13),
+                                          InkWell(
+                                            onTap: () =>
+                                                _controller.decrease(url),
+                                            child: const Icon(Icons.remove,
+                                                color: Colors.white, size: 17),
                                           ),
-                                          IconButton(
-                                            onPressed: () {
-                                              
-                                            },
-                                            icon: const Icon(
+                                          Obx(() => Text(
+                                                // _controller.sum.toString(),
+                                                url.quantity.value.toString(),
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 13),
+                                              )),
+                                          InkWell(
+                                            onTap: () =>
+                                                _controller.increase(url),
+                                            child: const Icon(
                                               Icons.add,
                                               color: Colors.white,
                                               size: 17,
@@ -163,6 +171,7 @@ class _CartPageState extends State<CartPage> {
               //   ),
               // ).p16(),
               2.h.heightBox,
+
               Row(
                 children: [
                   const Text(
@@ -173,16 +182,20 @@ class _CartPageState extends State<CartPage> {
                         fontSize: 14),
                   ),
                   Spacer(),
-                  Text(
-                    state.cart.subTotal.toString(),
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
+                  Obx(
+                    () => Text(
+                      _controller.subtotal.value.toString(),
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    ),
+                  )
                 ],
               ).pSymmetric(h: 4.w),
+
               3.h.heightBox,
+
               Row(
                 children: [
                   const Text(
@@ -193,15 +206,16 @@ class _CartPageState extends State<CartPage> {
                         fontSize: 19),
                   ),
                   Spacer(),
-                  Text(
-                    state.cart.total.toString(),
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  ),
+                  Obx(() => Text(
+                        _controller.total.value.toString(),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      )),
                 ],
               ).pSymmetric(h: 4.w),
+
               5.h.heightBox,
               Container(
                 height: 6.h,
@@ -275,7 +289,7 @@ class _CartPageState extends State<CartPage> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

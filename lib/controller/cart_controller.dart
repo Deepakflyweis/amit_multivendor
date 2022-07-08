@@ -6,13 +6,61 @@ import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/models/cart_model.dart';
 
 class CartController extends GetxController with StateMixin<CartModel> {
-  var _products = {}.obs;
+  final total = 0.0.obs;
+  final subtotal = 0.0.obs;
 
-  void addProd(CartModel cartModel) {
-    if (_products.containsKey(cartModel)) {
-      _products[cartModel] += 1;
-    } else {
-      _products[cartModel] = 1;
+  increase(ProductElement url) {
+    Client _client = Client();
+    CartRepo repsitory = CartRepo(client: _client.init());
+    try {
+      repsitory
+          .updateQuantCartApi(
+              id: url.product.id, quantity: url.quantity.value + 1)
+          .then((value) {
+        log("value $value");
+        final model = CartModel.fromJson(value);
+        url.quantity.value++;
+        setTotal(model.cart.total.value.toDouble());
+        setsubTotal(model.cart.subTotal.value.toDouble());
+      }, onError: (err) {
+        change(null, status: RxStatus.error(err.toString()));
+      });
+    } catch (e) {
+      change(null, status: RxStatus.error(e.toString()));
+    }
+  }
+
+  setTotal(double total) {
+    this.total.value = total;
+  }
+
+  setsubTotal(double subtotal) {
+    this.subtotal.value = subtotal;
+  }
+
+  decrease(ProductElement url) {
+    Client _client = Client();
+    CartRepo repsitory = CartRepo(client: _client.init());
+    try {
+      repsitory
+          .updateQuantCartApi(
+              id: url.product.id, quantity: url.quantity.value - 1)
+          .then((value) {
+        log("value $value");
+
+        if (url.quantity.value <= 0) {
+          return null;
+        } else {
+          final model = CartModel.fromJson(value);
+          url.quantity.value--;
+          setTotal(model.cart.total.value.toDouble());
+          setsubTotal(model.cart.subTotal.value.toDouble());
+        }
+      }, onError: (err) {
+        change(null, status: RxStatus.error(err.toString()));
+      });
+    } catch (e) {
+      change(null, status: RxStatus.error(e.toString()));
     }
   }
 

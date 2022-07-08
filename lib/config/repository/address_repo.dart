@@ -25,10 +25,10 @@ class CheckoutAddressRepo {
         "city": city,
         "address": locality
       };
-      Response response = await client.post("address/new", data: data);
+      Response response = await client.post("checkout", data: data);
       CommonLoader.hideLoading();
-      if (response.statusCode == 201) {
-        log("cart 201 $response");
+      if (response.statusCode == 200) {
+        log("checkout $response");
         g.Get.to(() => CheckOutPayment());
       } else {
         log("else error $response");

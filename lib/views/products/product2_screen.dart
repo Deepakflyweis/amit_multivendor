@@ -229,7 +229,7 @@ class _Produt2pageState extends State<Produt2page> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    state.price.toString(),
+                   '\$' + state.price.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 19,
