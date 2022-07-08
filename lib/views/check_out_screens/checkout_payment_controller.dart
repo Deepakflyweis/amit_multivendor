@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
 
 import 'checkout_summary.dart';
 
@@ -11,8 +13,6 @@ class CheckoutPaymentController extends GetxController {
   TextEditingController cardnumber = TextEditingController();
   TextEditingController expirydate = TextEditingController();
   TextEditingController cvv = TextEditingController();
-
-  //................................
 
   @override
   void onInit() {
@@ -83,11 +83,15 @@ class CheckoutPaymentController extends GetxController {
     var isValidate = Checkpaymentform.currentState!.validate();
     if (!isValidate) {
       return;
-    } else {
-      Get.off(() => CheckoutSummary());
-      //callAdduserApi();
     }
-    Checkpaymentform.currentState!.save();
+    Get.snackbar("Payment", "Successfull");
+    Get.offAll(() => MyDashBoard());
+
+    // else {
+    //     Get.off(() => CheckoutSummary());
+    //     //callAdduserApi();
+    //   }
+    //   Checkpaymentform.currentState!.save();
   }
 // void callAdduserApi() async {
 //   http.Response r = await ApiProvider.addUser(name.text,email.text,age.text,mobile.text);

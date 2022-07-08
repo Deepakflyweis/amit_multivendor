@@ -8,9 +8,17 @@ import 'package:circle_checkbox/redev_checkbox.dart';
 import 'checkbox_controller.dart';
 import 'checkout_address_controller.dart';
 
-class CheckoutAddress extends StatelessWidget {
-  CheckoutAddress({Key? key}) : super(key: key);
+class CheckoutAddress extends StatefulWidget {
+   
+  const CheckoutAddress({Key? key}) : super(key: key);
+
+  @override
+  State<CheckoutAddress> createState() => _CheckoutAddressState();
+}
+
+class _CheckoutAddressState extends State<CheckoutAddress> {
   final Checkbox1 _checkbox1 = Get.put(Checkbox1());
+
   final CheckoutAddressController _checkoutAddressController =
       Get.put(CheckoutAddressController());
 
@@ -34,8 +42,8 @@ class CheckoutAddress extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            key: _checkoutAddressController.Checkaddressform,
+            // autovalidateMode: AutovalidateMode.onUserInteraction,
+            key: _checkoutAddressController.checkAddressform,
             child: Column(
               children: [
                 3.h.heightBox,
@@ -125,21 +133,24 @@ class CheckoutAddress extends StatelessWidget {
                       'Address',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 11,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500
                       ),
                     ),
                     Text(
                       'Payment',
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 11,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500
                       ),
                     ),
                     Text(
                       'Summary',
                       style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 11,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500
                       ),
                     ),
                   ],
@@ -152,6 +163,7 @@ class CheckoutAddress extends StatelessWidget {
                       'Billing address is the same as delivery',
                       style: TextStyle(
                         fontSize: 13,
+                        fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
                     ),
@@ -162,17 +174,24 @@ class CheckoutAddress extends StatelessWidget {
                   ),
                 ),
                 1.h.heightBox,
+
+                ///Street
                 const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Street 1',
-                      style: TextStyle(fontSize: 10),
+                      'Street',
+                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
-                  validator: _checkoutAddressController.validatestreet1,
-                  controller: _checkoutAddressController.Street1,
+                  validator: (value) { 
+                      if (value == '') {
+                        return ' please enter street';
+                      }
+                      return null;
+                  },
+                  controller: _checkoutAddressController.street,
                   decoration: const InputDecoration(
-                    hintText: 'Street ,Lane',
+                    hintText: 'Street no',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -185,14 +204,19 @@ class CheckoutAddress extends StatelessWidget {
                 const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Street 1',
-                      style: TextStyle(fontSize: 10),
+                      'Locality/Landmark',
+                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
-                  validator: _checkoutAddressController.validatestreet2,
-                  controller: _checkoutAddressController.street2,
+                        validator:  (value) {
+                        if (value == '') {
+                        return ' please enter Locality';
+                      }
+                    return null;
+                  },
+                  controller: _checkoutAddressController.locality,
                   decoration: const InputDecoration(
-                    hintText: 'XYZ Road',
+                    hintText: 'M.G Road',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -205,14 +229,19 @@ class CheckoutAddress extends StatelessWidget {
                 const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'City',
-                      style: TextStyle(fontSize: 10),
+                      'PinCode',
+                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
-                  validator: _checkoutAddressController.validatecity,
-                  controller: _checkoutAddressController.city,
+                  validator: (value) {
+                  if (value == '') {
+                  return ' please enter pincode';
+                }
+                return null;
+                 },
+                  controller: _checkoutAddressController.pincode,
                   decoration: const InputDecoration(
-                    hintText: 'Delhi',
+                    hintText: 'pincode',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -228,14 +257,14 @@ class CheckoutAddress extends StatelessWidget {
                     const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'State',
-                          style: TextStyle(fontSize: 10),
+                          'City',
+                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
                         )),
                     const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Country',
-                          style: TextStyle(fontSize: 10),
+                          'State',
+                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
                         )).pSymmetric(h: 34.w),
                   ],
                 ).pSymmetric(h: 4.w),
@@ -244,10 +273,15 @@ class CheckoutAddress extends StatelessWidget {
                     SizedBox(
                       width: 50.w,
                       child: TextFormField(
-                        validator: _checkoutAddressController.validatestate,
-                        controller: _checkoutAddressController.state,
+                        validator: (value) {
+                          if (value == '') {
+                            return ' please enter your city';
+                             }
+                            return null;
+                        },
+                        controller: _checkoutAddressController.city,
                         decoration: const InputDecoration(
-                          hintText: 'Delhi',
+                          hintText: 'noida',
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -261,10 +295,15 @@ class CheckoutAddress extends StatelessWidget {
                     SizedBox(
                       width: 50.w,
                       child: TextFormField(
-                        validator: _checkoutAddressController.validateCountry,
-                        controller: _checkoutAddressController.Country,
+                        validator: (value) {
+                          if (value == '') {
+                            return ' please enter your state';
+                          }
+                          return null;
+                        },
+                        controller: _checkoutAddressController.state,
                         decoration: const InputDecoration(
-                          hintText: 'India',
+                          hintText: 'U.P',
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
                           ),
@@ -278,58 +317,27 @@ class CheckoutAddress extends StatelessWidget {
                   ],
                 ),
                 5.h.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Padding(
-                    //   padding: EdgeInsets.only(bottom: 2.h),
-                    //   child: Container(
-                    //     height: 52,
-                    //     width: 170,
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       border: Border.all(color: Colors.black),
-                    //       borderRadius: BorderRadius.circular(4.sp),
-                    //     ),
-                    //     child: 'BACK'
-                    //         .text
-                    //         .size(10.sp)
-                    //         .letterSpacing(1.5)
-                    //         .bold
-                    //         .black
-                    //         .make()
-                    //         .centered(),
-                    //   ).onTap(() {
-                    //     Get.back();
-
-                    //     //_signupController.CheckSignup();
-                    //     //Get.to(()=> CheckoutScreen());
-                    //     //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
-                    //   }),
-                    // ),
-                    Center(
-                      child: Container(
-                        height: 52,
-                        width: 170,
-                        decoration: BoxDecoration(
-                          color: appthemColor,
-                          borderRadius: BorderRadius.circular(15.sp),
-                        ),
-                        child: 'NEXT'
-                            .text
-                            .size(10.sp)
-                            .letterSpacing(1.5)
-                            .bold
-                            .white
-                            .make()
-                            .centered(),
-                      ).onTap(() {
-                        _checkoutAddressController.CheckoutAddress();
-                        //Get.to(()=> CheckOutPayment());
-                        //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
-                      }),
+                Center(
+                  child: Container(
+                    height: 52,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      color: appthemColor,
+                      borderRadius: BorderRadius.circular(15.sp),
                     ),
-                  ],
+                    child: 'NEXT'
+                        .text
+                        .size(10.sp)
+                        .letterSpacing(1.5)
+                        .bold
+                        .white
+                        .make()
+                        .centered(),
+                  ).onTap(() {
+                    _checkoutAddressController.checkoutAddressApi();
+                    //Get.to(()=> CheckOutPayment());
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
+                  }),
                 ).pSymmetric(h: 4.w),
                 1.h.heightBox,
                 0.5.h.heightBox,

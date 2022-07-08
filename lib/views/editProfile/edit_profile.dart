@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/widgets/constant.dart';
 
 import '../../widgets/welcomeButton_widget.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  EditProfile({Key? key}) : super(key: key);
+
+  ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,63 +33,85 @@ class EditProfile extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 3.h,
-            ),
-            Center(
-              child: CircleAvatar(
-                backgroundColor: Colors.green,
-                radius: 45,
+        child: Form(
+          key: controller.profileFormkey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 3.h,
+              ),
+              Center(
                 child: CircleAvatar(
-                  backgroundColor: Colors.greenAccent[100],
-                  radius: 45,
-                  child: const CircleAvatar(
-                    backgroundImage: AssetImage(
-                        'lib/assets/asset/avatar.png'), //NetworkImage
-                    radius: 45,
-                  ), //CircleAvatar
-                ), //CircleAvatar
+                  backgroundColor: Colors.transparent,
+                  radius: 10.h,
+                  child: ClipOval(
+                    child: Obx(() => 
+                    controller.image.value.path == ""
+                        ?  Icon(Icons.image,size: 50,)
+                        
+                        // Image.network(
+                        //      controller.im.value ?? "",
+                        //      height: 40,
+                        //     errorBuilder: (context, _, __) => const Icon(
+                        //       Icons.account_circle_outlined,
+                        //       color: Colors.grey,
+                        //     ),
+                        //   )
+                        : Image.file(
+                            controller.image.value,
+                            // height: 25.h,
+                            width: 25.w,
+                            filterQuality: FilterQuality.high,
+                            fit: BoxFit.cover,
+                          ),
+                   ), ), 
+                ),
               ),
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            Text(
-              "Change Profile ",
-              style: TextStyle(color: appthemColor, fontSize: 12.sp),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "Name",
+              SizedBox(
+                height: 1.h,
               ),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "Mobile Number",
+              TextButton(
+                onPressed: () => controller.showPicker(context),
+                child: Text(
+                  "Change Profile ",
+                  style: TextStyle(color: appthemColor, fontSize: 12.sp),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "Password",
+              TextFormField(
+                controller: controller.fullName,
+                decoration: const InputDecoration(
+                  hintText: "Name",
+                ),
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            WelcomeButtonWidget(
-              btnText: "UPDATE",
-            )
-          ],
+              SizedBox(
+                height: 3.h,
+              ),
+              TextFormField(
+                controller: controller.email,
+                decoration: const InputDecoration(
+                  hintText: "Email",
+                ),
+              ),
+              // SizedBox(
+              //   height: 3.h,
+              // ),
+              // TextFormField(
+              //   controller: controller.mobile,
+              //   decoration: const InputDecoration(
+              //     hintText: "Mobile no",
+              //   ),
+              // ),
+              SizedBox(
+                height: 10.h,
+              ),
+              WelcomeButtonWidget(
+                ontap: () => controller.callEditProfile(),
+                btnText: "UPDATE",
+              )
+            ],
+          ),
         ),
       ),
     );

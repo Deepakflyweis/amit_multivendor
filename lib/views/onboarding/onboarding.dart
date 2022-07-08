@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:sugandh/views/onboarding/intro.dart';
-import 'package:sugandh/views/signup/sign_up.dart';
+import 'package:sugandh/views/user/signup/create_account.dart';
+import 'package:sugandh/views/user/signup/sign_up.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -180,20 +181,15 @@ class _OnbordingState extends State<Onbording> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          // Get.to(CreateAccount());
-                        },
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Do not have an account?',
-                            style: TextStyle(
-                              fontSize: 11.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
-                            ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Do not have an account?',
+                          style: TextStyle(
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -210,7 +206,8 @@ class _OnbordingState extends State<Onbording> {
                           ),
                         ),
                       ).px8().onTap(() {
-                        Get.to(() => SignUpScreen());
+                        // Get.to(() => SignUpScreen());
+                        Get.to(() => CreateAccount());
                       }),
                     ],
                   ),

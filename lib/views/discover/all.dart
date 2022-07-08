@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/products/product2_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class All extends StatelessWidget {
-  const All({Key? key}) : super(key: key);
+class All extends GetView {
+    All({Key? key}) : super(key: key);
+
+  ProductsController controller = Get.put(ProductsController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: 90.h,
-        child: GridView.builder(
-            // physics: NeverScrollableScrollPhysics(),
+        height: 100.h,
+        child: controller.obx((state) => 
+         GridView.builder(             
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              //childAspectRatio: 4/ 3,
-              crossAxisSpacing: 2,
-              mainAxisSpacing: 20,
-              mainAxisExtent: 205,
+             crossAxisCount: 2,
+             crossAxisSpacing: 2,
+             mainAxisSpacing: 20,
+             mainAxisExtent: 205,
             ),
-            itemCount: 10,
+            itemCount: state!.length,
             itemBuilder: (BuildContext ctx, index) {
               return Container(
                 child: Row(
@@ -40,21 +42,26 @@ class All extends StatelessWidget {
                               SizedBox(
                                 height: 15.h,
                                 width: 39.w,
-                                child: Image.asset(
-                                  "lib/assets/asset/indemand1.png",
-                                  //
+                                child: Image.network(
+                                  state[index].images[0].url,
+                                fit: BoxFit.fill,
+                                errorBuilder:(context, error, stackTrace) => 
+                                 Image.asset(
+                                  "lib/assets/asset/indemand1.png",                                 
                                   fit: BoxFit.fill,
                                 ),
+                                )
+                               
                               ),
-                              Positioned(
-                                left: 10.sp,
-                                top: 10.sp,
+                        Positioned(
+                                left: 0,
+                                top: 5,
                                 child: Container(
                                     height: 2.5.h,
                                     width: 15.w,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(3.sp),
-                                      color: Colors.white,
+                                      color: Colors.transparent,
                                     ),
                                     child: Row(
                                       children: [
@@ -62,13 +69,13 @@ class All extends StatelessWidget {
                                         Image.asset(
                                             "lib/assets/asset/starfill.png"),
                                         1.w.widthBox,
-                                        const Text("4.2+"),
+                                          Text(state[index].ratings.toString()),
                                       ],
                                     )),
                               ),
-                              Positioned(
-                                left: 100.sp,
-                                top: 10.sp,
+                              Positioned(                              
+                                right: 10 ,
+                                top: 10,
                                 child: Row(
                                   children: [
                                     Image.asset(
@@ -82,7 +89,7 @@ class All extends StatelessWidget {
                           ),
                           1.h.heightBox,
                           Text(
-                            "Men black raglan",
+                            state[index].name,
                             style: TextStyle(
                               fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
@@ -90,7 +97,7 @@ class All extends StatelessWidget {
                           ).px(3),
                           1.h.heightBox,
                           Text(
-                            "shirt",
+                            state[index].description,
                             style: TextStyle(
                               fontSize: 10.sp,
                             ),
@@ -101,7 +108,7 @@ class All extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "\$ 565",
+                                "\$ " + state[index].price.toString(),
                                 style: TextStyle(
                                   fontSize: 10.sp,
                                 ),
@@ -115,11 +122,12 @@ class All extends StatelessWidget {
                     ),
                   ],
                 ).pSymmetric(h: 1.w).onTap(() {
-                  Get.to(() => Produt2page());
+                  Get.to(() => Produt2page(),arguments: state[index].id);
                 }),
               ).pSymmetric(h: 2.w);
             }),
-      ),
+      
+      ),),
     );
   }
 }

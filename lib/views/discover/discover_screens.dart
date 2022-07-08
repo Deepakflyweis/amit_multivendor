@@ -1,17 +1,14 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/material.dart';
-import 'package:sugandh/views/discover/accessories.dart';
-import 'package:sugandh/views/discover/all.dart';
-import 'package:sugandh/views/discover/jeans.dart';
-import 'package:sugandh/views/discover/shirt.dart';
-import 'package:sugandh/views/discover/t_shirt.dart';
+import 'package:flutter/material.dart'; 
+import 'package:sugandh/views/discover/all.dart'; 
+import 'package:sugandh/views/search_screen/search_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class DiscoverPage extends StatelessWidget {
-  const DiscoverPage({Key? key}) : super(key: key);
+    DiscoverPage({Key? key}) : super(key: key);
 
   get tabController => null;
 
@@ -46,27 +43,31 @@ class DiscoverPage extends StatelessWidget {
             child: Column(
               children: [
                 Row(children: [
-                  Container(
-                    height: 5.4.h,
-                    width: 75.w,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffE3E6EF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.search_rounded,
-                          color: Colors.grey,
-                        ),
-                        hintText: 'Search products',
-                        hintStyle:
-                            TextStyle(fontSize: 12.sp, color: Colors.grey),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 1.5.h, horizontal: 2.w),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20),
+                  InkWell(
+                    onTap: () => Get.to(() => SearchScreen()),
+                    child: Container(
+                      height: 5.4.h,
+                      width: 75.w,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffE3E6EF),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.grey,
+                          ),
+                          hintText: 'Search products',
+                          hintStyle:
+                              TextStyle(fontSize: 12.sp, color: Colors.grey),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 1.5.h, horizontal: 2.w),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ),
@@ -114,24 +115,36 @@ class DiscoverPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Expanded(
+                  Expanded(
                     child: TabBarView(
-                  children: [
+                  children:  [
                     Center(
                       child: All(),
                     ),
                     Center(
-                      child: Tshirt(),
+                      child: All(),
                     ),
                     Center(
-                      child: Shirt(),
+                      child: All(),
                     ),
                     Center(
-                      child: Jeans(),
+                      child: All(),
                     ),
                     Center(
-                      child: Accessories(),
+                      child: All(),
                     ),
+                    // Center(
+                    //   child: Tshirt(),
+                    // ),
+                    // Center(
+                    //   child: Shirt(),
+                    // ),
+                    // Center(
+                    //   child: Jeans(),
+                    // ),
+                    // Center(
+                    //   child: Accessories(),
+                    // ),
                   ],
                 )),
               ],

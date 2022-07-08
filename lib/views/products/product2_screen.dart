@@ -1,13 +1,62 @@
+import 'dart:developer';
+
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sugandh/controller/cart_controller.dart';
+import 'package:sugandh/controller/product_detail_cont.dart';
+import 'package:sugandh/controller/products_controller.dart';
 import 'package:sugandh/views/RateProduct/rate_product.dart';
 import 'package:sugandh/views/cart_screen/cart_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Produt2page extends StatelessWidget {
+class Produt2page extends StatefulWidget {
   Produt2page({Key? key}) : super(key: key);
+
+  @override
+  State<Produt2page> createState() => _Produt2pageState();
+}
+
+class _Produt2pageState extends State<Produt2page> {
+  ProductsController prod = Get.find();
+  ProductDetailsController controller = Get.put(ProductDetailsController());
+  CartController cartC = Get.put(CartController());
+
+  var isCasionFavt = false;
+  final List favouriteLists = [];
+
+  _addFav() {
+    controller.callAddWishList(controller.imgId);
+    log("added ");
+    setState(() {
+      isCasionFavt = true;
+    });
+  }
+
+  _disFavt() {
+    controller.callRemoveFav(controller.imgId);
+    // prod.romoveFavProducts(controller.imgId);
+    log("removed");
+    setState(() {
+      isCasionFavt = false;
+    });
+  }
+
+  isCasionFavts() {
+    var isCasionFavtLocal = false;
+    log(" CasionDetailImage isCasionFavts()");
+    for (var element in favouriteLists) {
+      if (isCasionFavt) {
+        isCasionFavtLocal = true;
+        break;
+      }
+    }
+
+    setState(() {
+      isCasionFavt = isCasionFavtLocal;
+    });
+  }
 
   List<String> indemand = [
     "lib/assets/asset/indemand1.png",
@@ -16,61 +65,123 @@ class Produt2page extends StatelessWidget {
     "lib/assets/asset/indemand4.png",
   ];
 
+  final currtpage = 0.obs;
+
+  PageController? _controller;
+
+  @override
+  void initState() {
+    _controller = PageController(initialPage: 0);
+    super.initState();
+    isCasionFavts();
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
+  }
+
+  buildDot(int index, BuildContext context) {
+    return Obx(() {
+      return Container(
+        height: 10,
+        width: currtpage.value == index ? 10 : 10,
+        margin: const EdgeInsets.only(right: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: currtpage.value == index
+              ? const Color(0xFFEEA537)
+              : const Color(0xff979797),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
+          child: SingleChildScrollView(
+              child: controller.obx(
+        (state) => Stack(children: [
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  Image.asset(
-                    'lib/assets/asset/fullview.png',
-                    fit: BoxFit.fill,
-                  ),
-                  Container(
+                  SizedBox(
+                    height: 50.h,
                     width: 100.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20.sp),
-                            bottomRight: Radius.circular(20.sp))),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                )),
-                            IconButton(
-                              onPressed: () {},
+                    child: PageView.builder(
+                        controller: _controller,
+                        itemCount: state!.images.length,
+                        onPageChanged: (int index) {
+                          currtpage.value = index;
+                        },
+                        itemBuilder: (_, i) {
+                          return Image.network(
+                            state.images[i].url,
+                            fit: BoxFit.fill,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Image.asset(
+                              'lib/assets/asset/fullview.png',
+                              fit: BoxFit.fill,
+                            ),
+                          );
+                        }),
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    left: 50.w,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(state.images.length,
+                            (index) => buildDot(index, context))),
+                  ),
+                  // Image.asset(
+                  //   'lib/assets/asset/fullview.png',
+                  //   fit: BoxFit.fill,
+                  // ),
+                  Positioned(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.black,
+                          )),
+                      isCasionFavt == true
+                          ? IconButton(
+                              onPressed: () {
+                                _disFavt();
+                              },
+                              icon: const Icon(Icons.favorite,
+                                  color: Colors.redAccent),
+                            )
+                          : IconButton(
+                              onPressed: () => _addFav(),
                               icon: const Icon(
                                 Icons.favorite_border,
                                 color: Colors.black,
                               ),
                             ),
-                          ],
-                        ).pSymmetric(h: 5.w),
-                      ],
-                    ),
-                  ),
+                    ],
+                  ))
                 ],
               ),
+
               2.h.heightBox,
               Row(
                 children: [
                   1.w.widthBox,
                   Image.asset("lib/assets/asset/starfill.png"),
                   3.w.widthBox,
-                  const Text("4.2+"),
+                  Text(state.ratings.toString()),
                   3.w.widthBox,
                   const Text("Reviews").text.color(appthemColor).make(),
                 ],
@@ -80,7 +191,7 @@ class Produt2page extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Men Black raglan shirt',
+                    state.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 13.sp,
@@ -103,12 +214,12 @@ class Produt2page extends StatelessWidget {
               1.h.heightBox,
               Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  'If you are offered  a seat on a rocket ship don\'t ask\n'
-                  'What seat Just on board and move the sail\n'
-                  'towards the destination',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
+                child: Text(
+                  state.description,
+                  maxLines: 3,
+                  overflow: TextOverflow.fade,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
                       fontSize: 13,
                       color: Colors.black),
                 ).pSymmetric(h: 5.w),
@@ -117,9 +228,9 @@ class Produt2page extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    '₹ 699.50',
-                    style: TextStyle(
+                  Text(
+                   '\$' + state.price.toString(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 19,
                       color: appthemColor,
@@ -178,9 +289,9 @@ class Produt2page extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         Icon(
-                          Icons.add,
+                          Icons.remove,
                           color: Colors.white,
-                        ),
+                        ),                        
                         Text(
                           '1',
                           style: TextStyle(
@@ -189,9 +300,10 @@ class Produt2page extends StatelessWidget {
                               fontSize: 16),
                         ),
                         Icon(
-                          Icons.remove,
+                          Icons.add,
                           color: Colors.white,
                         ),
+                        
                       ],
                     ).pSymmetric(h: 1.w),
                   ),
@@ -214,267 +326,224 @@ class Produt2page extends StatelessWidget {
                           .make()
                           .centered(),
                     ).onTap(() {
-                      Get.to(const CartPage());
-                      // _signupController.CheckSignup();
-                      //Get.to(()=> Produt2page());
-                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
-                    }),
+                       cartC.addCartItem((state.id));   
+                      Get.to(() => CartPage())!.then((value) => Get.delete<CartController>());
+                  } 
+                     ),
                   ),
                 ],
               ).pSymmetric(h: 4.w),
               1.5.h.heightBox,
-              Align(
-                alignment: Alignment.centerLeft,
-                child: const Text(
-                  'You May Also Like',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.black),
-                ).pSymmetric(h: 5.w),
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: const Text(
+              //     'You May Also Like',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 16,
+              //         color: Colors.black),
+              //   ).pSymmetric(h: 5.w),
+              // ),
+              // 1.h.heightBox,
+              // SizedBox(
+              //   height: 25.5.h,
+              //   child: ListView.builder(
+              //     // physics: NeverScrollableScrollPhysics(),
+              //     itemBuilder: (BuildContext, index) {
+              //       return Container(
+              //         child: Row(
+              //           children: [
+              //             Container(
+              //               decoration: BoxDecoration(
+              //                   border: Border.all(
+              //                 color: const Color(0xffE3E6EF),
+              //               )),
+              //               child: Column(
+              //                 crossAxisAlignment: CrossAxisAlignment.start,
+              //                 children: [
+              //                   Stack(
+              //                     children: [
+              //                       SizedBox(
+              //                         height: 15.h,
+              //                         width: 42.w,
+              //                         child: Image.asset(
+              //                           indemand[index],
+              //                           //
+              //                           height: 10.h,
+              //                           width: 40.w,
+              //                         ),
+              //                       ),
+              //                       Positioned(
+              //                         left: 10.sp,
+              //                         top: 10.sp,
+              //                         child: Container(
+              //                             height: 2.5.h,
+              //                             width: 15.w,
+              //                             decoration: BoxDecoration(
+              //                               borderRadius:
+              //                                   BorderRadius.circular(3.sp),
+              //                               color: Colors.white,
+              //                             ),
+              //                             child: Row(
+              //                               children: [
+              //                                 1.w.widthBox,
+              //                                 Image.asset(
+              //                                     "lib/assets/asset/starfill.png"),
+              //                                 1.w.widthBox,
+              //                                 const Text("4.2+"),
+              //                               ],
+              //                             )),
+              //                       ),
+              //                       Positioned(
+              //                         left: 100.sp,
+              //                         top: 10.sp,
+              //                         child: Row(
+              //                           children: [
+              //                             Image.asset(
+              //                               "lib/assets/asset/heart.png",
+              //                               height: 1.5.h,
+              //                             ),
+              //                           ],
+              //                         ),
+              //                       ),
+              //                     ],
+              //                   ),
+              //                   1.h.heightBox,
+              //                   Text(
+              //                     "Men black raglan",
+              //                     style: TextStyle(
+              //                       fontSize: 9.sp,
+              //                       fontWeight: FontWeight.bold,
+              //                     ),
+              //                   ).px(3),
+              //                   1.h.heightBox,
+              //                   Text(
+              //                     "shirt",
+              //                     style: TextStyle(
+              //                       fontSize: 10.sp,
+              //                     ),
+              //                   ).px(3),
+              //                   Row(
+              //                     mainAxisAlignment: MainAxisAlignment.center,
+              //                     crossAxisAlignment: CrossAxisAlignment.center,
+              //                     children: [
+              //                       Text(
+              //                         "\$ 565",
+              //                         style: TextStyle(
+              //                           fontSize: 10.sp,
+              //                         ),
+              //                       ).px(3),
+              //                       22.w.widthBox,
+              //                       Image.asset(
+              //                         "lib/assets/asset/basket.png",
+              //                         color: appthemColor,
+              //                       )
+              //                     ],
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ],
+              //         ).pSymmetric(h: 1.w).onTap(() {
+              //           // Get.to(() => DiscoverPage());
+              //         }),
+              //       );
+              //     },
+              //     itemCount: indemand.length,
+              //     shrinkWrap: true,
+              //     padding: const EdgeInsets.all(7),
+              //     scrollDirection: Axis.horizontal,
+              //   ),
+              // ),
+              // 2.h.heightBox,
+              
+              // InkWell(
+              //   onTap: () {
+              //     Get.to(() => const RateProduct());
+              //   },
+              //   child: Padding(
+              //    padding: const EdgeInsets.only(left: 10.0),
+              //     child: Text(
+              //      "ADD YOUR COMMENT",
+              //       style: TextStyle(
+              //        color: appthemColor, fontSize: 15.sp),
+              //          ),
+              //        ),),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                   'Reviews',
+                    style:
+                     TextStyle(color: Colors.black, fontSize: 12.sp),
+                      ),
               ),
-              1.h.heightBox,
-              SizedBox(
-                height: 25.5.h,
-                child: ListView.builder(
-                  // physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext, index) {
-                    return Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                              color: const Color(0xffE3E6EF),
-                            )),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 15.h,
-                                      width: 42.w,
-                                      child: Image.asset(
-                                        indemand[index],
-                                        //
-                                        height: 10.h,
-                                        width: 40.w,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 10.sp,
-                                      top: 10.sp,
-                                      child: Container(
-                                          height: 2.5.h,
-                                          width: 15.w,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(3.sp),
-                                            color: Colors.white,
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              1.w.widthBox,
-                                              Image.asset(
-                                                  "lib/assets/asset/starfill.png"),
-                                              1.w.widthBox,
-                                              const Text("4.2+"),
-                                            ],
-                                          )),
-                                    ),
-                                    Positioned(
-                                      left: 100.sp,
-                                      top: 10.sp,
-                                      child: Row(
-                                        children: [
-                                          Image.asset(
-                                            "lib/assets/asset/heart.png",
-                                            height: 1.5.h,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                1.h.heightBox,
-                                Text(
-                                  "Men black raglan",
-                                  style: TextStyle(
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ).px(3),
-                                1.h.heightBox,
-                                Text(
-                                  "shirt",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                  ),
-                                ).px(3),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "\$ 565",
-                                      style: TextStyle(
-                                        fontSize: 10.sp,
-                                      ),
-                                    ).px(3),
-                                    22.w.widthBox,
-                                    Image.asset(
-                                      "lib/assets/asset/basket.png",
-                                      color: appthemColor,
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ).pSymmetric(h: 1.w).onTap(() {
-                        // Get.to(() => DiscoverPage());
-                      }),
-                    );
-                  },
-                  itemCount: indemand.length,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(7),
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-              2.h.heightBox,
-              InkWell(
-                onTap: () {
-                  Get.to(const RateProduct());
-                },
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Reviews',
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 12.sp),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "ADD YOUR COMMENT",
-                              style: TextStyle(
-                                  color: appthemColor, fontSize: 13.sp),
-                            )
-                          ],
-                        )
-                      ],
-                    ).paddingSymmetric(horizontal: 5.w),
-                  ],
-                ),
-              ),
-              0.5.heightBox,
+              2.heightBox,
               Container(
                 height: 17.h,
                 width: 100.w,
                 color: Colors.white,
                 child: ListView.builder(
-                  // physics: NeverScrollableScrollPhysics(),
-
+                  itemCount: state.reviews.length,
+                  shrinkWrap: true,
                   itemBuilder: (BuildContext, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            1.h.heightBox,
-
+                            CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 25,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.greenAccent[100],
+                                radius: 23,
+                                child: const CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                      'lib/assets/asset/avatar.png'), //NetworkImage
+                                  radius: 21,
+                                ), //CircleAvatar
+                              ), //CircleAvatar
+                            ),
                             SizedBox(
-                              height: 14.h,
-                              width: 100.w,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.green,
-                                    radius: 22,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.greenAccent[100],
-                                      radius: 21,
-                                      child: const CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                            'lib/assets/asset/avatar.png'), //NetworkImage
-                                        radius: 19,
-                                      ), //CircleAvatar
-                                    ), //CircleAvatar
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'Ander',
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      const Text(
-                                        'Wonderfull glasses,perfect gft my\n'
-                                        'girl for our anivercy',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      7.h.heightBox,
-                                    ],
-                                  ),
-                                  4.w.widthBox,
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      VxRating(
-                                        onRatingUpdate: (value) {},
-                                        count: 5,
-                                        selectionColor: Colors.yellow,
-                                        size: 20,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ).pSymmetric(h: 5.w),
-                            )
-
-                            //Image.asset('lib/assets/asset/sale1.png',fit: BoxFit.fill,)),
-                            //AssetImage(images[index]),
-                            //Text("This is title",style: TextStyle(fontSize: 10,),),
-                          ],
-                        ),
-                      ],
+                              width: 2.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Ander',
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  state.reviews[index].values.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            VxRating(
+                              onRatingUpdate: (value) {},
+                              count: 5,
+                              selectionColor: Colors.yellow,
+                              size: 20,
+                            ),
+                          ]),
                     );
                   },
-                  itemCount: 5,
-                  shrinkWrap: true,
-                  //padding: EdgeInsets.all(5),
-                  //scrollDirection: Axis.horizontal,
                 ),
               ),
               2.h.heightBox,
             ],
           ),
-        ),
-      ),
+        ]),
+      ))),
     );
   }
 }
