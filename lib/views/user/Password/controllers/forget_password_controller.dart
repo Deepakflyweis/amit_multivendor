@@ -7,7 +7,7 @@ import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/views/user/otp_screens/otp_page.dart';
 
 import '../../../../core/utils/app_utils.dart';
-import '../../../../data/repoistory/auth_repository_impl.dart';
+ 
 import '../../../../config/repository/iauth_repository.dart';
 
 class ForgetPasswordController extends GetxController {

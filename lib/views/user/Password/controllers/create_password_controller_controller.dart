@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:sugandh/views/onboarding/onboarding.dart';
 
 import '../../../../core/utils/app_utils.dart';
-import '../../../../data/repoistory/auth_repository_impl.dart';
+ 
 import '../../../../domain/params/auth/password_reset_params.dart';
 import '../../../../config/repository/iauth_repository.dart';
 
