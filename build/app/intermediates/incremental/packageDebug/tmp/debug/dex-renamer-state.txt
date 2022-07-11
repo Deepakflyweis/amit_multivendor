@@ -1,0 +1,4 @@
+#Fri Jul 08 11:34:50 IST 2022
+base.0=D\:\\Amit-Multivender-\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
