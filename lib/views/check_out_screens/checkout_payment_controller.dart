@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
-
-import 'checkout_summary.dart';
+import 'package:sugandh/controller/payment_controller.dart';
+import 'package:sugandh/views/check_out_screens/checkout_summary.dart';
 
 class CheckoutPaymentController extends GetxController {
-  GlobalKey<FormState> Checkpaymentform = GlobalKey();
+  GlobalKey<FormState> checkpaymentform = GlobalKey();
 
   TextEditingController card = TextEditingController();
   TextEditingController cardnumber = TextEditingController();
@@ -31,13 +29,13 @@ class CheckoutPaymentController extends GetxController {
   }
 
   Checkcard() {
-    var isValidate = Checkpaymentform.currentState!.validate();
+    var isValidate = checkpaymentform.currentState!.validate();
     if (!isValidate) {
       return;
     } else {
       //Get.to(()=> HomePage());
     }
-    Checkpaymentform.currentState!.save();
+    checkpaymentform.currentState!.save();
   }
 
   String? validatecardnumber(value) {
@@ -48,13 +46,13 @@ class CheckoutPaymentController extends GetxController {
   }
 
   Checkcardnumber() {
-    var isValidate = Checkpaymentform.currentState!.validate();
+    var isValidate = checkpaymentform.currentState!.validate();
     if (!isValidate) {
       return;
     } else {
       //Get.to(()=> HomePage());
     }
-    Checkpaymentform.currentState!.save();
+    checkpaymentform.currentState!.save();
   }
 
   String? validateexpirydate(value) {
@@ -65,11 +63,11 @@ class CheckoutPaymentController extends GetxController {
   }
 
   Checkexpirydate() {
-    var isValidate = Checkpaymentform.currentState!.validate();
+    var isValidate = checkpaymentform.currentState!.validate();
     if (!isValidate) {
       return;
     } else {}
-    Checkpaymentform.currentState!.save();
+    checkpaymentform.currentState!.save();
   }
 
   String? validatecvv(value) {
@@ -80,18 +78,19 @@ class CheckoutPaymentController extends GetxController {
   }
 
   Checkcvv() {
-    var isValidate = Checkpaymentform.currentState!.validate();
+    var isValidate = checkpaymentform.currentState!.validate();
     if (!isValidate) {
-      return;
+      PaymentGatewayController controller = Get.find();
+      controller.openCheckout();
     }
-    Get.snackbar("Payment", "Successfull");
-    Get.offAll(() => MyDashBoard());
+    // Get.snackbar("Payment", "Successfull");
+    // Get.offAll(() => MyDashBoard());
 
     // else {
-    //     Get.off(() => CheckoutSummary());
+        //  Get.off(() => CheckoutSummary());
     //     //callAdduserApi();
     //   }
-    //   Checkpaymentform.currentState!.save();
+    //   checkpaymentform.currentState!.save();
   }
 // void callAdduserApi() async {
 //   http.Response r = await ApiProvider.addUser(name.text,email.text,age.text,mobile.text);
@@ -104,7 +103,7 @@ class CheckoutPaymentController extends GetxController {
 
   @override
   void dispose() {
-    Checkpaymentform.currentState!.dispose();
+    checkpaymentform.currentState!.dispose();
     super.dispose();
   }
 }

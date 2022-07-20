@@ -5,6 +5,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:sizer/sizer.dart';
+import 'package:sugandh/controller/payment_controller.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,14 @@ import 'checkbox_controller.dart';
 import 'checkout_payment_controller.dart';
 
 class CheckOutPayment extends StatelessWidget {
-  
   CheckOutPayment({Key? key}) : super(key: key);
   final Checkbox1 _checkbox1 = Get.put(Checkbox1());
   final CheckoutPaymentController _checkoutPaymentController =
       Get.put(CheckoutPaymentController());
+
+  PaymentGatewayController controller = Get.find();
+     
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class CheckOutPayment extends StatelessWidget {
         child: SingleChildScrollView(
           child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            key: _checkoutPaymentController.Checkpaymentform,
+            key: _checkoutPaymentController.checkpaymentform,
             child: Column(
               children: [
                 3.h.heightBox,
@@ -211,7 +215,7 @@ class CheckOutPayment extends StatelessWidget {
                   validator: _checkoutPaymentController.validatecard,
                   controller: _checkoutPaymentController.card,
                   decoration: const InputDecoration(
-                    hintText: 'Visa',
+                    hintText: 'Deepak Singh',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -221,90 +225,91 @@ class CheckOutPayment extends StatelessWidget {
                   ),
                 ).pSymmetric(h: 4.w),
                 3.h.heightBox,
-                const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Card Number',
-                      style: TextStyle(fontSize: 10),
-                    )).pSymmetric(h: 4.w),
-                TextFormField(
-                  validator: _checkoutPaymentController.validatecardnumber,
-                  controller: _checkoutPaymentController.cardnumber,
-                  decoration: InputDecoration(
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Image.asset(
-                        'lib/assets/asset/Icon_MasterCard.png',
-                        height: 5,
-                        width: 0.5.w,
-                      ),
-                    ),
-                    hintText: '4560  5644  3224  4543',
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 0.5),
-                    ),
-                  ),
-                ).pSymmetric(h: 4.w),
-                3.h.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Expiry Date',
-                          style: TextStyle(fontSize: 10),
-                        )),
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'CVV',
-                          style: TextStyle(fontSize: 10),
-                        )).pSymmetric(h: 36.w),
-                  ],
-                ).pSymmetric(h: 4.w),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 50.w,
-                      child: TextFormField(
-                        validator:
-                            _checkoutPaymentController.validateexpirydate,
-                        controller: _checkoutPaymentController.expirydate,
-                        decoration: const InputDecoration(
-                          hintText: '09/20',
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 0.5),
-                          ),
-                        ),
-                      ).pSymmetric(h: 4.w),
-                    ),
-                    SizedBox(
-                      width: 50.w,
-                      child: TextFormField(
-                        validator: _checkoutPaymentController.validatecvv,
-                        controller: _checkoutPaymentController.cvv,
-                        decoration: const InputDecoration(
-                          hintText: '467',
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black, width: 0.5),
-                          ),
-                        ),
-                      ).pSymmetric(h: 4.w),
-                    ),
-                  ],
-                ),
+                // const Align(
+                //     alignment: Alignment.centerLeft,
+                //     child: Text(
+                //       'Card Number',
+                //       style: TextStyle(fontSize: 10),
+                //     )).pSymmetric(h: 4.w),
+                // TextFormField(
+                //   validator: _checkoutPaymentController.validatecardnumber,
+                //   controller: _checkoutPaymentController.cardnumber,
+                //   decoration: InputDecoration(
+                //     suffixIcon: Padding(
+                //       padding: const EdgeInsets.all(6.0),
+                //       child: Image.asset(
+                //         'lib/assets/asset/Icon_MasterCard.png',
+                //         height: 5,
+                //         width: 0.5.w,
+                //       ),
+                //     ),
+                //     hintText: '4560  5644  3224  4543',
+                //     enabledBorder: const UnderlineInputBorder(
+                //       borderSide: BorderSide(color: Colors.black),
+                //     ),
+                //     focusedBorder: const UnderlineInputBorder(
+                //       borderSide: BorderSide(color: Colors.black, width: 0.5),
+                //     ),
+                //   ),
+                // ).pSymmetric(h: 4.w),
+                // // 3.h.heightBox,
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           'Expiry Date',
+                //           style: TextStyle(fontSize: 10),
+                //         )),
+                //     const Align(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           'CVV',
+                //           style: TextStyle(fontSize: 10),
+                //         )).pSymmetric(h: 36.w),
+                //   ],
+                // ).pSymmetric(h: 4.w),
+                // // Row(
+                //   children: [
+                //     SizedBox(
+                //       width: 50.w,
+                //       child: TextFormField(
+                //         validator:
+                //             _checkoutPaymentController.validateexpirydate,
+                //         controller: _checkoutPaymentController.expirydate,
+                //         decoration: const InputDecoration(
+                //           hintText: '09/20',
+                //           enabledBorder: UnderlineInputBorder(
+                //             borderSide: BorderSide(color: Colors.black),
+                //           ),
+                //           focusedBorder: UnderlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.black, width: 0.5),
+                //           ),
+                //         ),
+                //       ).pSymmetric(h: 4.w),
+                //     ),
+                //     SizedBox(
+                //       width: 50.w,
+                //       child: TextFormField(
+                //         validator: _checkoutPaymentController.validatecvv,
+                //         controller: _checkoutPaymentController.cvv,
+                //         decoration: const InputDecoration(
+                //           hintText: '467',
+                //           enabledBorder: UnderlineInputBorder(
+                //             borderSide: BorderSide(color: Colors.black),
+                //           ),
+                //           focusedBorder: UnderlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.black, width: 0.5),
+                //           ),
+                //         ),
+                //       ).pSymmetric(h: 4.w),
+                //     ),
+                //   ],
+                // ),
+                
                 2.h.heightBox,
                 Obx(
                   () => CircleCheckboxListTile(
@@ -344,7 +349,8 @@ class CheckOutPayment extends StatelessWidget {
                             .make()
                             .centered(),
                       ).onTap(() {
-                        _checkoutPaymentController.Checkcvv();
+                         controller.openCheckout();
+                        // _checkoutPaymentController.Checkcvv();
                         //Get.to(()=> CheckOutPayment());
                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomePage()));
                       }),

@@ -17,14 +17,13 @@ class CheckoutAddressController extends GetxController {
 
   checkoutAddressApi() async {
     try {
-      // if (checkAddressform.currentState!.validate()) {
-      //   return;
-      // }
+      if (checkAddressform.currentState!.validate()) {
       Client _client = Client();
       CheckoutAddressRepo addressRepo =
           CheckoutAddressRepo(client: _client.init());
       await addressRepo.cartAddressSend(
           street.text, locality.text, pincode.text, city.text, state.text);
+      }  
     } catch (error) {
       // loading.value = false;
       log(error.toString());

@@ -28,7 +28,6 @@ class CheckoutAddressRepo {
       Response response = await client.post("checkout", data: data);
       CommonLoader.hideLoading();
       if (response.statusCode == 200) {
-        log("checkout $response");
         g.Get.to(() => CheckOutPayment());
       } else {
         log("else error $response");

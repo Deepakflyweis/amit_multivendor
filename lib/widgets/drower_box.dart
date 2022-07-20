@@ -1,14 +1,11 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:retrofit/http.dart';
-import 'package:sizer/sizer.dart';
-import 'package:sugandh/config/local/local_database.dart';
+import 'package:get_storage/get_storage.dart'; 
+import 'package:sizer/sizer.dart'; 
 import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
-import 'package:sugandh/views/category/catagary_screen.dart';
-import 'package:sugandh/views/check_out_screens/check_out_address.dart';
+import 'package:sugandh/views/category/catagary_screen.dart'; 
 import 'package:sugandh/views/discover/discover_screens.dart';
 import 'package:sugandh/views/home_screen/wishlist.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
@@ -53,7 +50,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                             radius: 50,
                             child: ClipOval(
                               child: Image.network(
-                                state!.profile,
+                                state!.profile.toString(),
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) =>
                                     Image.asset(
@@ -68,7 +65,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            state.name,
+                            state.name.toString(),
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -80,7 +77,7 @@ class _OpenDrawerState extends State<OpenDrawer> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            state.email,
+                            state.email.toString(),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12,

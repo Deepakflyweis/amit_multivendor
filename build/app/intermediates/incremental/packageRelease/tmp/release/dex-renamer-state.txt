@@ -1,0 +1,4 @@
+#Wed Jul 20 13:50:50 IST 2022
+base.0=D\:\\deepak_apps\\Amit-Multivender-\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

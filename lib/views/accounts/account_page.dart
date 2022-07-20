@@ -1,5 +1,4 @@
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart'; 
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,7 @@ import 'package:sugandh/controller/profile_controller.dart';
 import 'package:sugandh/views/editProfile/edit_profile.dart';
 import 'package:sugandh/views/home_screen/wishlist.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
-import 'package:sugandh/views/notification/Notice_fication.dart';
-import 'package:sugandh/views/track_order/track_map.dart';
-import 'package:sugandh/views/track_order/track_screen.dart';
+import 'package:sugandh/views/notification/Notice_fication.dart'; 
 import 'package:sugandh/widgets/constant.dart';
 import 'package:sugandh/widgets/drower_box.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -60,10 +57,10 @@ class AcoountPage extends StatelessWidget {
                     radius: 45,
                     child: ClipOval(
                       child: Image.network(
-                        state!.profile,
+                        state!.profile.toString(),
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) => Image.asset(
-                            'lib/assets/asset/avatar.png',fit: BoxFit.cover,),
+                            'lib/assets/asset/avatar.png',fit: BoxFit.fill,),
                       ),
                     ), //CircleAvatar
                   ),
@@ -72,7 +69,7 @@ class AcoountPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                         Text(
-                        state.name,
+                        state.name.toString(),
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
@@ -80,7 +77,7 @@ class AcoountPage extends StatelessWidget {
                       ),
                       0.6.h.heightBox,
                        Text(
-                        state.email,                        
+                        state.email.toString(),                        
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,

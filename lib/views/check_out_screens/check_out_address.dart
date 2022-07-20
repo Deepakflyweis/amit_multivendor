@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sugandh/controller/payment_controller.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,6 @@ import 'checkbox_controller.dart';
 import 'checkout_address_controller.dart';
 
 class CheckoutAddress extends StatefulWidget {
-   
   const CheckoutAddress({Key? key}) : super(key: key);
 
   @override
@@ -21,6 +21,8 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
 
   final CheckoutAddressController _checkoutAddressController =
       Get.put(CheckoutAddressController());
+  PaymentGatewayController paymentController =
+      Get.put(PaymentGatewayController());
 
   @override
   Widget build(BuildContext context) {
@@ -132,26 +134,23 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                     Text(
                       'Address',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500
-                      ),
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
                     ),
                     Text(
                       'Payment',
                       style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500
-                      ),
+                          color: Colors.grey,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
                     ),
                     Text(
                       'Summary',
                       style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500
-                      ),
+                          color: Colors.grey,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 ).pSymmetric(h: 4.w),
@@ -180,14 +179,15 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Street',
-                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
-                  validator: (value) { 
-                      if (value == '') {
-                        return ' please enter street';
-                      }
-                      return null;
+                  validator: (value) {
+                    if (value == '') {
+                      return ' please enter street';
+                    }
+                    return null;
                   },
                   controller: _checkoutAddressController.street,
                   decoration: const InputDecoration(
@@ -205,13 +205,14 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Locality/Landmark',
-                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
-                        validator:  (value) {
-                        if (value == '') {
-                        return ' please enter Locality';
-                      }
+                  validator: (value) {
+                    if (value == '') {
+                      return ' please enter Locality';
+                    }
                     return null;
                   },
                   controller: _checkoutAddressController.locality,
@@ -230,15 +231,16 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'PinCode',
-                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     )).pSymmetric(h: 4.w),
                 TextFormField(
                   validator: (value) {
-                  if (value == '') {
-                  return ' please enter pincode';
-                }
-                return null;
-                 },
+                    if (value == '') {
+                      return ' please enter pincode';
+                    }
+                    return null;
+                  },
                   controller: _checkoutAddressController.pincode,
                   decoration: const InputDecoration(
                     hintText: 'pincode',
@@ -258,13 +260,15 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'City',
-                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
                         )),
                     const Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'State',
-                          style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
                         )).pSymmetric(h: 34.w),
                   ],
                 ).pSymmetric(h: 4.w),
@@ -276,8 +280,8 @@ class _CheckoutAddressState extends State<CheckoutAddress> {
                         validator: (value) {
                           if (value == '') {
                             return ' please enter your city';
-                             }
-                            return null;
+                          }
+                          return null;
                         },
                         controller: _checkoutAddressController.city,
                         decoration: const InputDecoration(

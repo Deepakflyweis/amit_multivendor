@@ -49,7 +49,7 @@ class NoticeFication extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  width: 3.h,
+                  width: 2.h,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -60,18 +60,21 @@ class NoticeFication extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Loreum ipsum dolor sit amit",
+                            "Loreum ipsum dolor ",
                             style: TextStyle(
                                 fontSize: 15.sp, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            width: 2.h,
-                          ),
+                          Spacer(),
                           const Text("8:35 pm")
                         ],
                       ),
-                      const Text(
-                          "Loreum ipsum dolor sit amet, consuter\nsadipcing eliter sed dam nonumy eirmod"),
+                      Expanded(
+                        child: const Text(
+                            "Loreum ipsum dolor sit amet, consuter\nsadipcing eliter sed dam nonumy eirmod",
+                            maxLines: 2,
+                            overflow: TextOverflow.fade,
+                            ),
+                      ),
                     ],
                   ),
                 )
@@ -82,7 +85,7 @@ class NoticeFication extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(
-              height: 3.h,
+              height: 2.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,7 +105,7 @@ class NoticeFication extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  width: 3.h,
+                  width: 2.h,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -117,9 +120,7 @@ class NoticeFication extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15.sp, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            width: 2.h,
-                          ),
+                         Spacer(),
                           const Text("8:35 pm")
                         ],
                       ),
@@ -135,7 +136,7 @@ class NoticeFication extends StatelessWidget {
               color: Colors.black,
             ),
             SizedBox(
-              height: 3.h,
+              height: 2.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -155,7 +156,7 @@ class NoticeFication extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  width: 3.h,
+                  width: 2.h,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -170,9 +171,7 @@ class NoticeFication extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 15.sp, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            width: 2.h,
-                          ),
+                           Spacer(),
                           const Text("8:35 pm")
                         ],
                       ),
