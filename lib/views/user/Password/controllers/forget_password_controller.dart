@@ -7,7 +7,7 @@ import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/views/user/otp_screens/otp_page.dart';
 
 import '../../../../core/utils/app_utils.dart';
- 
+
 import '../../../../config/repository/iauth_repository.dart';
 
 class ForgetPasswordController extends GetxController {
@@ -17,6 +17,7 @@ class ForgetPasswordController extends GetxController {
   TextEditingController phone = TextEditingController();
   TextEditingController newPass = TextEditingController();
   TextEditingController confirmPass = TextEditingController();
+  var printOtp2;
 
   forgetSendOtp() async {
     try {
@@ -26,7 +27,7 @@ class ForgetPasswordController extends GetxController {
       await repsitory.forgetPasswordApi(phone.text);
       showToastMessage(
         title: "Success",
-        message: "OTP send to ${phone.text.toString()}",
+        message: "OTP :  ${printOtp2.toString()}",
       );
     } catch (error) {
       log(error.toString());

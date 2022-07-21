@@ -7,14 +7,22 @@ import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/core/utils/app_utils.dart';
 import 'package:sugandh/core/utils/common_loader.dart';
 import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
+import 'package:sugandh/views/user/Password/controllers/forget_password_controller.dart';
 import 'package:sugandh/views/user/Password/controllers/forget_password_otp.dart';
 import 'package:sugandh/views/user/Password/create_new_password.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/views/user/otp_screens/otp_page.dart';
+import 'package:sugandh/views/user/otp_screens/time_controller.dart';
+import 'package:sugandh/views/user/signup/signup_controller.dart';
 
 class UserEndPointRepsitory {
   Dio client;
   UserEndPointRepsitory({required this.client});
+
+  final ForgetPasswordController _forgetPasswordController =
+      g.Get.put(ForgetPasswordController());
+
+  final SignupController _signupController = g.Get.put(SignupController());
 
   loginApi({required String mobile, required String pass}) async {
     CommonLoader.showLoading();
@@ -27,7 +35,7 @@ class UserEndPointRepsitory {
         GetStorage box = GetStorage();
         String token = response.data['token'];
         await box.write("token", token);
-       
+
         g.Get.offAll(() => MyDashBoard());
         showToastMessage(
           title: "Success",
@@ -51,6 +59,7 @@ class UserEndPointRepsitory {
       CommonLoader.hideLoading();
       if (response.statusCode == 201) {
         log("response $response");
+        _signupController.printOtp3 = response.data['otp'];
         g.Get.to(() => OTPScreen(
               isLogin: false,
             ));
@@ -92,6 +101,7 @@ class UserEndPointRepsitory {
       CommonLoader.hideLoading();
       if (response.statusCode == 200) {
         log("OTP $response");
+        _forgetPasswordController.printOtp2 = response.data['otp']; 
         g.Get.to(() => ForgetOtp(isLogin: false));
       } else {
         CommonLoader.showErrorDialog(description: response.data['error']);

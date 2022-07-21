@@ -1,7 +1,8 @@
 // import 'dart:convert';
 
 // import 'package:flutter/foundation.dart';
- import 'package:get/get.dart';
+ import 'package:flutter/animation.dart';
+import 'package:get/get.dart';
 // import 'package:dio/dio.dart';
 // import 'package:get_storage/get_storage.dart';
 
@@ -11,7 +12,7 @@
 
 
 showToastMessage({required String title, required String message}) {
-  Get.snackbar(title, message, duration: const Duration(seconds: 1));
+  Get.snackbar(title, message, duration: const Duration(seconds: 20),colorText: Color(0xffFF001A));
 }
 
 // abstract class DataState<T> {

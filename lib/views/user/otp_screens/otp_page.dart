@@ -1,8 +1,8 @@
-import 'dart:developer';
+ 
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
+import 'package:sizer/sizer.dart'; 
 import 'package:sugandh/views/user/otp_screens/time_controller.dart';
 import 'package:sugandh/widgets/app_widgets.dart';
 import 'package:sugandh/widgets/constant.dart';
@@ -11,7 +11,9 @@ import 'package:velocity_x/velocity_x.dart';
 import 'otp_input.dart';
 
 class OTPScreen extends StatelessWidget {
-  OtpTimerController _timeController = Get.put(OtpTimerController());
+  
+  final OtpTimerController _timeController = Get.put(OtpTimerController());
+  
   OTPScreen({Key? key, required this.isLogin
       // required this.phoneNumber,
       // required this.otp,
@@ -68,14 +70,16 @@ class OTPScreen extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                'phone no. Enter it below to continue',
+                'phone no. Enter it below to continue ' ,
+                // + _forgetPasswordController.printOtp2.toString(),
                 style: TextStyle(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey,
                 ),
               ),
-            ).p1(),
+            ).p1(), 
+            
             9.h.heightBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

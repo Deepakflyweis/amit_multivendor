@@ -4818,20 +4818,12 @@ com.google.android.gms.wallet.wobs.zzf
 kotlinx.coroutines.flow.FlowKt__ShareKt$launchSharing$1$2
 androidx.tracing.Trace:
     public static boolean isEnabled()
-    public static void beginAsyncSection(java.lang.String,int)
-    public static void endAsyncSection(java.lang.String,int)
     public static void setCounter(java.lang.String,int)
     private static boolean isEnabledFallback()
-    private static void beginAsyncSectionFallback(java.lang.String,int)
-    private static void endAsyncSectionFallback(java.lang.String,int)
     private static void setCounterFallback(java.lang.String,int)
-    private static void handleException(java.lang.String,java.lang.Exception)
     private void <init>()
     static final java.lang.String TAG
-    private static long sTraceTagApp
     private static java.lang.reflect.Method sIsTagEnabledMethod
-    private static java.lang.reflect.Method sAsyncTraceBeginMethod
-    private static java.lang.reflect.Method sAsyncTraceEndMethod
     private static java.lang.reflect.Method sTraceCounterMethod
 androidx.core.app.JobIntentService$CompatJobEngine
 androidx.core.view.NestedScrollingChildHelper
@@ -10771,7 +10763,9 @@ com.google.common.cache.LongAddables$1
 androidx.core.content.ContextCompat$LegacyServiceMapHolder
 com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueEntry$Helper
 kotlinx.coroutines.flow.FlowKt__ReduceKt$reduce$$inlined$collect$1$1
-androidx.tracing.TraceApi29Impl
+androidx.tracing.TraceApi29Impl:
+    private void <init>()
+    public static void setCounter(java.lang.String,int)
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$none$1
 androidx.core.view.WindowInsetsAnimationCompat$Impl21$Impl21OnApplyWindowInsetsListener$2
 com.google.android.gms.maps.internal.IMapFragmentDelegate
@@ -10826,6 +10820,9 @@ com.google.android.gms.common.internal.AccountType
 kotlin.reflect.KType$DefaultImpls
 com.google.common.collect.AbstractBiMap
 io.flutter.plugin.editing.SpellCheckPlugin:
+    public static final java.lang.String START_INDEX_KEY
+    public static final java.lang.String END_INDEX_KEY
+    public static final java.lang.String SUGGESTIONS_KEY
     private static final int MAX_SPELL_CHECK_SUGGESTIONS
 kotlin.collections.unsigned.UArraysKt___UArraysJvmKt$asList$4
 com.razorpay.razorpay_flutter.R$bool
@@ -11342,8 +11339,8 @@ com.google.android.gms.dynamic.zac
 com.google.common.base.CharMatcher$NegatedFastMatcher
 com.google.common.collect.DenseImmutableTable$RowMap
 com.google.common.collect.TreeBasedTable
-com.google.common.base.Converter$ConverterComposition
 com.google.common.base.FinalizableReferenceQueue
+com.google.common.base.Converter$ConverterComposition
 com.google.common.util.concurrent.AbstractTransformFuture$AsyncTransformFuture
 kotlinx.coroutines.flow.FlowKt__TransformKt$runningFold$$inlined$unsafeFlow$1$1
 com.google.common.graph.ValueGraph
@@ -14573,9 +14570,9 @@ androidx.arch.core.executor.TaskExecutor:
     public abstract void executeOnDiskIO(java.lang.Runnable)
 androidx.core.view.ViewCompat$AccessibilityViewProperty:
     private final int mContentChangeType
-io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC
-io.flutter.plugin.platform.PlatformView$-CC
 io.flutter.plugin.common.BinaryMessenger$-CC:
     public static io.flutter.plugin.common.BinaryMessenger$TaskQueue $default$makeBackgroundTaskQueue(io.flutter.plugin.common.BinaryMessenger,io.flutter.plugin.common.BinaryMessenger$TaskQueueOptions)
     public static void $default$setMessageHandler(io.flutter.plugin.common.BinaryMessenger,java.lang.String,io.flutter.plugin.common.BinaryMessenger$BinaryMessageHandler,io.flutter.plugin.common.BinaryMessenger$TaskQueue)
+io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC
+io.flutter.plugin.platform.PlatformView$-CC
 androidx.lifecycle.DefaultLifecycleObserver$-CC

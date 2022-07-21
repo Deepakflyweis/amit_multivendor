@@ -877,6 +877,7 @@ Referenced Strings:
   ThumbnailImageLength
   ThumbnailImageWidth
   ThumbnailOrientation
+  Trace
   TransferFunction
   TransformedResultImpl
   U:
@@ -1102,6 +1103,8 @@ Referenced Strings:
   args
   array
   assist:and
+  asyncTraceBegin
+  asyncTraceEnd
   attached
   attr
   authClient
@@ -1414,6 +1417,7 @@ Referenced Strings:
   enable_state_restoration
   enabled
   end
+  endIndex
   error
   error:exception
   errorCode
@@ -2167,6 +2171,7 @@ Referenced Strings:
   standard
   standealone
   start
+  startIndex
   state
   statusBarColor
   statusBarIconBrightness
@@ -2178,6 +2183,7 @@ Referenced Strings:
   submit
   success
   suffix
+  suggestions
   surface
   synchronizeToNativeViewHierarchy
   systemNavigationBarColor

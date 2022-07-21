@@ -10,7 +10,6 @@ import 'package:velocity_x/velocity_x.dart';
 class ForgetOtp extends StatelessWidget {
   final OtpTimerController _timeController = Get.put(OtpTimerController());
   
-
   ForgetOtp({Key? key, required this.isLogin}) : super(key: key);
   final bool isLogin;
 

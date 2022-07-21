@@ -5,15 +5,14 @@ import 'package:get/get.dart';
 import 'package:sugandh/config/repository/user_repository.dart';
 import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/core/utils/app_utils.dart';
-import 'package:sugandh/config/local/local_database.dart';
 import 'package:sugandh/views/user/Password/controllers/forget_password_controller.dart';
-import 'package:sugandh/views/user/Password/create_new_password.dart';
 import 'package:sugandh/views/buttom_nav_bar/dash_bord.dart';
 import 'package:sugandh/views/user/signup/signup_controller.dart';
 
 class OtpTimerController extends GetxController {
   RxString elapsedTime = '02:00'.obs;
   int _start = 120;
+  var printOtp;
   // String result = '';
   // final IAuthRepository repository = AuthRepositoryImpl();
 
@@ -90,6 +89,8 @@ class OtpTimerController extends GetxController {
     try {
       setOTP();
       log("otp $otp");
+      // printOtp = otp;
+      log("print $printOtp");
       if (otp.isEmpty) {
         showToastMessage(title: "Error", message: "Fields required");
         return;
@@ -108,6 +109,8 @@ class OtpTimerController extends GetxController {
     try {
       setOTP();
       log("otp $otp");
+      //  printOtp = otp;
+      log("print $printOtp");
       if (otp.isEmpty) {
         showToastMessage(title: "Error", message: "Fields required");
         return;

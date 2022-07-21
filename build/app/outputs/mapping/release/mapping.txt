@@ -1,11 +1,11 @@
 # compiler: R8
 # compiler_version: 2.1.62
 # min_api: 19
-# pg_map_id: 65ce591
+# pg_map_id: 804170d
 # common_typos_disable
 $$ServiceLoaderMethods -> a:
-    java.util.Iterator $load$7411() -> a
-    java.util.Iterator $load$7677() -> b
+    java.util.Iterator $load$7421() -> a
+    java.util.Iterator $load$7687() -> b
 $r8$backportedMethods$utility$Boolean$1$hashCode -> b:
     int hashCode(boolean) -> a
 $r8$backportedMethods$utility$Long$1$hashCode -> c:
@@ -2404,11 +2404,22 @@ androidx.savedstate.SavedStateRegistryController -> androidx.savedstate.a:
 androidx.savedstate.SavedStateRegistryOwner -> androidx.savedstate.b:
     androidx.savedstate.SavedStateRegistry getSavedStateRegistry() -> j
 androidx.tracing.Trace -> d.f.a:
-    void beginSection(java.lang.String) -> a
-    void endSection() -> b
+    java.lang.reflect.Method sAsyncTraceEndMethod -> c
+    long sTraceTagApp -> a
+    java.lang.reflect.Method sAsyncTraceBeginMethod -> b
+    void beginAsyncSection(java.lang.String,int) -> a
+    void beginAsyncSectionFallback(java.lang.String,int) -> b
+    void beginSection(java.lang.String) -> c
+    void endAsyncSection(java.lang.String,int) -> d
+    void endAsyncSectionFallback(java.lang.String,int) -> e
+    void endSection() -> f
+    void handleException(java.lang.String,java.lang.Exception) -> g
 androidx.tracing.TraceApi18Impl -> d.f.b:
     void beginSection(java.lang.String) -> a
     void endSection() -> b
+androidx.tracing.TraceApi29Impl -> d.f.c:
+    void beginAsyncSection(java.lang.String,int) -> a
+    void endAsyncSection(java.lang.String,int) -> b
 androidx.versionedparcelable.ParcelImpl -> androidx.versionedparcelable.ParcelImpl:
     androidx.versionedparcelable.VersionedParcelable mParcel -> e
 androidx.versionedparcelable.ParcelImpl$1 -> androidx.versionedparcelable.ParcelImpl$a:
@@ -6261,11 +6272,12 @@ io.flutter.embedding.android.FlutterActivity -> io.flutter.embedding.android.g:
     io.flutter.embedding.engine.FlutterEngine provideFlutterEngine(android.content.Context) -> y
     boolean shouldHandleDeeplinking() -> z
 io.flutter.embedding.android.FlutterActivityAndFragmentDelegate -> io.flutter.embedding.android.h:
+    io.flutter.embedding.engine.renderer.FlutterUiDisplayListener flutterUiDisplayListener -> k
     boolean isAttached -> i
     io.flutter.plugin.platform.PlatformPlugin platformPlugin -> d
     android.view.ViewTreeObserver$OnPreDrawListener activePreDrawListener -> e
     io.flutter.embedding.android.FlutterView flutterView -> c
-    io.flutter.embedding.engine.renderer.FlutterUiDisplayListener flutterUiDisplayListener -> j
+    java.lang.Integer previousVisibility -> j
     io.flutter.embedding.engine.FlutterEngine flutterEngine -> b
     boolean isFlutterEngineFromHost -> f
     boolean isFlutterUiDisplayed -> g
@@ -6792,17 +6804,17 @@ io.flutter.embedding.engine.FlutterShellArgs -> io.flutter.embedding.engine.e:
     java.util.Set args -> a
     io.flutter.embedding.engine.FlutterShellArgs fromIntent(android.content.Intent) -> a
     java.lang.String[] toArray() -> b
-io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$SerialTaskQueue$F0iXMzLdPiwUET1ugdCo3vpOFvI -> io.flutter.embedding.engine.f.a:
-    io.flutter.embedding.engine.dart.DartMessenger$SerialTaskQueue f$0 -> e
-io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$SerialTaskQueue$Z_QpOFGAZlPwSj4jhPkDhTfI820 -> io.flutter.embedding.engine.f.b:
-    io.flutter.embedding.engine.dart.DartMessenger$SerialTaskQueue f$0 -> e
-io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$TsixYUB5E6FpKhMtCSQVHKE89gQ -> io.flutter.embedding.engine.f.c:
+io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$2j2MERcK825A5j1fv5sZ7xB2Iuo -> io.flutter.embedding.engine.f.a:
     long f$5 -> j
     java.lang.String f$1 -> f
     io.flutter.embedding.engine.dart.DartMessenger f$0 -> e
-    java.nio.ByteBuffer f$3 -> h
-    int f$4 -> i
-    io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo f$2 -> g
+    java.nio.ByteBuffer f$4 -> i
+    int f$2 -> g
+    io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo f$3 -> h
+io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$SerialTaskQueue$F0iXMzLdPiwUET1ugdCo3vpOFvI -> io.flutter.embedding.engine.f.b:
+    io.flutter.embedding.engine.dart.DartMessenger$SerialTaskQueue f$0 -> e
+io.flutter.embedding.engine.dart.-$$Lambda$DartMessenger$SerialTaskQueue$Z_QpOFGAZlPwSj4jhPkDhTfI820 -> io.flutter.embedding.engine.f.c:
+    io.flutter.embedding.engine.dart.DartMessenger$SerialTaskQueue f$0 -> e
 io.flutter.embedding.engine.dart.DartExecutor -> io.flutter.embedding.engine.f.d:
     io.flutter.embedding.engine.FlutterJNI flutterJNI -> a
     io.flutter.embedding.engine.dart.DartExecutor$IsolateServiceIdListener isolateServiceIdListener -> g
@@ -6863,8 +6875,8 @@ io.flutter.embedding.engine.dart.DartMessenger -> io.flutter.embedding.engine.f.
     void dispatchMessageToQueue(java.lang.String,io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,int,long) -> h
     void handleError(java.lang.Error) -> i
     void invokeHandler(io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,int) -> j
-    void lambda$dispatchMessageToQueue$0(java.lang.String,io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,int,long) -> k
-    void lambda$dispatchMessageToQueue$0$DartMessenger(java.lang.String,io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,int,long) -> l
+    void lambda$dispatchMessageToQueue$0(java.lang.String,int,io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,long) -> k
+    void lambda$dispatchMessageToQueue$0$DartMessenger(java.lang.String,int,io.flutter.embedding.engine.dart.DartMessenger$HandlerInfo,java.nio.ByteBuffer,long) -> l
 io.flutter.embedding.engine.dart.DartMessenger$1 -> io.flutter.embedding.engine.f.e$a:
 io.flutter.embedding.engine.dart.DartMessenger$BufferedMessageInfo -> io.flutter.embedding.engine.f.e$b:
     long messageData -> c
@@ -8448,7 +8460,10 @@ io.flutter.util.Preconditions -> f.a.d.e:
 io.flutter.util.Predicate -> f.a.d.f:
 io.flutter.util.TraceSection -> f.a.d.g:
     void begin(java.lang.String) -> a
-    void end() -> b
+    void beginAsyncSection(java.lang.String,int) -> b
+    java.lang.String cropSectionName(java.lang.String) -> c
+    void end() -> d
+    void endAsyncSection(java.lang.String,int) -> e
 io.flutter.util.ViewUtils -> f.a.d.h:
     boolean childHasFocus(android.view.View) -> a
     int generateViewId(int) -> b
