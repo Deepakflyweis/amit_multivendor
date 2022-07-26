@@ -5,6 +5,8 @@ import 'package:sugandh/config/repository/card_repo.dart';
 import 'package:sugandh/config/server/app_server.dart';
 import 'package:sugandh/models/cart_model.dart';
 
+import '../views/cart_screen/cart_page.dart';
+
 class CartController extends GetxController with StateMixin<CartModel> {
   final total = 0.0.obs;
   final subtotal = 0.0.obs;
@@ -66,8 +68,8 @@ class CartController extends GetxController with StateMixin<CartModel> {
 
   @override
   void onInit() {
-    getCartItem();
     super.onInit();
+    getCartItem();
   }
 
   getCartItem() {
@@ -75,6 +77,7 @@ class CartController extends GetxController with StateMixin<CartModel> {
       Client _client = Client();
       CartRepo repo = CartRepo(client: _client.init());
       repo.getCartApi().then((value) {
+        log("cart value ${value}");
         change(value, status: RxStatus.success());
       }, onError: (err) {
         change(null, status: RxStatus.error(err.toString()));
@@ -89,7 +92,14 @@ class CartController extends GetxController with StateMixin<CartModel> {
     Client _client = Client();
     CartRepo repsitory = CartRepo(client: _client.init());
     try {
-      repsitory.addCartApi(id: productId).then((value) {}, onError: (err) {
+      repsitory.addCartApi(id: productId).then((value) {
+        log("value ${value}");
+        if (value != null) {
+          //  getCartItem();
+          Get.delete<CartController>();
+           Get.to(() => CartPage()); 
+        }
+      }, onError: (err) {
         change(null, status: RxStatus.error(err.toString()));
       });
     } catch (e) {

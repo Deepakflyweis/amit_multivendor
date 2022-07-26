@@ -16,6 +16,7 @@ class CartRepo {
     try {
       Response response = await client.get("cart");
       CommonLoader.hideLoading();
+      log("response ${response.data}");
       if (response.statusCode == 200) {
         return cartModelFromJson(jsonEncode(response.data));
       } else {
@@ -27,13 +28,13 @@ class CartRepo {
     }
   }
 
-  updateQuantCartApi({required String id,required int quantity}) async {
+  updateQuantCartApi({required String id, required int quantity}) async {
     var data = {"quantity": quantity};
     try {
-      Response response = await client.put("cart/$id" , data: data);
-       if (response.statusCode == 200) {
+      Response response = await client.put("cart/$id", data: data);
+      if (response.statusCode == 200) {
         log("updated quantity in cart $response");
-         return Future.value (response.data);
+        return Future.value(response.data);
       }
     } on DioError catch (e) {
       CommonLoader.hideLoading();
@@ -47,6 +48,7 @@ class CartRepo {
       Response response = await client.post("cart/$id", data: data);
       if (response.statusCode == 200) {
         log("added in cart $response");
+        return response.data;
       } else {
         if (response.statusMessage == "Token_Expired") {
           g.Get.offAll(() => LoginScreen());

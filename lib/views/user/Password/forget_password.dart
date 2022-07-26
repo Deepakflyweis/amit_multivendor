@@ -57,8 +57,7 @@ class ForgetPassword extends StatelessWidget {
                 validator: (value) {
                   if (value == "") {
                     return "Phone Number is empty.";
-                  }
-                  
+                  } 
                 },
                 decoration: const InputDecoration(
                   hintText: "Mobile No",

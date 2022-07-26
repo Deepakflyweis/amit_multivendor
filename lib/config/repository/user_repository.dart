@@ -12,7 +12,6 @@ import 'package:sugandh/views/user/Password/controllers/forget_password_otp.dart
 import 'package:sugandh/views/user/Password/create_new_password.dart';
 import 'package:sugandh/views/user/login/login_screens.dart';
 import 'package:sugandh/views/user/otp_screens/otp_page.dart';
-import 'package:sugandh/views/user/otp_screens/time_controller.dart';
 import 'package:sugandh/views/user/signup/signup_controller.dart';
 
 class UserEndPointRepsitory {

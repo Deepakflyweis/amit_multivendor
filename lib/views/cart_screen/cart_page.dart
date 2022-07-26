@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -14,8 +16,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  CartController _controller = Get.put(CartController());
-  //  int get sum => quantity.value;
+  final CartController _controller = Get.put(CartController());
+  
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class _CartPageState extends State<CartPage> {
               1.h.heightBox,
               Container(
                 padding: EdgeInsets.all(8.sp),
-                height: 55.h,
+                width: 100.w,
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: state!.cart.products.length,

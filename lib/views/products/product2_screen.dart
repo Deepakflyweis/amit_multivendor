@@ -229,7 +229,7 @@ class _Produt2pageState extends State<Produt2page> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                   '\$' + state.price.toString(),
+                    '\$' + state.price.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 19,
@@ -291,7 +291,7 @@ class _Produt2pageState extends State<Produt2page> {
                         Icon(
                           Icons.remove,
                           color: Colors.white,
-                        ),                        
+                        ),
                         Text(
                           '1',
                           style: TextStyle(
@@ -303,7 +303,6 @@ class _Produt2pageState extends State<Produt2page> {
                           Icons.add,
                           color: Colors.white,
                         ),
-                        
                       ],
                     ).pSymmetric(h: 1.w),
                   ),
@@ -326,10 +325,10 @@ class _Produt2pageState extends State<Produt2page> {
                           .make()
                           .centered(),
                     ).onTap(() {
-                       cartC.addCartItem((state.id));   
-                      Get.to(() => CartPage())!.then((value) => Get.delete<CartController>());
-                  } 
-                     ),
+                      cartC.addCartItem((state.id));
+                     
+                      // !.then((value) => Get.delete<CartController>());
+                    }),
                   ),
                 ],
               ).pSymmetric(h: 4.w),
@@ -456,7 +455,7 @@ class _Produt2pageState extends State<Produt2page> {
               //   ),
               // ),
               // 2.h.heightBox,
-              
+
               // InkWell(
               //   onTap: () {
               //     Get.to(() => const RateProduct());
@@ -472,10 +471,9 @@ class _Produt2pageState extends State<Produt2page> {
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                   'Reviews',
-                    style:
-                     TextStyle(color: Colors.black, fontSize: 12.sp),
-                      ),
+                  'Reviews',
+                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
+                ),
               ),
               2.heightBox,
               Container(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sugandh/views/accounts/account_page.dart';
 import 'package:sugandh/views/cart_screen/cart_page.dart';
 import 'package:sugandh/views/home_screen/home_page.dart';
 import 'package:sugandh/views/settings/setting_page.dart';
 import 'package:sugandh/widgets/constant.dart';
+import '../../controller/cart_controller.dart';
 import 'botom_nav_bar.dart';
 
 class MyDashBoard extends StatefulWidget {
@@ -16,12 +18,12 @@ class _MyDashBoardState extends State<MyDashBoard> {
 
   final _inactiveColor = Colors.grey;
 
+  final CartController _controller = Get.put(CartController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold( 
-          body: getBody(),
-          bottomNavigationBar: _buildBottomBar()),
+      child: Scaffold(body: getBody(), bottomNavigationBar: _buildBottomBar()),
     );
   }
 
@@ -33,7 +35,12 @@ class _MyDashBoardState extends State<MyDashBoard> {
       showElevation: true,
       itemCornerRadius: 24,
       curve: Curves.easeIn,
-      onItemSelected: (index) => setState(() => _currentIndex = index),
+      onItemSelected: (index) {
+        if (index == 1) {
+          _controller.getCartItem();
+        }
+        setState(() => _currentIndex = index);
+      },
       items: <BottomNavyBarItem>[
         BottomNavyBarItem(
           icon: const Icon(Icons.home_filled),
@@ -71,11 +78,10 @@ class _MyDashBoardState extends State<MyDashBoard> {
 
   Widget getBody() {
     List<Widget> pages = [
-        HomePage(),
-        CartPage(),
-        AcoountPage(),
-        SettingPage(),
-              
+      HomePage(),
+      CartPage(),
+      AcoountPage(),
+      SettingPage(),
     ];
     return IndexedStack(
       index: _currentIndex,

@@ -69,11 +69,11 @@ class AcoountPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                         Text(
-                        state.name.toString(),
+                        state.name.toString(), 
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                            fontSize: 16), 
                       ),
                       0.6.h.heightBox,
                        Text(
