@@ -93,7 +93,7 @@ class CartController extends GetxController with StateMixin<CartModel> {
     CartRepo repsitory = CartRepo(client: _client.init());
     try {
       repsitory.addCartApi(id: productId).then((value) {
-        log("value ${value}");
+        log("value $value");
         if (value != null) {
           //  getCartItem();
           Get.delete<CartController>();

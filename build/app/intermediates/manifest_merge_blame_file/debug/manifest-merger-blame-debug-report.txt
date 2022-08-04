@@ -1,0 +1,273 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.sugandh"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+9        android:targetSdkVersion="30" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:3:5-66
+14-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:3:22-64
+15
+16    <queries>
+16-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:11:5-37:15
+17        <intent>
+17-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:12:9-18:18
+18            <action android:name="android.intent.action.VIEW" />
+18-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:13:13-65
+18-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:13:21-62
+19
+20            <data
+20-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:15:13-17:38
+21                android:mimeType="*/*"
+21-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:16:17-39
+22                android:scheme="*" />
+22-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:17:17-35
+23        </intent>
+24        <intent>
+24-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:19:9-28:18
+25            <action android:name="android.intent.action.VIEW" />
+25-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:13:13-65
+25-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:13:21-62
+26
+27            <category android:name="android.intent.category.BROWSABLE" />
+27-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:22:13-74
+27-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:22:23-71
+28
+29            <data
+29-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:15:13-17:38
+30                android:host="pay"
+31                android:mimeType="*/*"
+31-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:16:17-39
+32                android:scheme="upi" />
+32-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:17:17-35
+33        </intent>
+34        <intent>
+34-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:29:9-31:18
+35            <action android:name="android.intent.action.MAIN" />
+35-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:17-68
+35-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:25-66
+36        </intent>
+37        <intent>
+37-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:32:9-36:18
+38            <action android:name="android.intent.action.SEND" />
+38-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:33:13-65
+38-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:33:21-62
+39
+40            <data android:mimeType="*/*" />
+40-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:15:13-17:38
+40-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:16:17-39
+41        </intent>
+42    </queries> <!-- Include required permissions for Google Maps API to run. -->
+43    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+43-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+43-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
+44
+45    <uses-feature
+45-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+46        android:glEsVersion="0x00020000"
+46-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+47        android:required="true" />
+47-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+48
+49    <application
+49-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:4:4-41:19
+50        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+50-->[androidx.core:core:1.8.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\8bab233f672ffd45ac57596fd518001d\core-1.8.0\AndroidManifest.xml:24:18-86
+51        android:debuggable="true"
+52        android:icon="@mipmap/ic_launcher"
+52-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:6:9-43
+53        android:label="AmitRai" >
+53-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:5:9-32
+54        <activity
+54-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:7:9-35:20
+55            android:name="com.example.sugandh.MainActivity"
+55-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:8:13-41
+56            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+56-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:11:13-163
+57            android:hardwareAccelerated="true"
+57-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:12:13-47
+58            android:launchMode="singleTop"
+58-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:9:13-43
+59            android:theme="@style/LaunchTheme"
+59-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:10:13-47
+60            android:windowSoftInputMode="adjustResize" >
+60-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:13:13-55
+61
+62            <!--
+63                 Specifies an Android theme to apply to this Activity as soon as
+64                 the Android process has started. This theme is visible to the user
+65                 while the Flutter UI initializes. After that, this theme continues
+66                 to determine the Window background behind the Flutter UI.
+67            -->
+68            <meta-data
+68-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:18:13-21:17
+69                android:name="io.flutter.embedding.android.NormalTheme"
+69-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:19:15-70
+70                android:resource="@style/NormalTheme" />
+70-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:20:15-52
+71            <!--
+72                 Displays an Android View that continues showing the launch screen
+73                 Drawable until Flutter paints its first frame, then this splash
+74                 screen fades out. A splash screen is useful to avoid any visual
+75                 gap between the end of Android's launch screen and the painting of
+76                 Flutter's first frame.
+77            -->
+78            <meta-data
+78-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:27:13-30:17
+79                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+79-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:28:15-79
+80                android:resource="@drawable/launch_background" />
+80-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:29:15-61
+81
+82            <intent-filter>
+82-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:31:13-34:29
+83                <action android:name="android.intent.action.MAIN" />
+83-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:17-68
+83-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:25-66
+84
+85                <category android:name="android.intent.category.LAUNCHER" />
+85-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:33:17-76
+85-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:33:27-74
+86            </intent-filter>
+87        </activity>
+88        <!--
+89             Don't delete the meta-data below.
+90             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+91        -->
+92        <meta-data
+92-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:38:9-40:33
+93            android:name="flutterEmbedding"
+93-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:39:13-44
+94            android:value="2" />
+94-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:40:13-30
+95
+96        <provider
+96-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+97            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+97-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+98            android:authorities="com.example.sugandh.flutter.image_provider"
+98-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+99            android:exported="false"
+99-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+100            android:grantUriPermissions="true" >
+100-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+101            <meta-data
+101-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+102                android:name="android.support.FILE_PROVIDER_PATHS"
+102-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+103                android:resource="@xml/flutter_image_picker_file_paths" />
+103-->[:image_picker_android] D:\deepak_apps\Amit-Multivender-\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+104        </provider>
+105
+106        <uses-library
+106-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+107            android:name="androidx.window.extensions"
+107-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+108            android:required="false" />
+108-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+109        <uses-library
+109-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+110            android:name="androidx.window.sidecar"
+110-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+111            android:required="false" />
+111-->[androidx.window:window:1.0.0-beta04] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\9520e6f13992d2f4d96b17b856330597\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+112
+113        <receiver
+113-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:40:9-46:20
+114            android:name="com.razorpay.RzpTokenReceiver"
+114-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:41:13-57
+115            android:exported="false" >
+115-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:42:13-37
+116            <intent-filter>
+116-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:43:13-45:29
+117                <action android:name="rzp.device_token.share" />
+117-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:44:17-65
+117-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:44:25-62
+118            </intent-filter>
+119        </receiver>
+120
+121        <activity
+121-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:48:9-60:20
+122            android:name="com.razorpay.CheckoutActivity"
+122-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:49:13-57
+123            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+123-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:50:13-83
+124            android:exported="true"
+124-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:51:13-36
+125            android:theme="@style/CheckoutTheme" >
+125-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:52:13-49
+126            <intent-filter>
+126-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:53:13-59:29
+127                <action android:name="android.intent.action.MAIN" />
+127-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:17-68
+127-->D:\deepak_apps\Amit-Multivender-\android\app\src\main\AndroidManifest.xml:32:25-66
+128
+129                <data
+129-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:15:13-17:38
+130                    android:host="rzp.io"
+131                    android:scheme="io.rzp" />
+131-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:17:17-35
+132            </intent-filter>
+133        </activity>
+134
+135        <meta-data
+135-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:62:9-64:58
+136            android:name="com.razorpay.plugin.googlepay_all"
+136-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:63:13-61
+137            android:value="com.razorpay.RzpGpayMerged" />
+137-->[com.razorpay:checkout:1.6.19] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\ddd2d77c8e49ea9d4695a9c7d96cf5cf\jetified-checkout-1.6.19\AndroidManifest.xml:64:13-55
+138
+139        <activity
+139-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:23:9-27:75
+140            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+140-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:24:13-93
+141            android:excludeFromRecents="true"
+141-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:25:13-46
+142            android:exported="false"
+142-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:26:13-37
+143            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+143-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:27:13-72
+144        <!--
+145            Service handling Google Sign-In user revocation. For apps that do not integrate with
+146            Google Sign-In, this service will never be started.
+147        -->
+148        <service
+148-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:33:9-36:110
+149            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+149-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:34:13-89
+150            android:exported="true"
+150-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:35:13-36
+151            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" /> <!-- Needs to be explicitly declared on P+ -->
+151-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\041b803f4cbcb50d1c69619ca6247870\jetified-play-services-auth-17.0.0\AndroidManifest.xml:36:13-107
+152        <uses-library
+152-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+153            android:name="org.apache.http.legacy"
+153-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+154            android:required="false" />
+154-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\e1f2c764bda9296bdc41ef4fd83aa989\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+155
+156        <activity
+156-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\1ad0574f41c5a6b8f1902c963571a66d\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+157            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+157-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\1ad0574f41c5a6b8f1902c963571a66d\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+158            android:exported="false"
+158-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\1ad0574f41c5a6b8f1902c963571a66d\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+159            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+159-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\1ad0574f41c5a6b8f1902c963571a66d\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+160
+161        <meta-data
+161-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\c26502361ec4dc2b3cb8ca567b1e8c51\jetified-play-services-basement-17.6.0\AndroidManifest.xml:23:9-25:69
+162            android:name="com.google.android.gms.version"
+162-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\c26502361ec4dc2b3cb8ca567b1e8c51\jetified-play-services-basement-17.6.0\AndroidManifest.xml:24:13-58
+163            android:value="@integer/google_play_services_version" />
+163-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\FLYWEIS\.gradle\caches\transforms-2\files-2.1\c26502361ec4dc2b3cb8ca567b1e8c51\jetified-play-services-basement-17.6.0\AndroidManifest.xml:25:13-66
+164    </application>
+165
+166</manifest>

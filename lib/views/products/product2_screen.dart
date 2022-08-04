@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:sugandh/controller/cart_controller.dart';
 import 'package:sugandh/controller/product_detail_cont.dart';
 import 'package:sugandh/controller/products_controller.dart';
-import 'package:sugandh/views/RateProduct/rate_product.dart';
-import 'package:sugandh/views/cart_screen/cart_page.dart';
 import 'package:sugandh/widgets/constant.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -104,7 +102,8 @@ class _Produt2pageState extends State<Produt2page> {
       body: SafeArea(
           child: SingleChildScrollView(
               child: controller.obx(
-        (state) => Stack(children: [
+        (state) =>
+         Stack(children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
